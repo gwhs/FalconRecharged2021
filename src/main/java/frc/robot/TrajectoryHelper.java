@@ -30,7 +30,7 @@ public class TrajectoryHelper {
 
     public static TrajectoryMaker createForwardPath() //For Testing Purposes
     {
-        return new TrajectoryMaker(new Pose2d(0, 0, new Rotation2d(0)), new Pose2d(1, 0, new Rotation2d(0)), true);
+        return new TrajectoryMaker(new Pose2d(0, 0, new Rotation2d(0)), new Pose2d(.75, 0, new Rotation2d(0)), true);
     }
     public static TrajectoryMaker createZagPath() //For Testing Purposes
     {
@@ -51,6 +51,14 @@ public class TrajectoryHelper {
         points.add(new Translation2d(-1.5, 2.3));
         points.add(new Translation2d(-3, 2.3));
         return new TrajectoryMaker(new Pose2d(0, 0, new Rotation2d(0)), new Pose2d(-5.3, 2.3, new Rotation2d(180)), points );
+    }
+
+    public static TrajectoryMaker createTestMultiPath()
+    {
+        ArrayList<Translation2d> points = new ArrayList<Translation2d>();
+        points.add(new Translation2d(1,-0.5));
+        points.add(new Translation2d(1,0.5));
+        return new TrajectoryMaker(new Pose2d(0, 0, new Rotation2d(0)), new Pose2d(2, 0, new Rotation2d(Math.PI)), points );
     }
     public static TrajectoryMaker createMoveDownTrench()
     {

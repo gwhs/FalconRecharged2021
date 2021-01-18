@@ -44,7 +44,7 @@ public class GalacticSearchTest extends SequentialCommandGroup {
             new TurnToAngleProfiled(-45, swerveDriveSubsystem).withTimeout(2),
             new Autonomous(swerveDriveSubsystem, TrajectoryHelper.createForwardPath().getTrajectory(), TrajectoryHelper.createForwardPath().getAngle()).withTimeout(2))
           ).withTimeout(12),
-          new InstantCommand(intake::stopIntake,intake)
+        new InstantCommand(intake::stopIntake,intake)
     );
   }
   

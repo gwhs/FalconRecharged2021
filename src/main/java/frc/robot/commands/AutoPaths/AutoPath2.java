@@ -16,21 +16,22 @@ import frc.robot.subsystems.Drive.SwerveDriveSubsystem;
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
 // https://docs.wpilib.org/en/latest/docs/software/commandbased/convenience-features.html
-public class AutoPath1 extends SequentialCommandGroup {
+public class AutoPath2 extends SequentialCommandGroup {
   /**
    * Creates a new AutoPath1.
    * 
    * 
    * This is just an Auto used for general testing. 
    */
-  public AutoPath1(SwerveDriveSubsystem swerveDriveSubsystem) {  // test forward path
+  public AutoPath2(SwerveDriveSubsystem swerveDriveSubsystem) {  // test forward path
    
     super(
       //new Autonomous(swerveDriveSubsystem, TrajectoryHelper.createTestMultiPath().getTrajectory(), TrajectoryHelper.createTestMultiPath().getAngle())
       
-      new TurnToAngleProfiled(45, swerveDriveSubsystem).withTimeout(3),
+      new TurnToAngleProfiled(-45, swerveDriveSubsystem).withTimeout(3),
       new Autonomous(swerveDriveSubsystem, TrajectoryHelper.createForwardPath().getTrajectory(), TrajectoryHelper.createForwardPath().getAngle()).withTimeout(1)
     );
   }
   
 }
+

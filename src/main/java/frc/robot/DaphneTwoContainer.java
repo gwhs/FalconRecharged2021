@@ -13,12 +13,14 @@ import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.ConditionalCommand;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
 import frc.robot.commands.ReadLimelight;
 
 import frc.robot.commands.AutoPaths.AutoPath1;
+import frc.robot.commands.AutoPaths.AutoPath2;
 import frc.robot.commands.AutoPaths.GalacticSearchTest;
 import frc.robot.commands.climber.*;
 //import frc.robot.commands.controlpanel.SpinnerCommand;
@@ -49,7 +51,7 @@ public class DaphneTwoContainer {
   // The robot's subsystems and commands are defined here...
 
   private final XboxController mXboxController;
-  private final XboxController mXboxController2;  //operator controller
+  //private final XboxController mXboxController2;  //operator controller
 
   private final SwerveDriveSubsystem swerveDriveSubsystem;
   //private final ColorPanelSpinner colorPanelSpinner;
@@ -86,13 +88,13 @@ public class DaphneTwoContainer {
 
     // create the input controllers
     mXboxController = new XboxController(0);
-    mXboxController2 = new XboxController(1);
+    //mXboxController2 = new XboxController(1);
 
     // setup any default commands
     swerveDriveSubsystem.setDefaultCommand(new HolonomicDriveCommand(swerveDriveSubsystem, mXboxController));
     //colorPanelSpinner.setDefaultCommand(new SpinnerCommand(colorPanelSpinner, mXboxController2));
     conveyorT.setDefaultCommand(new SenseCell(conveyorT));
-    climberT.setDefaultCommand(new ClimberArmSpeed(climberT, mXboxController2));
+    //climberT.setDefaultCommand(new ClimberArmSpeed(climberT, mXboxController2));
 
     // configure the buttons
     configureButtonBindings();
@@ -114,14 +116,14 @@ public class DaphneTwoContainer {
     JoystickButton back = new JoystickButton(mXboxController, XboxController.Button.kBack.value);
     JoystickButton start = new JoystickButton(mXboxController, XboxController.Button.kStart.value);
 
-
+/*
     JoystickButton buttonA_2 = new JoystickButton(mXboxController2, XboxController.Button.kA.value);
     JoystickButton buttonX_2 = new JoystickButton(mXboxController2, XboxController.Button.kX.value);
     JoystickButton buttonB_2 = new JoystickButton(mXboxController2, XboxController.Button.kB.value);
     JoystickButton buttonY_2 = new JoystickButton(mXboxController2, XboxController.Button.kY.value);
     JoystickButton leftBumper_2 = new JoystickButton(mXboxController2, XboxController.Button.kBumperLeft.value);
     JoystickButton rightBumper_2 = new JoystickButton(mXboxController2, XboxController.Button.kBumperRight.value);
-    
+    */
     
     //buttonX.whileHeld(new IntakeSpeed(-0.8));
     //buttonA.whenPressed(new ToggleIntake());  //testing inline
@@ -145,7 +147,18 @@ public class DaphneTwoContainer {
     //rightBumper.whenPressed(new TurnToAngleProfiled(-45, swerveDriveSubsystem));
     //start.whenPressed(new AlignToTargetLimelight( swerveDriveSubsystem, limeL));
     //start.whenPressed(new AutoPath1(swerveDriveSubsystem));
-    start.whenPressed(new GalacticSearchTest(swerveDriveSubsystem, intake));
+    //start.whenPressed(new GalacticSearchTest(swerveDriveSubsystem, intake));
+    start.whenPressed(new ConditionalCommand(
+      new AutoPath1(swerveDriveSubsystem), 
+      new AutoPath2(swerveDriveSubsystem), 
+      ()->fifty50()));
+  }
+
+  public boolean fifty50()
+  {
+    boolean out = Math.random() < 0.5;
+    System.out.println("********************** left " + out);
+    return out;
   }
 
 
