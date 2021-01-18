@@ -21,7 +21,7 @@ public class GoToDistance extends ProfiledPIDCommand {
     public GoToDistance(double distance, SwerveDriveSubsystem drive) {
     super(
         new ProfiledPIDController(0.04,0.0, 0.00237, //need to tune this better
-            new TrapezoidProfile.Constraints(60,120)),  
+            new TrapezoidProfile.Constraints(30,60)),  
         // Close loop on distance
         drive::getInches ,
         // Set reference to target

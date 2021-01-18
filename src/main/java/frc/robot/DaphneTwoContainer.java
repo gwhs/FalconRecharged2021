@@ -19,6 +19,7 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commands.ReadLimelight;
 
 import frc.robot.commands.AutoPaths.AutoPath1;
+import frc.robot.commands.AutoPaths.GalacticSearchTest;
 import frc.robot.commands.climber.*;
 //import frc.robot.commands.controlpanel.SpinnerCommand;
 import frc.robot.commands.conveyor.*;
@@ -133,16 +134,18 @@ public class DaphneTwoContainer {
 
     buttonY.whileHeld(new ConveyorSpeed( conveyorT, .5));
     buttonB.whileHeld(new IntakeSpeed(intake,-.5));
-    leftBumper.whileHeld(new ConveyorSpeed( conveyorT, -.7));
-    rightBumper.whenPressed(new SetShooterSpeed(shooterMotor));
+    //leftBumper.whileHeld(new ConveyorSpeed( conveyorT, -.7));
+    //rightBumper.whenPressed(new SetShooterSpeed(shooterMotor));
     back.whileHeld(new ZeroNavX(swerveDriveSubsystem));
     //start.whenPressed(new AutoShoot(conveyorT, shooterMotor,false));
     //start.whileHeld(new ReadLimelight(limeL));
     //start.whenPressed(new RotateWithLimelight(limeL, swerveDriveSubsystem));
     //start.whenPressed(new TurnToZeroLimelight(0, swerveDriveSubsystem, limeL));
-    //start.whenPressed(new TurnToAngleProfiled(90, swerveDriveSubsystem));
+    //leftBumper.whenPressed(new TurnToAngleProfiled(45, swerveDriveSubsystem));
+    //rightBumper.whenPressed(new TurnToAngleProfiled(-45, swerveDriveSubsystem));
     //start.whenPressed(new AlignToTargetLimelight( swerveDriveSubsystem, limeL));
-    start.whenPressed(new AutoPath1(swerveDriveSubsystem));
+    //start.whenPressed(new AutoPath1(swerveDriveSubsystem));
+    start.whenPressed(new GalacticSearchTest(swerveDriveSubsystem, intake));
   }
 
 

@@ -26,9 +26,9 @@ public class AutoPath1 extends SequentialCommandGroup {
   public AutoPath1(SwerveDriveSubsystem swerveDriveSubsystem) {  // test forward path
    
     super(
-      new Autonomous(swerveDriveSubsystem, TrajectoryHelper.createForwardPath().getTrajectory(), TrajectoryHelper.createForwardPath().getAngle()),
-      new TurnToAngleProfiled(90, swerveDriveSubsystem),
-      new Autonomous(swerveDriveSubsystem, TrajectoryHelper.createZagPath().getTrajectory(), TrajectoryHelper.createZagPath().getAngle())
+      new Autonomous(swerveDriveSubsystem, TrajectoryHelper.createForwardPath().getTrajectory(), TrajectoryHelper.createForwardPath().getAngle()).withTimeout(1),
+      new TurnToAngleProfiled(180, swerveDriveSubsystem).withTimeout(3),
+      new Autonomous(swerveDriveSubsystem, TrajectoryHelper.createForwardPath().getTrajectory(), TrajectoryHelper.createForwardPath().getAngle()).withTimeout(1)
     );
   }
   

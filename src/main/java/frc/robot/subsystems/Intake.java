@@ -36,6 +36,15 @@ public class Intake extends SubsystemBase {
     intakeController.set(speed);
   }
 
+  public void stopIntake(){
+    intakeController.set(0);
+  }
+
+  public void lowerIntake() {
+    rightSolenoid.set(DoubleSolenoid.Value.kForward);
+    leftSolenoid.set(DoubleSolenoid.Value.kForward);
+  }
+
   public void toggleIntakeSolenoidMode(){
     if(rightSolenoid.get() == (DoubleSolenoid.Value.kReverse)){
       rightSolenoid.set(DoubleSolenoid.Value.kForward);
