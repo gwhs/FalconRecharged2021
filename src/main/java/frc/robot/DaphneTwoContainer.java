@@ -22,6 +22,7 @@ import frc.robot.commands.ReadLimelight;
 import frc.robot.commands.AutoPaths.AutoPath1;
 import frc.robot.commands.AutoPaths.AutoPath2;
 import frc.robot.commands.AutoPaths.GalacticSearchTest;
+import frc.robot.commands.AutoPaths.SensorTest;
 import frc.robot.commands.climber.*;
 //import frc.robot.commands.controlpanel.SpinnerCommand;
 import frc.robot.commands.conveyor.*;
@@ -148,10 +149,11 @@ public class DaphneTwoContainer {
     //start.whenPressed(new AlignToTargetLimelight( swerveDriveSubsystem, limeL));
     //start.whenPressed(new AutoPath1(swerveDriveSubsystem));
     //start.whenPressed(new GalacticSearchTest(swerveDriveSubsystem, intake));
-    start.whenPressed(new ConditionalCommand(
+    /*start.whenPressed(new ConditionalCommand(
       new AutoPath1(swerveDriveSubsystem), 
       new AutoPath2(swerveDriveSubsystem), 
-      ()->fifty50()));
+      ()->fifty50()));*/
+    start.whenPressed(new SensorTest(swerveDriveSubsystem, intake, conveyorT));
   }
 
   public boolean fifty50()

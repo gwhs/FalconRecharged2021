@@ -13,7 +13,6 @@ import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.TrajectoryHelper;
 import frc.robot.commands.intake.IntakeSpeed;
 import frc.robot.commands.swervedrive.Autonomous;
-import frc.robot.commands.swervedrive.GoToDistance;
 import frc.robot.commands.swervedrive.TurnToAngleProfiled;
 import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.Drive.SwerveDriveSubsystem;

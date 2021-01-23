@@ -7,14 +7,14 @@ package frc.robot.commands.conveyor;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.ConveyorTalon;
 
-public class newBallSeen extends CommandBase {
+public class SenseNewPowerCell extends CommandBase {
   /** Creates a new newBallSeen. */
-  private boolean seen;
+  
   private ConveyorTalon conveyorTalon;
 
-  public newBallSeen() {
+  public SenseNewPowerCell(ConveyorTalon cvt) {
     // Use addRequirements() here to declare subsystem dependencies.
-    this.conveyorTalon = conveyorTalon;
+    this.conveyorTalon = cvt;
     addRequirements(conveyorTalon);
   }
 

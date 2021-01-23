@@ -55,7 +55,7 @@ public final class Constants {
     public static final double DISTANCE_PID_I = 0.00;
     public static final double DISTANCE_PID_D = 0.00237;
 
-    public static final double TURN_TOLERANCE = 0.7;
+    public static final double TURN_TOLERANCE = 1.5;
     public static final double ANGLE_PID_P = 0.04;
     public static final double ANGLE_PID_I = 0.001;
     public static final double ANGLE_PID_D = 0.00237; //0.00237 is default
