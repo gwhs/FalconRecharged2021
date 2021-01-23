@@ -21,4 +21,11 @@ public class MathUtils
             return 0;
         return input;
     }
+
+    public static final double INCHES_PER_METER = 39.37;
+
+    public static double inchesToMeters(double inches)
+    {
+        return inches / INCHES_PER_METER;
+    }
 }
