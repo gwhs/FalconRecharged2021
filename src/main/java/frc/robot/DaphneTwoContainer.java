@@ -39,6 +39,7 @@ import frc.robot.subsystems.Limelight;
 import frc.robot.subsystems.LimelightPortal;
 import frc.robot.subsystems.Shooter;
 import frc.robot.subsystems.Drive.SwerveDriveSubsystem;
+import frc.robot.utility.TrajectoryMaker;
 
 /**
  * This class is where the bulk of the robot should be declared. Since
@@ -148,10 +149,17 @@ public class DaphneTwoContainer {
     //start.whenPressed(new AlignToTargetLimelight( swerveDriveSubsystem, limeL));
     //start.whenPressed(new AutoPath1(swerveDriveSubsystem));
     //start.whenPressed(new GalacticSearchTest(swerveDriveSubsystem, intake));
+    TrajectoryMaker path = TrajectoryHelper.createBarrel();
+
+    Command autoCommand = new Autonomous(swerveDriveSubsystem, path.getTrajectory(), path.getAngle()));
+    start.whenPressed(autoCommand.withTimeout(30));
+
+/*
     start.whenPressed(new ConditionalCommand(
       new AutoPath1(swerveDriveSubsystem), 
       new AutoPath2(swerveDriveSubsystem), 
       ()->fifty50()));
+      */
   }
 
   public boolean fifty50()

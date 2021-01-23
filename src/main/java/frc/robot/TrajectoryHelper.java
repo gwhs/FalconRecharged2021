@@ -28,6 +28,45 @@ public class TrajectoryHelper {
         { 30, 100 }
      };
 
+     public static double[][] bounce = {
+
+        { 30, 90},  // starting point
+        { 75, 90},
+        { 90, 150}, // bounce 1
+        { 105, 85},
+        { 135, 30},
+        { 165, 30},  
+        { 180, 45},
+        { 178, 90},
+        { 180, 150}, // bounce 2
+        { 182, 90},
+        { 195, 45},
+        { 210, 30},
+        { 255, 35},
+        { 270, 110},
+        { 270, 150}, // bounce 3
+        { 280, 115},
+        { 328, 90}   // end
+     };
+
+     public static double[][] barrel = {
+        { 30, 96},  // starting point
+        { 150, 96}, // circle around 150, 60
+        { 168, 60},
+        { 150, 36}, 
+        { 132, 60}, // finish circle around 150, 60
+        { 150, 96}, // circle arouund 240, 120
+        { 240, 96}, 
+        { 264, 120},
+        { 240, 144},
+        { 216, 120}, // complete circle around 240, 120
+        { 276, 60}, // start circle around 300, 60
+        { 312, 30},
+        { 324, 84}, // finish circle
+        { 30, 96}  // head back to start
+    };
+
+    public static double GLOBAL_SCALE = 0.2;// divide size by 5 to fit into Hajel's garage
 
     /**
      * translateAndScale takes an array of integer coordinates in 2-d space, and scales them to meters, and applies a scale in additinoos
@@ -70,8 +109,18 @@ public class TrajectoryHelper {
 
     public static TrajectoryMaker createSlolom()
     {
-        return createTrajectory(slalom, 1);
+        return createTrajectory(slalom, GLOBAL_SCALE);
     }     
+
+    public static TrajectoryMaker createBounce()
+    {
+        return createTrajectory(bounce, GLOBAL_SCALE);
+    } 
+
+    public static TrajectoryMaker createBarrel()
+    {
+        return createTrajectory(barrel, GLOBAL_SCALE);
+    }
 
     // Need better documentation here.  What are these doing?  Are the units in meters?
     public static TrajectoryMaker createfrontScorePath()
