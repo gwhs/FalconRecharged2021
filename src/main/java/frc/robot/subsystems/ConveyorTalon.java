@@ -23,6 +23,8 @@ public class ConveyorTalon extends SubsystemBase {
   private TimeOfFlight sensor;
   private TalonFX indexer; 
   private boolean ignore;
+  private boolean hasSeen;
+
   public ConveyorTalon() {
     sensor = new TimeOfFlight(2);// to change ID for TOF sensor go to...      ipOfRoboRio:5812
     sensor.setRangingMode(TimeOfFlight.RangingMode.Short, 0.24);
@@ -30,6 +32,7 @@ public class ConveyorTalon extends SubsystemBase {
     indexer.config_kP(0, .2, 0);
     indexer.config_kI(0, .0001, 0);
     ignore = false;
+    hasSeen = false;
   }
 
   @Override
@@ -44,6 +47,7 @@ public class ConveyorTalon extends SubsystemBase {
     SmartDashboard.putNumber("Distance", getDistance());
     SmartDashboard.putBoolean("Ignored", isIgnored());
     SmartDashboard.putNumber("Conveyor Current", indexer.getStatorCurrent());
+    SmartDashboard.putBoolean("Has Seen", hasSeen);
   }
 
   public boolean getStatus() {
@@ -77,5 +81,12 @@ public class ConveyorTalon extends SubsystemBase {
     return indexer.getSelectedSensorPosition();
   }
 
+  public boolean getHasSeen() {
+    return hasSeen;
+  }
+
+  public void setHasSeen(boolean bol) {
+      hasSeen = bol;
+  }
 
 }
