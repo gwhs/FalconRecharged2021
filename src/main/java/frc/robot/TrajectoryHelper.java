@@ -3,12 +3,75 @@ package frc.robot;
 import edu.wpi.first.wpilibj.geometry.Pose2d;
 import edu.wpi.first.wpilibj.geometry.Rotation2d;
 import edu.wpi.first.wpilibj.geometry.Translation2d;
+import frc.robot.utility.MathUtils;
 import frc.robot.utility.TrajectoryMaker;
 
 import java.util.ArrayList;
 
 @SuppressWarnings("unused")
 public class TrajectoryHelper {
+
+    public static double[][] slalom = { 
+        { 30, 30 }, // Starting point
+        { 80, 35 }, 
+        { 125, 90 }, 
+        { 180, 110 }, 
+        { 250, 80 }, 
+        { 285, 30 }, 
+        { 340, 45 }, 
+        { 320, 100 }, 
+        { 275, 80 },
+        { 250, 35 }, 
+        { 180, 25 }, 
+        { 120, 40 }, 
+        { 80, 70 }, 
+        { 30, 100 }
+     };
+
+
+    /**
+     * translateAndScale takes an array of integer coordinates in 2-d space, and scales them to meters, and applies a scale in additinoos
+     * Omits the first and last points
+     * @param pointsArray  arrray of more than two X,Y coordinates
+     * @param scale  resize the entire grid
+     * @return
+     */
+    public static ArrayList<Translation2d> translateAndScale(double[][] pointsArray, double scale) {
+        ArrayList<Translation2d> points = new ArrayList<>(pointsArray.length-1);
+        // translate all the points to the initial coordinate
+        double initialX = pointsArray[0][0];
+        double initialY = pointsArray[0][1];
+
+        for ( int i = 1; i < pointsArray.length; i++) {
+            // also; convert from inches to meters
+            // translate to 0,0
+            double x = pointsArray[i][0];
+            double y = pointsArray[i][1];
+            x = x - initialX; // translate points to be relative to starting point
+            y = y - initialY;
+            x = MathUtils.inchesToMeters(x);  // convert to metric
+            y = MathUtils.inchesToMeters(y);
+            x = x * scale;  // apply extra scale
+            y = y * scale;
+            points.add(new Translation2d(x, y));
+        }
+        return points;
+    }
+
+    private static TrajectoryMaker createTrajectory(double [][] inputPoints, double scale)
+    {
+        ArrayList<Translation2d> points = translateAndScale(inputPoints, scale);  // make .2 for Hajel's garage.  Turns the 30 foot field to 6 feet
+        Pose2d initialPose = new Pose2d(0, 0, new Rotation2d(0));
+        Translation2d lastPoint = points.remove(points.size()-1);  // remove last point in array
+        Pose2d endPose = new Pose2d(lastPoint.getX(), lastPoint.getY(), new Rotation2d(0));
+
+        return new TrajectoryMaker(initialPose, endPose, points);
+    }
+
+    public static TrajectoryMaker createSlolom()
+    {
+        return createTrajectory(slalom, 1);
+    }     
 
     // Need better documentation here.  What are these doing?  Are the units in meters?
     public static TrajectoryMaker createfrontScorePath()
