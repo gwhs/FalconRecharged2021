@@ -151,7 +151,7 @@ public class DaphneTwoContainer {
     //start.whenPressed(new GalacticSearchTest(swerveDriveSubsystem, intake));
     TrajectoryMaker path = TrajectoryHelper.createBarrel();
 
-    Command autoCommand = new Autonomous(swerveDriveSubsystem, path.getTrajectory(), path.getAngle()));
+    Command autoCommand = new Autonomous(swerveDriveSubsystem, path.getTrajectory(), path.getAngle());
     start.whenPressed(autoCommand.withTimeout(30));
 
 /*
