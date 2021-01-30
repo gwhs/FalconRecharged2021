@@ -30,9 +30,10 @@ public class GalacticSearch extends SequentialCommandGroup {
     .raceWith(new IntakeSpeed(intake, -.5)).raceWith(new SenseNewPowerCell(conveyor)),
     new ConditionalCommand(
       new B3_Finish_Auton(swerveDriveSubsystem), 
-      new AutoPath1(swerveDriveSubsystem),
+      new B3_C3_Auton(swerveDriveSubsystem),
       conveyor::getHasSeen
     ),
+    new InstantCommand(swerveDriveSubsystem::stopDriveMotors, swerveDriveSubsystem),
     new IntakeSpeed(intake, 0)
     );
   }
