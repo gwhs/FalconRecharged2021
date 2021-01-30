@@ -11,6 +11,24 @@ import java.util.ArrayList;
 @SuppressWarnings("unused")
 public class TrajectoryHelper {
 
+    public static double[][] Start_to_B3= {
+        {30,120},
+        {90,120},
+    };
+
+    public static double[][] B3_to_C3=  {
+        {90,120},
+        {90,90},
+    };
+    
+    public static double[][] B3_to_Finish = {
+        {90,120},
+        {150,60},
+        {180,150},
+        {345,150},
+    };
+        
+
     public static double[][] slalom = { 
         { 30, 30 }, // Starting point
         { 80, 35 }, 
@@ -66,7 +84,7 @@ public class TrajectoryHelper {
         { 30, 96}  // head back to start
     };
 
-    public static double GLOBAL_SCALE = 0.2;// divide size by 5 to fit into Hajel's garage
+    public static double GLOBAL_SCALE = 0.3;// divide size by 5 to fit into Hajel's garage
 
     /**
      * translateAndScale takes an array of integer coordinates in 2-d space, and scales them to meters, and applies a scale in additinoos
@@ -105,6 +123,21 @@ public class TrajectoryHelper {
         Pose2d endPose = new Pose2d(lastPoint.getX(), lastPoint.getY(), new Rotation2d(0));
 
         return new TrajectoryMaker(initialPose, endPose, points);
+    }
+
+    public static TrajectoryMaker Start_to_B3()
+    {
+        return createTrajectory(Start_to_B3, GLOBAL_SCALE);
+    }
+
+    public static TrajectoryMaker B3_to_Finish()
+    {
+        return createTrajectory(B3_to_Finish, GLOBAL_SCALE);
+    }
+
+    public static TrajectoryMaker B3_to_C3()
+    {
+        return createTrajectory(B3_to_C3, GLOBAL_SCALE);
     }
 
     public static TrajectoryMaker createSlolom()

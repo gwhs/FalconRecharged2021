@@ -21,6 +21,7 @@ import frc.robot.commands.ReadLimelight;
 
 import frc.robot.commands.AutoPaths.AutoPath1;
 import frc.robot.commands.AutoPaths.AutoPath2;
+import frc.robot.commands.AutoPaths.GalacticSearch;
 import frc.robot.commands.AutoPaths.GalacticSearchTest;
 import frc.robot.commands.AutoPaths.SensorTest;
 import frc.robot.commands.climber.*;
@@ -154,11 +155,15 @@ public class DaphneTwoContainer {
       new AutoPath1(swerveDriveSubsystem), 
       new AutoPath2(swerveDriveSubsystem), 
       ()->fifty50()));*/
-    //start.whenPressed(new SensorTest(swerveDriveSubsystem, intake, conveyorT));
-    TrajectoryMaker path = TrajectoryHelper.createBarrel();
+    start.whenPressed(new GalacticSearch(swerveDriveSubsystem, intake, conveyorT));
+    //TrajectoryMaker path = TrajectoryHelper.createSlolom();
 
-    Command autoCommand = new Autonomous(swerveDriveSubsystem, path.getTrajectory(), path.getAngle());
-    start.whenPressed(autoCommand.withTimeout(30));
+    //TrajectoryMaker Start_B3 = TrajectoryHelper.Start_to_B3();
+    //TrajectoryMaker B3_Finish = TrajectoryHelper.B3_to_Finish();
+    //TrajectoryMaker _B3 = TrajectoryHelper.Start_to_B3();
+
+    //Command autoCommand = new Autonomous(swerveDriveSubsystem, path.getTrajectory(), path.getAngle());
+    //start.whenPressed(autoCommand.withTimeout(30));
 
 /*
     start.whenPressed(new ConditionalCommand(
