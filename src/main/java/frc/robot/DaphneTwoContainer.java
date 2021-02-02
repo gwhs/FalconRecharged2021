@@ -142,7 +142,7 @@ public class DaphneTwoContainer {
     //leftBumper.whileHeld(new ConveyorSpeed( conveyorT, -.7));
     //rightBumper.whenPressed(new SetShooterSpeed(shooterMotor));
     back.whileHeld(new ZeroNavX(swerveDriveSubsystem));
-    buttonX.whenPressed(new ToggleClimberGearLock(climberT));git
+    buttonX.whenPressed(new ToggleClimberGearLock(climberT));
     //start.whenPressed(new AutoShoot(conveyorT, shooterMotor,false));
     //start.whileHeld(new ReadLimelight(limeL));
     //start.whenPressed(new RotateWithLimelight(limeL, swerveDriveSubsystem));
@@ -152,7 +152,7 @@ public class DaphneTwoContainer {
     //start.whenPressed(new AlignToTargetLimelight( swerveDriveSubsystem, limeL));
     //start.whenPressed(new AutoPath1(swerveDriveSubsystem));
     //start.whenPressed(new GalacticSearchTest(swerveDriveSubsystem, intake));
-    /*start.whenPressed(new ConditionalCommand(
+    /*start.whenPressed(new ConditionalCommand,
       new AutoPath1(swerveDriveSubsystem), 
       new AutoPath2(swerveDriveSubsystem), 
       ()->fifty50()));*/
