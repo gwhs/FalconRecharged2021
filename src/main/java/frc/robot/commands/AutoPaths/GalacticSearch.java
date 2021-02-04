@@ -26,14 +26,14 @@ public class GalacticSearch extends SequentialCommandGroup {
     // addCommands(new FooCommand(), new BarCommand());
     super(
     new InstantCommand(intake::lowerIntake, intake),
-    new Autonomous(swerveDriveSubsystem, TrajectoryHelper.Start_to_B3().getTrajectory(), TrajectoryHelper.Start_to_B3().getAngle()).withTimeout(2)
+    new Autonomous(swerveDriveSubsystem, TrajectoryHelper.Start_to_B3().getTrajectory(), TrajectoryHelper.Start_to_B3().getAngle()).withTimeout(3)
     .raceWith(new IntakeSpeed(intake, -.5)).raceWith(new SenseNewPowerCell(conveyor)),
     new ConditionalCommand(
       new B3_Finish_Auton(swerveDriveSubsystem), 
       new B3_C3_Auton(swerveDriveSubsystem),
       conveyor::getHasSeen
     ),
-    new InstantCommand(swerveDriveSubsystem::stopDriveMotors, swerveDriveSubsystem),
+    //new InstantCommand(swerveDriveSubsystem::stopDriveMotors, swerveDriveSubsystem),
     new IntakeSpeed(intake, 0)
     );
   }
