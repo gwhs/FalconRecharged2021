@@ -64,7 +64,7 @@ public class DaphneTwoContainer {
   private final Intake intake;
   private final Shooter shooterMotor;
   private final Compressor compressor;
-  private final ClimberTalon climberT;
+  //private final ClimberTalon climberT;
   private final LimelightPortal limeL;
 
   /**
@@ -86,7 +86,7 @@ public class DaphneTwoContainer {
     intake = new Intake();
     shooterMotor = new Shooter();
     compressor = new Compressor();
-    climberT = new ClimberTalon();
+    //climberT = new ClimberTalon();
     limeL = new LimelightPortal();
 
     // create the input controllers
@@ -137,14 +137,12 @@ public class DaphneTwoContainer {
     */
     buttonA.whenPressed(new InstantCommand(intake::toggleIntakeSolenoidMode, intake));
 
-    //hello hajel...
-
     buttonY.whileHeld(new ConveyorSpeed( conveyorT, .5));
     buttonB.whileHeld(new IntakeSpeed(intake,-.5));
     //leftBumper.whileHeld(new ConveyorSpeed( conveyorT, -.7));
     //rightBumper.whenPressed(new SetShooterSpeed(shooterMotor));
     back.whileHeld(new ZeroNavX(swerveDriveSubsystem));
-    buttonX.whenPressed(new ToggleClimberGearLock(climberT));
+    //buttonX.whenPressed(new ToggleClimberGearLock(climberT));
     //start.whenPressed(new AutoShoot(conveyorT, shooterMotor,false));
     //start.whileHeld(new ReadLimelight(limeL));
     //start.whenPressed(new RotateWithLimelight(limeL, swerveDriveSubsystem));
@@ -159,14 +157,14 @@ public class DaphneTwoContainer {
       new AutoPath2(swerveDriveSubsystem), 
       ()->fifty50()));*/
     //start.whenPressed(new GalacticSearch(swerveDriveSubsystem, intake, conveyorT));
-    //TrajectoryMaker path = TrajectoryHelper.createSlolom();
+    TrajectoryMaker path = TrajectoryHelper.createSlolom();
 
     //TrajectoryMaker Start_B3 = TrajectoryHelper.Start_to_B3();
     //TrajectoryMaker B3_Finish = TrajectoryHelper.B3_to_Finish();
     //TrajectoryMaker _B3 = TrajectoryHelper.Start_to_B3();
 
-    //Command autoCommand = new Autonomous(swerveDriveSubsystem, path.getTrajectory(), path.getAngle());
-    //start.whenPressed(autoCommand.withTimeout(30));
+    Command autoCommand = new Autonomous(swerveDriveSubsystem, path.getTrajectory(), path.getAngle());
+    start.whenPressed(autoCommand.withTimeout(30));
 
 /*
     start.whenPressed(new ConditionalCommand(
