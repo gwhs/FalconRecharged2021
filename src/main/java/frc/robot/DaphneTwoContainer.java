@@ -72,7 +72,7 @@ public class DaphneTwoContainer {
    */
   public DaphneTwoContainer() {
     // create all the subsystems needed in this robot
-    SwerveDriveModule m0 = new SwerveDriveModule(0, new TalonSRX(DaphneTwoConstants.ANGLE2_TALON), new TalonFX(DaphneTwoConstants.DRIVE2_TALON), 169); //real:390 practice: 212
+    SwerveDriveModule m0 = new SwerveDriveModule(0, new TalonSRX(DaphneTwoConstants.ANGLE2_TALON), new TalonFX(DaphneTwoConstants.DRIVE2_TALON), 210); //real:390 practice: 212
     SwerveDriveModule m1 = new SwerveDriveModule(1, new TalonSRX(DaphneTwoConstants.ANGLE1_TALON), new TalonFX(DaphneTwoConstants.DRIVE1_TALON), 176); //real:293 practice: 59
     SwerveDriveModule m2 = new SwerveDriveModule(2, new TalonSRX(DaphneTwoConstants.ANGLE3_TALON), new TalonFX(DaphneTwoConstants.DRIVE3_TALON), 294); //real:298 practice: 56
     SwerveDriveModule m3 = new SwerveDriveModule(3, new TalonSRX(DaphneTwoConstants.ANGLE4_TALON), new TalonFX(DaphneTwoConstants.DRIVE4_TALON), 27); //real: 355 practice: 190
@@ -157,7 +157,7 @@ public class DaphneTwoContainer {
       new AutoPath2(swerveDriveSubsystem), 
       ()->fifty50()));*/
     //start.whenPressed(new GalacticSearch(swerveDriveSubsystem, intake, conveyorT));
-    TrajectoryMaker path = TrajectoryHelper.createSlolom();
+    TrajectoryMaker path = TrajectoryHelper.createBarrel();
 
     //TrajectoryMaker Start_B3 = TrajectoryHelper.Start_to_B3();
     //TrajectoryMaker B3_Finish = TrajectoryHelper.B3_to_Finish();
