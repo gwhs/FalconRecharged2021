@@ -5,6 +5,7 @@ import edu.wpi.first.wpilibj.geometry.Rotation2d;
 import edu.wpi.first.wpilibj.geometry.Translation2d;
 import frc.robot.utility.MathUtils;
 import frc.robot.utility.TrajectoryMaker;
+import jdk.nashorn.internal.objects.Global;
 
 import java.util.ArrayList;
 
@@ -14,6 +15,11 @@ public class TrajectoryHelper {
     public static double[][] test4Meters= {
         {0,0},
         {157.48,0}, // roughly equal to 4 meters
+    };
+
+    public static double[][] test2Meters= {
+        {0,0},
+        {78.7402,0}, // roughly equal to 2 meters
     };
 
     public static double[][] Start_to_B3= {
@@ -134,6 +140,11 @@ public class TrajectoryHelper {
     {
         return createTrajectory(test4Meters, GLOBAL_SCALE);
     }   
+
+    public static TrajectoryMaker createTest2Meters() // test path going 2 meters forward
+    {
+        return createTrajectory(test2Meters, GLOBAL_SCALE);
+    }
 
     public static TrajectoryMaker Start_to_B3()
     {

@@ -157,7 +157,7 @@ public class DaphneTwoContainer {
       new AutoPath2(swerveDriveSubsystem), 
       ()->fifty50()));*/
     //start.whenPressed(new GalacticSearch(swerveDriveSubsystem, intake, conveyorT));
-    TrajectoryMaker path = TrajectoryHelper.createTest4Meters();
+    TrajectoryMaker path = TrajectoryHelper.createTest2Meters();
 
     //TrajectoryMaker Start_B3 = TrajectoryHelper.Start_to_B3();
     //TrajectoryMaker B3_Finish = TrajectoryHelper.B3_to_Finish();
