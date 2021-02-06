@@ -11,6 +11,11 @@ import java.util.ArrayList;
 @SuppressWarnings("unused")
 public class TrajectoryHelper {
 
+    public static double[][] test2Meters= {
+        {0,0},
+        {78.74016,0}, // roughly equal to 2 meters
+    };
+
     public static double[][] Start_to_B3= {
         {30,120},
         {90,120},
@@ -84,7 +89,7 @@ public class TrajectoryHelper {
         { 30, 96}  // head back to start
     };
 
-    public static double GLOBAL_SCALE = 0.5;// divide size by 5 to fit into Hajel's garage
+    public static double GLOBAL_SCALE = 1;// divide size by 5 to fit into Hajel's garage
 
     /**
      * translateAndScale takes an array of integer coordinates in 2-d space, and scales them to meters, and applies a scale in additinoos
@@ -123,6 +128,11 @@ public class TrajectoryHelper {
         Pose2d endPose = new Pose2d(lastPoint.getX(), lastPoint.getY(), new Rotation2d(0));
 
         return new TrajectoryMaker(initialPose, endPose, points);
+    }
+
+    public static TrajectoryMaker createTest2Meters() // test path going only 2 meters forward
+    {
+        return createTrajectory(test2Meters, GLOBAL_SCALE);
     }
 
     public static TrajectoryMaker Start_to_B3()
