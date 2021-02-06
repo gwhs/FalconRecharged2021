@@ -89,7 +89,7 @@ public class TrajectoryHelper {
         { 30, 96}  // head back to start
     };
 
-    public static double GLOBAL_SCALE = 1;// divide size by 5 to fit into Hajel's garage
+    public static double GLOBAL_SCALE = 0.827;// divide size by 5 to fit into Hajel's garage
 
     /**
      * translateAndScale takes an array of integer coordinates in 2-d space, and scales them to meters, and applies a scale in additinoos
@@ -130,10 +130,10 @@ public class TrajectoryHelper {
         return new TrajectoryMaker(initialPose, endPose, points);
     }
 
-    public static TrajectoryMaker createTest4Meters() // test path going only 2 meters forward
+    public static TrajectoryMaker createTest4Meters() // test path going only 4 meters forward
     {
         return createTrajectory(test4Meters, GLOBAL_SCALE);
-    }
+    }   
 
     public static TrajectoryMaker Start_to_B3()
     {

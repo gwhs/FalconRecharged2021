@@ -29,8 +29,10 @@ public class Autonomous extends CommandBase {
    * Creates a new Autonomous.
    * 
    * Contains the code for Autonomous. Includes setup for Trajectory, odometry, kinematics. 
-   * 
+   * Test with 2 meter forward distance resulted in a ~16% error in distance. too far
+   * Test with 4 meter forward distance resulted in a ~21% error in distance. too far
    */
+  
   private RamseteController controller;
   private Trajectory trajectory;
   private SwerveDriveOdometry odometry;
