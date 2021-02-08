@@ -17,10 +17,34 @@ public class TrajectoryHelper {
         {157.48,0}, // roughly equal to 4 meters
     };
 
+    public static double[][] test3Meters= {
+        {0,0},
+        {117.7721,0}, // roughly equal to 3 meters
+    };
+
     public static double[][] test2Meters= {
         {0,0},
         {78.7402,0}, // roughly equal to 2 meters
     };
+
+    public static double[][] test1Meter= {
+        {0,0},
+        {39.3701,0}, // roughly equal to 2 meters
+    };
+
+    public static double[][] test2MetersAndBack= {
+        {0,0},
+        {78.7402,0}, // roughly equal to 2 meters
+        {0,0}
+    };
+
+    public static double[][] test2MetersTriangle= {
+        {0,0},
+        {78.7402,0}, // roughly equal to 2 meters
+        {78.7402,78.7402}, // roughly equal to 2 meters
+        {0,0}
+    };
+
 
     public static double[][] Start_to_B3= {
         {30,120},
