@@ -32,6 +32,20 @@ public class TrajectoryHelper {
         {39.3701,0}, // roughly equal to 2 meters
     };
 
+ //   public static double[][] testStep= {
+ //       {0,0},
+ //       {240.0,0},
+ //   };
+
+    public static double[][] testStep= {
+        {0,0},
+        {150.0,0},
+        {150.0,30.0},
+        {90.0,30.0},
+        {90.0,0},
+        {60.0,0},
+    };
+
     public static double[][] test2MetersAndBack= {
         {0,0},
         {78.7402,0}, // roughly equal to 2 meters
@@ -119,7 +133,8 @@ public class TrajectoryHelper {
         { 30, 96}  // head back to start
     };
 
-    public static double GLOBAL_SCALE = 0.827;// divide size by 5 to fit into Hajel's garage
+//    public static double GLOBAL_SCALE = 0.827;// divide size by 5 to fit into Hajel's garage
+      public static double GLOBAL_SCALE = 1.0;// divide size by 5 to fit into Hajel's garage
 
     /**
      * translateAndScale takes an array of integer coordinates in 2-d space, and scales them to meters, and applies a scale in additinoos
@@ -165,9 +180,19 @@ public class TrajectoryHelper {
         return createTrajectory(test4Meters, GLOBAL_SCALE);
     }   
 
+    public static TrajectoryMaker createTest3Meters() // test path going 2 meters forward
+    {
+        return createTrajectory(test3Meters, GLOBAL_SCALE);
+    }
+
     public static TrajectoryMaker createTest2Meters() // test path going 2 meters forward
     {
         return createTrajectory(test2Meters, GLOBAL_SCALE);
+    }
+
+    public static TrajectoryMaker createTestStep() // test path going forward
+    {
+        return createTrajectory(testStep, GLOBAL_SCALE);
     }
 
     public static TrajectoryMaker Start_to_B3()
