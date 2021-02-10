@@ -32,19 +32,19 @@ public class TrajectoryHelper {
         {39.3701,0}, // roughly equal to 2 meters
     };
 
- //   public static double[][] testStep= {
- //       {0,0},
- //       {240.0,0},
- //   };
-
     public static double[][] testStep= {
         {0,0},
         {150.0,0},
-        {150.0,30.0},
-        {90.0,30.0},
-        {90.0,0},
-        {60.0,0},
     };
+
+ //   public static double[][] testStep= {
+ //       {0,0},
+ //       {150.0,0},
+ //       {150.0,30.0},
+ //       {90.0,30.0},
+ //       {90.0,0},
+ //       {60.0,0},
+ //   };
 
     public static double[][] test2MetersAndBack= {
         {0,0},
