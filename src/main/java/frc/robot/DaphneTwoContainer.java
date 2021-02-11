@@ -160,7 +160,7 @@ public class DaphneTwoContainer {
     // TrajectoryMaker path = TrajectoryHelper.createTest4Meters();
     // TrajectoryMaker path = TrajectoryHelper.createTest3Meters();
    
-      TrajectoryMaker path = TrajectoryHelper.createTestStep();
+      TrajectoryMaker path = TrajectoryHelper.createBarrel();
 
 
     //TrajectoryMaker Start_B3 = TrajectoryHelper.Start_to_B3();
