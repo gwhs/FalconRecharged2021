@@ -37,8 +37,8 @@ public class TrajectoryHelper {
        // {90+7,0},
        // {120,0},
        // {180+7,0}, should be +6
-         {240+7,0},
-    
+       // {240+7,0},
+          {300+7,0},
     };
 
  //   public static double[][] testStep= {
