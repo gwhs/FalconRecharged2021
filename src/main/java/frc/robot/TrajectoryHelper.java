@@ -134,7 +134,7 @@ public class TrajectoryHelper {
     };
 
 //    public static double GLOBAL_SCALE = 0.827;// divide size by 5 to fit into Hajel's garage
-      public static double GLOBAL_SCALE = 0.83;// divide size by 5 to fit into Hajel's garage
+      public static double GLOBAL_SCALE = 0.85;// divide size by 5 to fit into Hajel's garage
 
     /**
      * translateAndScale takes an array of integer coordinates in 2-d space, and scales them to meters, and applies a scale in additinoos
