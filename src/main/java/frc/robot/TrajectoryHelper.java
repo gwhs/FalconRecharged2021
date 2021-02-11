@@ -32,21 +32,21 @@ public class TrajectoryHelper {
         {39.3701,0}, // roughly equal to 2 meters
     };
 
-    public static double[][] testStep= {
-        {0,0},
-        // {60+6.68,0},
+  //  public static double[][] testStep= {
+  //      {0,0},
+  //      // {60+6.68,0},
        // {90+7,0},
        //  {120+6.68 ,0},
        // {180+7,0}, should be +6
        // {240+7,0},
-         {300+6.68, 0},
-         {30+6.68, 0}
-    };
+  //      {300+6.68, 0},
+  //       {30+6.68, 0}
+  //  };
  
-    //   public static double[][] testStep= {
- //   { 30, 30 }, // Starting point
- //   { 80+6.68, 35+6.68 }, 
- //   { 125+6.68, 90+6.68 }, 
+   public static double[][] testStep= {
+    { 30, 30 }, // Starting point
+    { 80+6.68, 35+6.68 }, 
+    { 125+6.68, 90+6.68 }, 
  //   { 180+6.68, 110+6.68 }, 
  //   { 250+6.68, 80+6.68 }, 
  //   { 285+6.68, 30+6.68 }, 
@@ -58,7 +58,7 @@ public class TrajectoryHelper {
  //   { 120+6.68, 40+6.68 }, 
  //   { 80+6.68, 70+6.68 }, 
  //   { 30+6.68, 100+6.68 }
- //   };
+    };
 
  //   public static double[][] testStep= {
  //       {0,0},
