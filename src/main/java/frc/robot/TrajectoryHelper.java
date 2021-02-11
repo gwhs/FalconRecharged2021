@@ -38,7 +38,7 @@ public class TrajectoryHelper {
        // {120,0},
        // {180+7,0}, should be +6
        // {240+7,0},
-          {300+7,0},
+          {300+6.68,0},
     };
 
  //   public static double[][] testStep= {
@@ -138,7 +138,7 @@ public class TrajectoryHelper {
     };
 
 //    public static double GLOBAL_SCALE = 0.827;// divide size by 5 to fit into Hajel's garage
-      public static double GLOBAL_SCALE = 0.8;// divide size by 5 to fit into Hajel's garage
+      public static double GLOBAL_SCALE = 0.806;// divide size by 5 to fit into Hajel's garage
 
     /**
      * translateAndScale takes an array of integer coordinates in 2-d space, and scales them to meters, and applies a scale in additinoos
