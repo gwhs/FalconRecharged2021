@@ -71,8 +71,8 @@ public class TrajectoryHelper {
     public static double[][] testStep= {
         {30,90},
         {200+6.68,90},
-        {200+6.68,60-6.68},
-        {30,60-6.68},
+        {200+6.68,30},
+        {30,30},
     };
 
     public static double[][] test2MetersAndBack= {
