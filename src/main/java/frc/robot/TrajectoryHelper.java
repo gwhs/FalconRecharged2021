@@ -5,7 +5,6 @@ import edu.wpi.first.wpilibj.geometry.Rotation2d;
 import edu.wpi.first.wpilibj.geometry.Translation2d;
 import frc.robot.utility.MathUtils;
 import frc.robot.utility.TrajectoryMaker;
-import jdk.nashorn.internal.objects.Global;
 
 import java.util.ArrayList;
 
