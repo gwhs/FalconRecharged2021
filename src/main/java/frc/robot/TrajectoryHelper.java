@@ -70,10 +70,12 @@ public class TrajectoryHelper {
 
     public static double[][] testStep= {
         {30,120},
+        {120,120},
         {240,120},
         {240,90},
         {240,60},
         {240,30},
+        {120,30},
         {30,30},
     };
 
