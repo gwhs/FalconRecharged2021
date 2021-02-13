@@ -169,7 +169,7 @@ public class DaphneTwoContainer {
     //TrajectoryMaker _B3 = TrajectoryHelper.Start_to_B3();
 
     Command autoCommand = new Autonomous(swerveDriveSubsystem, path.getTrajectory(), path.getAngle());
-    start.whenPressed(autoCommand.withTimeout(30));
+    start.whenPressed(autoCommand.withTimeout(60));
 
 /*
     start.whenPressed(new ConditionalCommand(
