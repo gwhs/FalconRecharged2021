@@ -104,7 +104,7 @@ public class TrajectoryHelper {
 //    };
 
     public static double[][] testStep= {
-        // trying slalom
+   // trying slalom
     {30,150},
     {60,165},
     {90,120}, //point D3
@@ -132,6 +132,7 @@ public class TrajectoryHelper {
     {90,120}, //point D3
     {75,75},
     {60,75},
+    //finish
     {30,90},     
             };
         

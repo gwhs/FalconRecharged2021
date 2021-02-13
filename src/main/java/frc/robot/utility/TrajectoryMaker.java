@@ -49,7 +49,7 @@ public TrajectoryMaker(Pose2d start, Pose2d end, ArrayList<Translation2d> points
     this.end = end;
     this.isHyp = false;
     angle = 0;
-    config = new TrajectoryConfig(0.5, 0.5);
+    config = new TrajectoryConfig(0.7, 0.7);
     config.setStartVelocity(0);
     config.setEndVelocity(0);
     config.setReversed(false);
