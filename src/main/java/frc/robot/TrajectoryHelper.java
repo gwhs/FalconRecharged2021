@@ -60,11 +60,19 @@ public class TrajectoryHelper {
 //    { 30+6.68, 100+6.68 }
 //    };
 
+ //   public static double[][] testStep= {
+ //        //resulted in shift right
+ //       {30,30},
+ //       {200+6.68,30},
+ //       {200+6.68,60},
+ //       {30,60},
+ //   };
+
     public static double[][] testStep= {
-        {30,30},
-        {200+6.68,30},
-        {200+6.68,60},
-        {30,60},
+        {30,90},
+        {200+6.68,90},
+        {200+6.68,60-6.68},
+        {30,60-6.68},
     };
 
     public static double[][] test2MetersAndBack= {
