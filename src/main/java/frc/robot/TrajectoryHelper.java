@@ -69,9 +69,9 @@ public class TrajectoryHelper {
  //   };
 
     public static double[][] testStep= {
-        {30,90},
-        {200+6.68,90},
-        {200+6.68,30},
+        {30,120},
+        {240,120},
+        {240,30},
         {30,30},
     };
 
