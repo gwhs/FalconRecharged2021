@@ -5,11 +5,6 @@ import edu.wpi.first.wpilibj.geometry.Rotation2d;
 import edu.wpi.first.wpilibj.geometry.Translation2d;
 import frc.robot.utility.MathUtils;
 import frc.robot.utility.TrajectoryMaker;
-<<<<<<< HEAD
-=======
-//import jdk.nashorn.internal.objects.Global;
->>>>>>> zhichaotest
-
 import java.util.ArrayList;
 
 @SuppressWarnings("unused")
