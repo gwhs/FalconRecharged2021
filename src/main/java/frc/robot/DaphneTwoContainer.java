@@ -137,13 +137,13 @@ public class DaphneTwoContainer {
     */
     buttonA.whenPressed(new InstantCommand(intake::toggleIntakeSolenoidMode, intake));
 
-    buttonY.whileHeld(new ConveyorSpeed( conveyorT, .5));
-    buttonB.whileHeld(new IntakeSpeed(intake,-.5));
+    buttonY.whileHeld(new ConveyorSpeed( conveyorT, .5)); //while Y is held down conveyor runs
+    buttonB.whileHeld(new IntakeSpeed(intake,-.5)); //while b is held down intake runs
     //leftBumper.whileHeld(new ConveyorSpeed( conveyorT, -.7));
-    //rightBumper.whenPressed(new SetShooterSpeed(shooterMotor));
+    leftBumper.whileHeld(new SetShooterSpeed(shooterMotor));
     back.whileHeld(new ZeroNavX(swerveDriveSubsystem));
     //buttonX.whenPressed(new ToggleClimberGearLock(climberT));
-    //start.whenPressed(new AutoShoot(conveyorT, shooterMotor,false));
+    rightBumper.whenPressed(new AutoShoot(conveyorT, shooterMotor,false));
     //start.whileHeld(new ReadLimelight(limeL));
     //start.whenPressed(new RotateWithLimelight(limeL, swerveDriveSubsystem));
     //start.whenPressed(new TurnToZeroLimelight(0, swerveDriveSubsystem, limeL));
