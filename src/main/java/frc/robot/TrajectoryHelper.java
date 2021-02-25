@@ -5,6 +5,10 @@ import edu.wpi.first.wpilibj.geometry.Rotation2d;
 import edu.wpi.first.wpilibj.geometry.Translation2d;
 import frc.robot.utility.MathUtils;
 import frc.robot.utility.TrajectoryMaker;
+<<<<<<< HEAD
+=======
+//import jdk.nashorn.internal.objects.Global;
+>>>>>>> zhichaotest
 
 import java.util.ArrayList;
 
@@ -16,10 +20,222 @@ public class TrajectoryHelper {
         {157.48,0}, // roughly equal to 4 meters
     };
 
+    public static double[][] test3Meters= {
+        {0,0},
+        {117.7721,0}, // roughly equal to 3 meters
+    };
+
     public static double[][] test2Meters= {
         {0,0},
         {78.7402,0}, // roughly equal to 2 meters
     };
+
+    public static double[][] test1Meter= {
+        {0,0},
+        {39.3701,0}, // roughly equal to 2 meters
+    };
+
+  //  public static double[][] testStep= {
+  //      {0,0},
+  //      // {60+6.68,0},
+       // {90+7,0},
+       //  {120+6.68 ,0},
+       // {180+7,0}, should be +6
+       // {240+7,0},
+  //      {300+6.68, 0},
+  //       {30+6.68, 0}
+  //  };
+ 
+//   public static double[][] testStep= {
+//    { 30, 30 }, // Starting point
+//    { 80+6.68, 35+6.68 }, 
+//    { 125+6.68, 90+6.68 }, 
+//    { 180+6.68, 110+6.68 }, 
+//    { 250+6.68, 80+6.68 }, 
+//    { 285+6.68, 30+6.68 }, 
+//    { 340+6.68, 45+6.68 }, 
+//    { 320+6.68, 100+6.68 }, 
+//    { 275+6.68, 80+6.68 },
+//    { 250+6.68, 35+6.68 }, 
+//    { 180+6.68, 25+6.68 }, 
+//    { 120+6.68, 40+6.68 }, 
+//    { 80+6.68, 70+6.68 }, 
+//    { 30+6.68, 100+6.68 }
+//    };
+
+ //   public static double[][] testStep= {
+ //        //resulted in shift right
+ //       {30,30},
+ //       {200,30},
+ //       {200,60},
+ //       {30,60},
+ //   };
+
+//    public static double[][] testStep= {
+//        {30,120},
+//        {120,135},
+//        {240,120},
+//        {240,105},
+//        {240,90},
+//        {240,75},
+//        {240,60},
+//        {240,45},
+//        {240,30},
+//        {120,15},
+//        {30,30},
+//    };
+
+//    public static double[][] testStep= {
+// trying teleop curve
+//        {60,90},
+//        {100,20},
+//        {180,90},
+//        {200,90},
+//        {240,90},
+//        {270,30},
+//        {300,60},
+//        {330,120},
+//        {300,150},
+//        {240,150},
+//        {180,150},
+//        {120,90},
+//        {180,150},
+//        {120,90},
+//        {90,90},
+//        {60,150},
+// 
+//    };
+
+ /*    public static double[][] testStep= {
+   // trying slalom 2021.02.13
+    {30,150},
+    {60,165},
+    {90,120}, //point D3
+    {120,75},
+    {150,75},
+    {180,75},
+    {210,75},
+    {250,90},
+    {270,120}, // D9
+    {285,160},
+    {300,160},
+    {330,150},
+    {350,120}, //D11
+    //turn back
+    {300,75}, 
+    {280,100}, 
+    {270,120}, // D9
+    {265,165},
+    {240,160},
+    {210,160},
+    {180,160},
+    {150,160},
+    {120,160},
+    {105,150},
+    {90,120}, //point D3
+    {75,75},
+    {60,75},
+    //finish
+    {30,90},     
+    };
+        
+ */
+
+public static double[][] testStep= {
+    // Slalom 2021.02.15 001
+    {30,150},
+    {60,160},
+    {90,120},
+    {120,85},
+    {150,80},
+    {180,80},
+    {225,80},
+    {255,90},
+    {270,120},
+    {285,155},
+    {310,160},
+    {330,150},
+    {340,120},
+    {330,85},
+    {300,75},
+    {280,95},
+    {270,120},
+    {265,140},
+    {240,155},
+    {210,160},
+    {180,160},
+    {150,160},
+    {120,155},
+    {105,145},
+    {90,120},
+    {80,95},
+    {60,80},
+    {30,90},
+    };
+
+ /*
+public static double[][] testStep= {
+    // Barrel 2021.02.15 001
+{30,100},
+{60,90},
+{90,85},
+{120,90},
+{150,100},
+{180,120},
+{180,140},
+{150,160},
+{120,140},
+{120,120},
+{140,100},
+{160,90},
+{180,95},
+{200,100},
+{210,100},
+{225,100},
+{255,95},
+{270,90},
+{285,80},
+{300,60},
+{280,40},
+{250,30},
+{200,40},
+{200,60},
+{210,85},
+{230,120},
+{250,140},
+{300,160},
+{330,150},
+{350,120},
+{330,100},
+{300,90},
+{280,85},
+{270,85},
+{265,85},
+{240,90},
+{210,90},
+{180,85},
+{150,80},
+{120,85},
+{105,85},
+{90,90},
+{80,90},
+{60,90},
+{30,90},
+};
+*/
+    public static double[][] test2MetersAndBack= {
+        {0,0},
+        {78.7402,0}, // roughly equal to 2 meters
+        {0,0}
+    };
+
+    public static double[][] test2MetersTriangle= {
+        {0,0},
+        {78.7402,0}, // roughly equal to 2 meters
+        {78.7402,78.7402}, // roughly equal to 2 meters
+        {0,0}
+    };
+
 
     public static double[][] Start_to_B3= {
         {30,120},
@@ -94,7 +310,8 @@ public class TrajectoryHelper {
         { 30, 96}  // head back to start
     };
 
-    public static double GLOBAL_SCALE = 0.827;// divide size by 5 to fit into Hajel's garage
+//    public static double GLOBAL_SCALE = 0.827;// divide size by 5 to fit into Hajel's garage
+      public static double GLOBAL_SCALE = 0.806;// divide size by 5 to fit into Hajel's garage
 
     /**
      * translateAndScale takes an array of integer coordinates in 2-d space, and scales them to meters, and applies a scale in additinoos
@@ -140,9 +357,19 @@ public class TrajectoryHelper {
         return createTrajectory(test4Meters, GLOBAL_SCALE);
     }   
 
+    public static TrajectoryMaker createTest3Meters() // test path going 2 meters forward
+    {
+        return createTrajectory(test3Meters, GLOBAL_SCALE);
+    }
+
     public static TrajectoryMaker createTest2Meters() // test path going 2 meters forward
     {
         return createTrajectory(test2Meters, GLOBAL_SCALE);
+    }
+
+    public static TrajectoryMaker createTestStep() // test path going forward
+    {
+        return createTrajectory(testStep, GLOBAL_SCALE);
     }
 
     public static TrajectoryMaker Start_to_B3()

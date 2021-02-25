@@ -137,13 +137,13 @@ public class DaphneTwoContainer {
     */
     buttonA.whenPressed(new InstantCommand(intake::toggleIntakeSolenoidMode, intake));
 
-    buttonY.whileHeld(new ConveyorSpeed( conveyorT, .5));
-    buttonB.whileHeld(new IntakeSpeed(intake,-.5));
+    buttonY.whileHeld(new ConveyorSpeed( conveyorT, .5)); //while Y is held down conveyor runs
+    buttonB.whileHeld(new IntakeSpeed(intake,-.5)); //while b is held down intake runs
     //leftBumper.whileHeld(new ConveyorSpeed( conveyorT, -.7));
-    //rightBumper.whenPressed(new SetShooterSpeed(shooterMotor));
+    leftBumper.whileHeld(new SetShooterSpeed(shooterMotor));
     back.whileHeld(new ZeroNavX(swerveDriveSubsystem));
     //buttonX.whenPressed(new ToggleClimberGearLock(climberT));
-    //start.whenPressed(new AutoShoot(conveyorT, shooterMotor,false));
+    rightBumper.whenPressed(new AutoShoot(conveyorT, shooterMotor,false));
     //start.whileHeld(new ReadLimelight(limeL));
     //start.whenPressed(new RotateWithLimelight(limeL, swerveDriveSubsystem));
     //start.whenPressed(new TurnToZeroLimelight(0, swerveDriveSubsystem, limeL));
@@ -157,14 +157,19 @@ public class DaphneTwoContainer {
       new AutoPath2(swerveDriveSubsystem), 
       ()->fifty50()));*/
     //start.whenPressed(new GalacticSearch(swerveDriveSubsystem, intake, conveyorT));
-    TrajectoryMaker path = TrajectoryHelper.createTest2Meters();
+    // TrajectoryMaker path = TrajectoryHelper.createTest4Meters();
+    // TrajectoryMaker path = TrajectoryHelper.createTest3Meters();
+   
+    //  TrajectoryMaker path = TrajectoryHelper.createBarrel();
+
+   TrajectoryMaker path = TrajectoryHelper.createTestStep();
 
     //TrajectoryMaker Start_B3 = TrajectoryHelper.Start_to_B3();
     //TrajectoryMaker B3_Finish = TrajectoryHelper.B3_to_Finish();
     //TrajectoryMaker _B3 = TrajectoryHelper.Start_to_B3();
 
     Command autoCommand = new Autonomous(swerveDriveSubsystem, path.getTrajectory(), path.getAngle());
-    start.whenPressed(autoCommand.withTimeout(30));
+    start.whenPressed(autoCommand.withTimeout(60));
 
 /*
     start.whenPressed(new ConditionalCommand(
