@@ -118,6 +118,8 @@ public class DaphneTwoContainer {
     JoystickButton rightBumper = new JoystickButton(mXboxController, XboxController.Button.kBumperRight.value);
     JoystickButton back = new JoystickButton(mXboxController, XboxController.Button.kBack.value);
     JoystickButton start = new JoystickButton(mXboxController, XboxController.Button.kStart.value);
+    JoystickButton stickLeft = new JoystickButton(mXboxController, XboxController.Button.kStickLeft.value);
+    JoystickButton stickRight = new JoystickButton(mXboxController, XboxController.Button.kStickRight.value);
 
 /*
     JoystickButton buttonA_2 = new JoystickButton(mXboxController2, XboxController.Button.kA.value);
