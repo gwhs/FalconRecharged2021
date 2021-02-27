@@ -45,9 +45,9 @@ public class Shooter extends SubsystemBase {
     motor1.config_kD(0, pidD, 0);
     motor1.config_kF(0, pidF, 0);
     
-    motor2.setInverted(true);
-    motor1.setInverted(false);
-    motor2.set(ControlMode.Follower, Constants.SHOOTER1_TALON);
+    motor2.setInverted(true); //motor1 and motor2 driven in opposite directions 
+    motor1.setInverted(false); 
+    motor2.set(ControlMode.Follower, Constants.SHOOTER1_TALON); // motor2 follow motor1 to spin at the same speed
     
     motor1.configSelectedFeedbackSensor(FeedbackDevice.IntegratedSensor);
     
@@ -59,19 +59,28 @@ public class Shooter extends SubsystemBase {
   }
 
 
-
-  public void spin(double speed)
+/**
+ * spins the shooter motor as a percentage of its power
+ * to do: verify which way motor spins
+ * @param power number between -1 and 1
+ */
+  public void setMotorPower(double power)
   {
-    motor1.set(ControlMode.PercentOutput, -speed);
-    //motor2.set(ControlMode.PercentOutput, speed);
+    motor1.set(ControlMode.PercentOutput, -power);
+    //motor2.set(ControlMode.PercentOutput, power);
     
     //motor1.set(ControlMode.MotionMagic, targetPos, DemandType.ArbitraryFeedForward, feedforward);
        
   }
 
-  public void setSpeed(double speed) // in RPM
+  /**
+   * sets the motor speed in velocity
+   * to do: verify behavior of postive and negative rpm
+   * @param rpm speed of motor (number between -6000, 6000?)
+   */
+  public void setMotorRPM(double rpm) // in rotations per minute
   {
-    motor1.set(ControlMode.Velocity, (speed*tickConversion)); // Velocity based
+    motor1.set(ControlMode.Velocity, (rpm*tickConversion)); // Velocity based
   }
 
   // public void setMagicSpeed(double speed) // in RPM
@@ -81,9 +90,13 @@ public class Shooter extends SubsystemBase {
   //   motor1.set(ControlMode.MotionMagic, 0);
   // }
 
-  public double getSpeed()
+  /**
+   * gets the speed of the motor
+   * @return rotations per minute?
+   */
+  public double getMotorRPM()
   {
-    return (motor2.getSelectedSensorVelocity()/tickConversion);
+    return (motor1.getSelectedSensorVelocity()/tickConversion);
   }
 
   public TalonFX getmotor1()

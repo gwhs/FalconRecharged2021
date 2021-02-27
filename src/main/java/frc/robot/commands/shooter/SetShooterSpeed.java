@@ -58,15 +58,15 @@ public class SetShooterSpeed extends CommandBase {
   @Override
   public void initialize() {
 
-    shooter.setSpeed(-this.speed);
+    shooter.setMotorRPM(-this.speed);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
       //this.speed = SmartDashboard.getNumber("Input Shooter RPM", 3600);
-      //shooter.setSpeed(-speed);
-      shooter.setSpeed(-this.speed);
+      //shooter.setMotorRPM(-speed);
+      shooter.setMotorRPM(-this.speed);
       this.pidF = SmartDashboard.getNumber("Input pidF", 0);
       this.pidP = SmartDashboard.getNumber("Input pidP", 0);
       this.pidI = SmartDashboard.getNumber("Input pidI", 0);
@@ -83,7 +83,7 @@ public class SetShooterSpeed extends CommandBase {
       shooter.getmotor1().config_kD(0, this.pidD, 0);
       shooter.getmotor2().config_kD(0, this.pidD, 0);
       
-    SmartDashboard.putNumber("Current Shooter RPM", -shooter.getSpeed());
+    SmartDashboard.putNumber("Current Shooter RPM", shooter.getMotorRPM());
     SmartDashboard.putNumber("pidF", this.pidF);
     SmartDashboard.putNumber("pidP", this.pidP);
     SmartDashboard.putNumber("pidI", this.pidI);
@@ -93,7 +93,7 @@ public class SetShooterSpeed extends CommandBase {
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    shooter.setSpeed(0);
+    shooter.setMotorRPM(0);
   }
 
   // Returns true when the command should end.
