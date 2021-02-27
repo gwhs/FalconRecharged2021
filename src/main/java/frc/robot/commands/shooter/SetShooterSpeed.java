@@ -28,10 +28,20 @@ public class SetShooterSpeed extends CommandBase {
   private double pidD;
 
 
+  /**
+   * Makes the ball go back into the conveyor
+   * @param shooter subsystem with a motor that shoots the power cells
+   */
   public SetShooterSpeed(Shooter shooter) {
-    this(shooter, -6000);
+    this(shooter, -6000); // rpm
   }
 
+  /**
+   * Create command to control the shooter
+   *  
+   * @param shooter subsystem with a motor that shoots the power cells
+   * @param rpm the speed motor spins, +# shoot the ball out, -# makes the ball goes back to the conveyor
+   */
   public SetShooterSpeed(Shooter shooter, double rpm) {
     SmartDashboard.putNumber("Current Shooter RPM", 0);
     SmartDashboard.putNumber("Input Shooter RPM", SmartDashboard.getNumber("Input Shooter RPM", 3600));

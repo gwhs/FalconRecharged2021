@@ -142,7 +142,7 @@ public class DaphneTwoContainer {
     buttonY.whileHeld(new ConveyorSpeed( conveyorT, .5)); //while Y is held down conveyor runs
     buttonB.whileHeld(new IntakeSpeed(intake,-.5)); //while b is held down intake runs
     //leftBumper.whileHeld(new ConveyorSpeed( conveyorT, -.7));
-    leftBumper.whileHeld(new SetShooterSpeed(shooterMotor));
+    leftBumper.whileHeld(new SetShooterSpeed(shooterMotor, 6000));
     back.whileHeld(new ZeroNavX(swerveDriveSubsystem));
     buttonX.whileHeld(new ConveyorSpeed( conveyorT, -.5));
     //buttonX.whenPressed(new ToggleClimberGearLock(climberT));
