@@ -39,7 +39,7 @@ public final class Constants {
     */
     public static final double GEAR_RATIO = 7.0;
     //public static final double WHEEL_SIZE = 3.838;
-    public static final double WHEEL_SIZE = 3.7;  // corrected wheel size
+    public static final double WHEEL_SIZE = 4;  //  wheel size from the doc for HiGrip wheels
 
     public static final double TICKS_PER_INCH = (2048*GEAR_RATIO)/(WHEEL_SIZE*Math.PI);
     public static final boolean FORWARD = true;

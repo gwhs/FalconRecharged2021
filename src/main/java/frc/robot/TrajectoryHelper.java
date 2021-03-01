@@ -251,21 +251,20 @@ public static double[][] testStep= {
         
 
     public static double[][] slalom = { 
-        { 30, 30 }, // Starting point
-        { 80, 35 }, 
-        { 125, 90 }, 
-        { 180, 110 }, 
-        { 250, 80 }, 
-        { 285, 30 }, 
-        { 340, 45 }, 
-        { 320, 100 }, 
-        { 275, 80 },
-        { 250, 35 }, 
-        { 180, 25 }, 
-        { 120, 40 }, 
-        { 80, 70 }, 
-        { 30, 100 }
-     };
+        //run 2021.02.27.003
+        {30,150},
+        {70,140},
+        {105,90},
+        {215,90},
+        {250,140},
+        {290,140},
+        {290,90},
+        {260,90},
+        {215,145},
+        {95,145},
+        {60,90},
+        {30,90},
+       };
 
      public static double[][] bounce = {
 
@@ -382,7 +381,7 @@ public static double[][] testStep= {
         return createTrajectory(B3_to_C3, GLOBAL_SCALE);
     }
 
-    public static TrajectoryMaker createSlolom()
+    public static TrajectoryMaker createSlalom()
     {
         return createTrajectory(slalom, GLOBAL_SCALE);
     }     
