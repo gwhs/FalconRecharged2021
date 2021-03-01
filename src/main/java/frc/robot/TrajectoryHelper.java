@@ -96,20 +96,19 @@ public static double[][] testStep= {
         
 
     public static double[][] slalom = { 
-        //run 2021.02.27.003
         {30,150},
-        {70,140},
-        {105,90},
+        {80,145},
+        {95,90},
         {215,90},
-        {250,140},
-        {290,140},
+        {240,145},
+        {290,145},
         {290,90},
-        {260,90},
+        {240,90},
         {215,145},
         {95,145},
         {60,90},
         {30,90},
-       };
+               };
 
      public static double[][] bounce = {
         // from bounce.csv 2021.02.19
@@ -132,8 +131,6 @@ public static double[][] testStep= {
      };
 
      public static double[][] barrel = {
-        // from barrel_20210222 - corrected points
-        // run 7
         {30,90},
         {60,90},
         {120,90},
@@ -142,7 +139,7 @@ public static double[][] testStep= {
         {180,140},
         {150,150},
         {110,140},
-        {110,80},
+        {110,90},
         {160,90},
         {200,105},
         {225,110},
@@ -157,7 +154,6 @@ public static double[][] testStep= {
         {290,150},
         {310,130},
         {310,90},
-        {280,80},
         {240,90},
         {120,85},
         {80,85},
