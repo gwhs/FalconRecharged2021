@@ -18,19 +18,23 @@ import frc.robot.subsystems.Drive.SwerveDriveSubsystem;
 // https://docs.wpilib.org/en/latest/docs/software/commandbased/convenience-features.html
 public class Finish_Auton extends SequentialCommandGroup {
   /**
-   * Creates a new AutoPath1.
-   * 
-   * 
-   * This is just an Auto used for general testing. 
+   * Creates a trajectory that runs 
+   * if galactic search is done ends early
    */
-  public Finish_Auton(SwerveDriveSubsystem swerveDriveSubsystem, TrajectoryMaker endTrajectory) {  // test forward path
+  public GalacticSearch search;
+
+  @Override
+  public boolean isFinished() {
+    return super.isFinished() || search.getDone();
+  }
+
+  public Finish_Auton(SwerveDriveSubsystem swerveDriveSubsystem, TrajectoryMaker endTrajectory, GalacticSearch galacticSearch) {  // test forward path
    
     super(
-      //new Autonomous(swerveDriveSubsystem, TrajectoryHelper.createTestMultiPath().getTrajectory(), TrajectoryHelper.createTestMultiPath().getAngle())
-      
-      
       new Autonomous(swerveDriveSubsystem, endTrajectory.getTrajectory(), endTrajectory.getAngle()).withTimeout(1)
     );
+    this.search = galacticSearch; 
   }
+
   
 }
