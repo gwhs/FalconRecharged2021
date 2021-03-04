@@ -9,27 +9,27 @@ package frc.robot.commands.AutoPaths;
 
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.TrajectoryHelper;
+import frc.robot.utility.TrajectoryMaker;
 import frc.robot.commands.swervedrive.Autonomous;
-import frc.robot.commands.swervedrive.TurnToAngleProfiled;
 import frc.robot.subsystems.Drive.SwerveDriveSubsystem;
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
 // https://docs.wpilib.org/en/latest/docs/software/commandbased/convenience-features.html
-public class B3_Finish_Auton extends SequentialCommandGroup {
+public class Finish_Auton extends SequentialCommandGroup {
   /**
    * Creates a new AutoPath1.
    * 
    * 
    * This is just an Auto used for general testing. 
    */
-  public B3_Finish_Auton(SwerveDriveSubsystem swerveDriveSubsystem) {  // test forward path
+  public Finish_Auton(SwerveDriveSubsystem swerveDriveSubsystem, TrajectoryMaker endTrajectory) {  // test forward path
    
     super(
       //new Autonomous(swerveDriveSubsystem, TrajectoryHelper.createTestMultiPath().getTrajectory(), TrajectoryHelper.createTestMultiPath().getAngle())
       
       
-      new Autonomous(swerveDriveSubsystem, TrajectoryHelper.B3_to_Finish().getTrajectory(), TrajectoryHelper.B3_to_Finish().getAngle()).withTimeout(1)
+      new Autonomous(swerveDriveSubsystem, endTrajectory.getTrajectory(), endTrajectory.getAngle()).withTimeout(1)
     );
   }
   
