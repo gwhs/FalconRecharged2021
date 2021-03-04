@@ -248,7 +248,37 @@ public static double[][] testStep= {
         {180,150},
         {345,150},
     };
-        
+    
+    public static double[][] C3_to_D6 = {
+        {90, 90},
+        {180, 60},
+      };
+    
+    public static double[][] C3_to_Finish = {
+        {90,120},
+        {90,90},
+        {150,60},
+        {180,150},
+        {345,150},
+    };
+
+    public static double[][] D6_to_Finish_A = {
+        {180,60},
+        {240,120},
+        {300,60},
+        {345,60},
+    };
+
+    public static double[][] D6_to_Finish_B = {
+        {180,60},
+        {180,30},
+        {210,120},
+        {270,90},
+        {345,90},
+    };
+    
+    
+    
 
     public static double[][] slalom = { 
         { 30, 30 }, // Starting point
@@ -381,6 +411,27 @@ public static double[][] testStep= {
     {
         return createTrajectory(B3_to_C3, GLOBAL_SCALE);
     }
+    
+    public static TrajectoryMaker C3_to_D6()
+    {
+        return createTrajectory(C3_to_D6, GLOBAL_SCALE);
+    }
+
+    public static TrajectoryMaker C3_to_Finish()
+    {
+        return createTrajectory(C3_to_Finish, GLOBAL_SCALE);
+    }
+
+    public static TrajectoryMaker D6_to_Finish_A()
+    {
+        return createTrajectory(D6_to_Finish_A, GLOBAL_SCALE);
+    }
+
+    public static TrajectoryMaker D6_to_Finish_B()
+    {
+        return createTrajectory(D6_to_Finish_B, GLOBAL_SCALE);
+    }
+    
 
     public static TrajectoryMaker createSlolom()
     {
