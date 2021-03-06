@@ -7,6 +7,7 @@
 
 package frc.robot.commands.shooter;
 
+import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
@@ -35,11 +36,12 @@ public class AutoShoot extends SequentialCommandGroup {
   public AutoShoot(ConveyorTalon conveyorTalon, Shooter shooter, boolean backConveyor) {
     // Add your commands in the super() call, e.g.
     // super(new FooCommand(), new BarCommand());
-    super(new ToggleIgnore(conveyorTalon, true),
+    super(//new ToggleIgnore(conveyorTalon, true),
+          new InstantCommand(()-> conveyorTalon.toggleIgnore(true)),
           backConveyor ? new ConveyorSpeed(conveyorTalon,.4).withTimeout(.4) : new WaitCommand(0),
           new ParallelCommandGroup(new SetShooterSpeed(shooter, 6000),
                                    new SequentialCommandGroup(new WaitCommand(2), new ConveyorSpeed(conveyorTalon,-.6).withTimeout(3))).withTimeout(7),
           new SetShooterSpeed(shooter, 0).withTimeout(1),
-          new ToggleIgnore(conveyorTalon, false));
+          new InstantCommand(()-> conveyorTalon.toggleIgnore(false)));
   }
 }
