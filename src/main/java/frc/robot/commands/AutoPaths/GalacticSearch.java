@@ -4,6 +4,7 @@
 
 package frc.robot.commands.AutoPaths;
 
+import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.ConditionalCommand;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
@@ -35,6 +36,15 @@ public class GalacticSearch extends SequentialCommandGroup {
     return galacticSearchDone;
   }
 
+  public Command conditional(SwerveDriveSubsystem swerveDriveSubsystem, Intake intake, ConveyorTalon conveyor, TrajectoryMaker hasSeenTrajectory, TrajectoryMaker notSeenTrajectory)
+  {
+    return new ConditionalCommand(
+      new Finish_Auton(swerveDriveSubsystem, hasSeenTrajectory, this).raceWith(new IntakeSpeed(intake, intakeSpeed)).raceWith(new SenseNewPowerCell(conveyor)).andThen(()->setDone()), 
+      new Finish_Auton(swerveDriveSubsystem, notSeenTrajectory, this).raceWith(new IntakeSpeed(intake, intakeSpeed)).raceWith(new SenseNewPowerCell(conveyor)),
+      conveyor::getHasSeen
+    );
+  }
+
   public GalacticSearch(SwerveDriveSubsystem swerveDriveSubsystem, Intake intake, ConveyorTalon conveyor) {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
@@ -48,21 +58,9 @@ public class GalacticSearch extends SequentialCommandGroup {
     new InstantCommand(intake::lowerIntake, intake),
     new Autonomous(swerveDriveSubsystem, TrajectoryHelper.Start_to_B3().getTrajectory(), TrajectoryHelper.Start_to_B3().getAngle()).withTimeout(3)
     .raceWith(new IntakeSpeed(intake, intakeSpeed)).raceWith(new SenseNewPowerCell(conveyor)),
-    new ConditionalCommand(
-      new Finish_Auton(swerveDriveSubsystem, TrajectoryHelper.B3_to_Finish(), this).raceWith(new IntakeSpeed(intake, intakeSpeed)).raceWith(new SenseNewPowerCell(conveyor)).andThen(()->setDone()), 
-      new Finish_Auton(swerveDriveSubsystem, TrajectoryHelper.B3_to_C3(), this).raceWith(new IntakeSpeed(intake, intakeSpeed)).raceWith(new SenseNewPowerCell(conveyor)),
-      conveyor::getHasSeen
-    ),
-    new ConditionalCommand(
-      new Finish_Auton(swerveDriveSubsystem, TrajectoryHelper.C3_to_Finish(), this).raceWith(new IntakeSpeed(intake, intakeSpeed)).raceWith(new SenseNewPowerCell(conveyor)).andThen(()->setDone()), 
-      new Finish_Auton(swerveDriveSubsystem, TrajectoryHelper.C3_to_D6(), this).raceWith(new IntakeSpeed(intake, intakeSpeed)).raceWith(new SenseNewPowerCell(conveyor)),
-      conveyor::getHasSeen
-    ),
-    new ConditionalCommand(
-      new Finish_Auton(swerveDriveSubsystem, TrajectoryHelper.D6_to_Finish_A(), this).raceWith(new IntakeSpeed(intake, intakeSpeed)).raceWith(new SenseNewPowerCell(conveyor)).andThen(()->setDone()), 
-      new Finish_Auton(swerveDriveSubsystem, TrajectoryHelper.D6_to_Finish_B(), this).raceWith(new IntakeSpeed(intake, intakeSpeed)).raceWith(new SenseNewPowerCell(conveyor)),
-      conveyor::getHasSeen
-    ),
+    conditional(swerveDriveSubsystem, intake, conveyor, TrajectoryHelper.B3_to_Finish(), TrajectoryHelper.B3_to_C3()),
+    conditional(swerveDriveSubsystem, intake, conveyor, TrajectoryHelper.C3_to_Finish(), TrajectoryHelper.C3_to_D6()),
+    conditional(swerveDriveSubsystem, intake, conveyor, TrajectoryHelper.D6_to_Finish_A(), TrajectoryHelper.D6_to_Finish_B()),
     //new InstantCommand(swerveDriveSubsystem::stopDriveMotors, swerveDriveSubsystem),
     new IntakeSpeed(intake, 0)
     );

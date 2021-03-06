@@ -31,7 +31,7 @@ public class Finish_Auton extends SequentialCommandGroup {
   public Finish_Auton(SwerveDriveSubsystem swerveDriveSubsystem, TrajectoryMaker endTrajectory, GalacticSearch galacticSearch) {  // test forward path
    
     super(
-      new Autonomous(swerveDriveSubsystem, endTrajectory.getTrajectory(), endTrajectory.getAngle()).withTimeout(1)
+      new Autonomous(swerveDriveSubsystem, endTrajectory.getTrajectory(), endTrajectory.getAngle()).withTimeout(5)
     );
     this.search = galacticSearch; 
   }
