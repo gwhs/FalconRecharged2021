@@ -59,6 +59,7 @@ public class GalacticSearch extends SequentialCommandGroup {
     );
   }
 
+  /*
   public GalacticSearch(SwerveDriveSubsystem swerveDriveSubsystem, Intake intake, ConveyorTalon conveyor) {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
@@ -77,7 +78,41 @@ public class GalacticSearch extends SequentialCommandGroup {
     //new InstantCommand(swerveDriveSubsystem::stopDriveMotors, swerveDriveSubsystem),
     new IntakeSpeed(intake, 0)
     );
+  } */
+
+  public GalacticSearch(SwerveDriveSubsystem swerveDriveSubsystem, Intake intake, ConveyorTalon conveyor) {
+    // Add your commands in the addCommands() call, e.g.
+    // addCommands(new FooCommand(), new BarCommand());
+    // Start_to_B3 --> if (found B3) B3_to_Finish 
+    // else B3_to_C3 --> if (found C3) C3_to_Finish
+    // else C3_to_D6 --> if (found D6) D6_to_Finish_A
+    // else D6_to_Finish_B
+    
+    super();
+    addCommands(
+    new InstantCommand(intake::lowerIntake, intake),
+    new Finish_Auton(swerveDriveSubsystem, driveForward, this).raceWith(new IntakeSpeed(intake, intakeSpeed)).raceWith(new SenseNewPowerCell(conveyor)), 
+    conditional(swerveDriveSubsystem, intake, conveyor, driveRight, driveLeft),
+    //new InstantCommand(swerveDriveSubsystem::stopDriveMotors, swerveDriveSubsystem),
+    new IntakeSpeed(intake, 0)
+    );
   }
+
+    public static double[][] driveForward = {
+      {30,120},
+      {90,120},
+    };
+
+    public static double[][] driveRight = {
+      {90,120},
+      {90,150},
+    };
+
+    public static double[][] driveLeft = {
+      {90,120},
+      {90,90},
+    };
+
     public static double[][] Start_to_B3= {
         {30,120},
         {90,120},
@@ -101,7 +136,7 @@ public class GalacticSearch extends SequentialCommandGroup {
       };
 
     public static double[][] C3_to_Finish = {
-        {90,120},
+        //{90,120}, wrong pt?
         {90,90},
         {150,60},
         {180,150},
