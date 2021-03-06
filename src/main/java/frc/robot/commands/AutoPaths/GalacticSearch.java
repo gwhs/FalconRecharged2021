@@ -39,8 +39,12 @@ public class GalacticSearch extends SequentialCommandGroup {
   public Command conditional(SwerveDriveSubsystem swerveDriveSubsystem, Intake intake, ConveyorTalon conveyor, TrajectoryMaker hasSeenTrajectory, TrajectoryMaker notSeenTrajectory)
   {
     return new ConditionalCommand(
-      new Finish_Auton(swerveDriveSubsystem, hasSeenTrajectory, this).raceWith(new IntakeSpeed(intake, intakeSpeed)).raceWith(new SenseNewPowerCell(conveyor)).andThen(()->setDone()), 
-      new Finish_Auton(swerveDriveSubsystem, notSeenTrajectory, this).raceWith(new IntakeSpeed(intake, intakeSpeed)).raceWith(new SenseNewPowerCell(conveyor)),
+      new Finish_Auton(swerveDriveSubsystem, hasSeenTrajectory, this)
+        .raceWith(new IntakeSpeed(intake, intakeSpeed))
+          .raceWith(new SenseNewPowerCell(conveyor)).andThen(()->setDone()), 
+      new Finish_Auton(swerveDriveSubsystem, notSeenTrajectory, this)
+        .raceWith(new IntakeSpeed(intake, intakeSpeed))
+          .raceWith(new SenseNewPowerCell(conveyor)),
       conveyor::getHasSeen
     );
   }

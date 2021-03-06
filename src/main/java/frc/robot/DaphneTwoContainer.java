@@ -171,8 +171,9 @@ public class DaphneTwoContainer {
     //TrajectoryMaker B3_Finish = TrajectoryHelper.B3_to_Finish();
     //TrajectoryMaker _B3 = TrajectoryHelper.Start_to_B3();
 
+    Command galacticSearch = new GalacticSearch(swerveDriveSubsystem, intake, conveyorT);
     Command autoCommand = new Autonomous(swerveDriveSubsystem, path.getTrajectory(), path.getAngle());
-    start.whenPressed(autoCommand.withTimeout(60));
+    start.whenPressed(galacticSearch);//autoCommand.withTimeout(60)
 
 /*
     start.whenPressed(new ConditionalCommand(
