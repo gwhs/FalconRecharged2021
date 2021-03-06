@@ -35,8 +35,18 @@ public class GalacticSearch extends SequentialCommandGroup {
   {
     return galacticSearchDone;
   }
-
-  public Command conditional(SwerveDriveSubsystem swerveDriveSubsystem, Intake intake, ConveyorTalon conveyor, TrajectoryMaker hasSeenTrajectory, TrajectoryMaker notSeenTrajectory)
+  /**
+   * creates a conditional command that runs the hasSeenTrajectory if a powercell is in the conveyor, 
+   * otherwise runs notSeenTrajectory
+   * if run hasSeenTrajectory setDone following commands don't run
+   * @param swerveDriveSubsystem 
+   * @param intake
+   * @param conveyor
+   * @param hasSeenTrajectory
+   * @param notSeenTrajectory
+   * @return
+   */
+  public Command conditional(SwerveDriveSubsystem swerveDriveSubsystem, Intake intake, ConveyorTalon conveyor, double[][] hasSeenTrajectory, double[][] notSeenTrajectory)
   {
     return new ConditionalCommand(
       new Finish_Auton(swerveDriveSubsystem, hasSeenTrajectory, this)
@@ -60,11 +70,10 @@ public class GalacticSearch extends SequentialCommandGroup {
     super();
     addCommands(
     new InstantCommand(intake::lowerIntake, intake),
-    new Autonomous(swerveDriveSubsystem, TrajectoryHelper.Start_to_B3().getTrajectory(), TrajectoryHelper.Start_to_B3().getAngle()).withTimeout(3)
-    .raceWith(new IntakeSpeed(intake, intakeSpeed)).raceWith(new SenseNewPowerCell(conveyor)),
-    conditional(swerveDriveSubsystem, intake, conveyor, TrajectoryHelper.B3_to_Finish(), TrajectoryHelper.B3_to_C3()),
-    conditional(swerveDriveSubsystem, intake, conveyor, TrajectoryHelper.C3_to_Finish(), TrajectoryHelper.C3_to_D6()),
-    conditional(swerveDriveSubsystem, intake, conveyor, TrajectoryHelper.D6_to_Finish_A(), TrajectoryHelper.D6_to_Finish_B()),
+    new Finish_Auton(swerveDriveSubsystem, Start_to_B3, this).raceWith(new IntakeSpeed(intake, intakeSpeed)).raceWith(new SenseNewPowerCell(conveyor)), 
+    conditional(swerveDriveSubsystem, intake, conveyor, B3_to_Finish, B3_to_C3),
+    conditional(swerveDriveSubsystem, intake, conveyor, C3_to_Finish, C3_to_D6),
+    conditional(swerveDriveSubsystem, intake, conveyor, D6_to_Finish_A, D6_to_Finish_B),
     //new InstantCommand(swerveDriveSubsystem::stopDriveMotors, swerveDriveSubsystem),
     new IntakeSpeed(intake, 0)
     );

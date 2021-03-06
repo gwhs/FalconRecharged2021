@@ -23,15 +23,20 @@ public class Finish_Auton extends SequentialCommandGroup {
    */
   public GalacticSearch search;
 
+  /**
+   * checks for galacticSearchDone 
+   */
   @Override
   public boolean isFinished() {
     return super.isFinished() || search.getDone();
   }
 
-  public Finish_Auton(SwerveDriveSubsystem swerveDriveSubsystem, TrajectoryMaker endTrajectory, GalacticSearch galacticSearch) {  // test forward path
+  public Finish_Auton(SwerveDriveSubsystem swerveDriveSubsystem, double[][] inputPoints, GalacticSearch galacticSearch) {  // test forward path
    
-    super(
-      new Autonomous(swerveDriveSubsystem, endTrajectory.getTrajectory(), endTrajectory.getAngle()).withTimeout(5)
+    super();
+    TrajectoryMaker trajectory = TrajectoryHelper.createTrajectory(inputPoints);
+    addCommands(
+      new Autonomous(swerveDriveSubsystem, trajectory.getTrajectory(), trajectory.getAngle()).withTimeout(5)
     );
     this.search = galacticSearch; 
   }
