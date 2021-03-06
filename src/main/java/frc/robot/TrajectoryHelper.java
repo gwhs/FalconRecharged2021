@@ -145,8 +145,8 @@ public static double[][] testStep= {
         {250,140},
         {320,150},
         {320,80},
-        {80,85},
-        {25,85},
+        {80,80},
+        {25,80},
                 };
 
     public static double GLOBAL_SCALE = 0.827;
