@@ -131,7 +131,10 @@ public class GalacticSearch extends SequentialCommandGroup {
     public static double[] D6 = {180, 120};
     public static double[] D10 = {300, 120};
     public static double[] E6 = {180, 150};
-    public static double[] END = {300, 90};
+    public static double[] B3_END = {300, 60};
+    public static double[] C3_END = {300, 30};
+    public static double[] D6_END_A = {300, 120};
+    public static double[] D6_END_B = {300, 90};
 
     public static double[][] Start_to_B3= {
         B1,
@@ -148,7 +151,7 @@ public class GalacticSearch extends SequentialCommandGroup {
       B3,
       D5,
       B7,
-      END,
+      B3_END,
     };
 
     public static double[][] C3_to_D6 = {
@@ -160,14 +163,14 @@ public class GalacticSearch extends SequentialCommandGroup {
       C3,
       D5,
       A6,
-      END,
+      C3_END,
     };
 
     public static double[][] D6_to_Finish_A = {
       D6,
       B8,
       D10,
-      END,
+      D6_END_A,
     };
 
     public static double[][] D6_to_Finish_B = {
@@ -175,7 +178,7 @@ public class GalacticSearch extends SequentialCommandGroup {
       E6,
       B7,
       C9,
-      END,
+      D6_END_B,
     };
 }
 
