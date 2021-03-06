@@ -59,6 +59,11 @@ public class GalacticSearch extends SequentialCommandGroup {
     );
   }
 
+  @Override
+  public void initialize() {
+    super.initialize();
+    galacticSearchDone = false;
+  }
   
   public GalacticSearch(SwerveDriveSubsystem swerveDriveSubsystem, Intake intake, ConveyorTalon conveyor) {
     // Add your commands in the addCommands() call, e.g.
@@ -73,7 +78,7 @@ public class GalacticSearch extends SequentialCommandGroup {
     new InstantCommand(intake::lowerIntake, intake),
     new Finish_Auton(swerveDriveSubsystem, Start_to_B3, this).raceWith(new IntakeSpeed(intake, intakeSpeed)).raceWith(new SenseNewPowerCell(conveyor)), 
     conditional(swerveDriveSubsystem, intake, conveyor, B3_to_Finish, B3_to_C3),
-    //conditional(swerveDriveSubsystem, intake, conveyor, C3_to_Finish, C3_to_D6),
+    conditional(swerveDriveSubsystem, intake, conveyor, C3_to_Finish, C3_to_D6),
     //conditional(swerveDriveSubsystem, intake, conveyor, D6_to_Finish_A, D6_to_Finish_B),
     //new InstantCommand(swerveDriveSubsystem::stopDriveMotors, swerveDriveSubsystem),
     new IntakeSpeed(intake, 0)
@@ -124,11 +129,12 @@ public class GalacticSearch extends SequentialCommandGroup {
         {90,90},
     };
 
+    //345 finish?
     public static double[][] B3_to_Finish = {
         {90,120},
         {150,60},
         {180,150},
-        {345,150},
+        {300,150},
     };
 
     public static double[][] C3_to_D6 = {
@@ -141,14 +147,14 @@ public class GalacticSearch extends SequentialCommandGroup {
         {90,90},
         {150,60},
         {180,150},
-        {345,150},
+        {300,150},
     };
 
     public static double[][] D6_to_Finish_A = {
         {180,60},
         {240,120},
         {300,60},
-        {345,60},
+        {300,60},
     };
 
     public static double[][] D6_to_Finish_B = {
@@ -156,7 +162,7 @@ public class GalacticSearch extends SequentialCommandGroup {
         {180,30},
         {210,120},
         {270,90},
-        {345,90},
+        {300,90},
     };
 }
 
