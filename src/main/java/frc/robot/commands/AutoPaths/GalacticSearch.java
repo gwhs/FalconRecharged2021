@@ -59,7 +59,7 @@ public class GalacticSearch extends SequentialCommandGroup {
     );
   }
 
-  /*
+  
   public GalacticSearch(SwerveDriveSubsystem swerveDriveSubsystem, Intake intake, ConveyorTalon conveyor) {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
@@ -73,13 +73,14 @@ public class GalacticSearch extends SequentialCommandGroup {
     new InstantCommand(intake::lowerIntake, intake),
     new Finish_Auton(swerveDriveSubsystem, Start_to_B3, this).raceWith(new IntakeSpeed(intake, intakeSpeed)).raceWith(new SenseNewPowerCell(conveyor)), 
     conditional(swerveDriveSubsystem, intake, conveyor, B3_to_Finish, B3_to_C3),
-    conditional(swerveDriveSubsystem, intake, conveyor, C3_to_Finish, C3_to_D6),
-    conditional(swerveDriveSubsystem, intake, conveyor, D6_to_Finish_A, D6_to_Finish_B),
+    //conditional(swerveDriveSubsystem, intake, conveyor, C3_to_Finish, C3_to_D6),
+    //conditional(swerveDriveSubsystem, intake, conveyor, D6_to_Finish_A, D6_to_Finish_B),
     //new InstantCommand(swerveDriveSubsystem::stopDriveMotors, swerveDriveSubsystem),
     new IntakeSpeed(intake, 0)
     );
-  } */
+  } 
 
+  /*
   public GalacticSearch(SwerveDriveSubsystem swerveDriveSubsystem, Intake intake, ConveyorTalon conveyor) {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
@@ -96,7 +97,7 @@ public class GalacticSearch extends SequentialCommandGroup {
     //new InstantCommand(swerveDriveSubsystem::stopDriveMotors, swerveDriveSubsystem),
     new IntakeSpeed(intake, 0)
     );
-  }
+  } */
 
     public static double[][] driveForward = {
       {30,120},
