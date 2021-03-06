@@ -119,50 +119,63 @@ public class GalacticSearch extends SequentialCommandGroup {
       {90,90},
     };
 
+    // measuring from top down (0 is the top, 180 bottom)
+    public static double[] A6 = {180, 30};
+    public static double[] B1 = {30, 60}; 
+    public static double[] B3 = {90, 60}; 
+    public static double[] B7 = {210, 60};
+    public static double[] B8 = {240, 60};
+    public static double[] C3 = {90, 90};
+    public static double[] C9 = {270, 90};
+    public static double[] D5 = {150, 120};
+    public static double[] D6 = {180, 120};
+    public static double[] D10 = {300, 120};
+    public static double[] E6 = {180, 150};
+    public static double[] END = {300, 90};
+
     public static double[][] Start_to_B3= {
-        {30,120},
-        {90,120},
+        B1,
+        B3, 
     };
 
     public static double[][] B3_to_C3=  {
-        {90,120},
-        {90,90},
+        B3,
+        C3,
     };
 
     //345 finish?
     public static double[][] B3_to_Finish = {
-        {90,120},
-        {150,60},
-        {180,150},
-        {300,150},
+      B3,
+      D5,
+      B7,
+      END,
     };
 
     public static double[][] C3_to_D6 = {
-        {90, 90},
-        {180, 60},
-      };
+      C3,
+      D6,
+    };
 
     public static double[][] C3_to_Finish = {
-        //{90,120}, wrong pt?
-        {90,90},
-        {150,60},
-        {180,150},
-        {300,150},
+      C3,
+      D5,
+      A6,
+      END,
     };
 
     public static double[][] D6_to_Finish_A = {
-        {180,60},
-        {240,120},
-        {300,60},
-        {300,60},
+      D6,
+      B8,
+      D10,
+      END,
     };
 
     public static double[][] D6_to_Finish_B = {
-        {180,60},
-        {180,30},
-        {210,120},
-        {270,90},
-        {300,90},
+      D6,
+      E6,
+      B7,
+      C9,
+      END,
     };
 }
 

@@ -28,13 +28,14 @@ public class SenseCell extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    
+    seen = false;
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
     seen = conveyorTalon.getStatus() && !conveyorTalon.isIgnored();
+    System.out.println("Checking if conveyor works: " + seen);
     if(seen)
     {
       conveyorTalon.setConveyorSpeed(-.5);
