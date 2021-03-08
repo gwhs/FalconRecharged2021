@@ -123,7 +123,7 @@ public class GalacticSearch extends SequentialCommandGroup {
     public static double[] A6 = {180, 30};
     public static double[] B1 = {15, 60}; 
     public static double[] B3 = {90, 60}; 
-    public static double[] B3_Back = {50, 60}; 
+    public static double[] B3_Front = {130, 60}; 
     public static double[] B7 = {210, 60};
     public static double[] B8 = {240, 60};
     public static double[] C3 = {90, 90};
@@ -144,7 +144,7 @@ public class GalacticSearch extends SequentialCommandGroup {
 
     public static double[][] B3_to_C3=  {
         B3,
-        B3_Back,
+        B3_Front,
         C3,
     };
 
