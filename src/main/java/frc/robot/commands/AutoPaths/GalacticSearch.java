@@ -84,7 +84,7 @@ public class GalacticSearch extends SequentialCommandGroup {
     new IntakeSpeed(intake, 0)
     );
   } 
-
+    
   /*
   public GalacticSearch(SwerveDriveSubsystem swerveDriveSubsystem, Intake intake, ConveyorTalon conveyor) {
     // Add your commands in the addCommands() call, e.g.
@@ -121,7 +121,7 @@ public class GalacticSearch extends SequentialCommandGroup {
 
     // measuring from top down (0 is the top, 180 bottom)
     public static double[] A6 = {180, 30};
-    public static double[] B1 = {30, 60}; 
+    public static double[] B1 = {15, 60}; 
     public static double[] B3 = {90, 60}; 
     public static double[] B7 = {210, 60};
     public static double[] B8 = {240, 60};
