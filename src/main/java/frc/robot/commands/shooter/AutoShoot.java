@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
+import frc.robot.DaphneTwoConstants;
 import frc.robot.commands.conveyor.ConveyorSpeed;
 import frc.robot.commands.conveyor.ToggleIgnore;
 import frc.robot.subsystems.ConveyorTalon;
@@ -33,14 +34,33 @@ public class AutoShoot extends SequentialCommandGroup {
    * power cells shoot for real, less time is required for the flywheel to be at the desired speed.
    * 
    */
+  public final static double CONVEYOR_BACKUP_SPEED = 0.4; // positive moves away from shooter
+  public final static double CONVEYOR_UNLOADS_SPEED = -0.6;
+  public final static double WAIT_TIME = 2.0;
+
   public AutoShoot(ConveyorTalon conveyorTalon, Shooter shooter, boolean backConveyor) {
+    // Add your commands in the super() call, e.g.
+    // super(new FooCommand(), new BarCommand());
+    // super(// new ToggleIgnore(conveyorTalon, true),
+    //     new InstantCommand(() -> conveyorTalon.toggleIgnore(true)),
+    //     backConveyor ? new ConveyorSpeed(conveyorTalon, CONVEYOR_BACKUP_SPEED).withTimeout(.4) : new WaitCommand(0),
+    //       new ParallelCommandGroup(new SetShooterSpeed(shooter, 6000),
+    //                                new SequentialCommandGroup(new WaitCommand(WAIT_TIME), 
+    //                                         new ConveyorSpeed(conveyorTalon, CONVEYOR_UNLOADS_SPEED).withTimeout(3))).withTimeout(7),
+    //       new SetShooterSpeed(shooter, 0).withTimeout(1),
+    //       new InstantCommand(()-> conveyorTalon.toggleIgnore(false)));
+    this(conveyorTalon, shooter, backConveyor, DaphneTwoConstants.GREEN_RPM, CONVEYOR_UNLOADS_SPEED);
+  }
+
+  public AutoShoot(ConveyorTalon conveyorTalon, Shooter shooter, boolean backConveyor, int RPM, double conveyorSpeed) {
     // Add your commands in the super() call, e.g.
     // super(new FooCommand(), new BarCommand());
     super(//new ToggleIgnore(conveyorTalon, true),
           new InstantCommand(()-> conveyorTalon.toggleIgnore(true)),
-          backConveyor ? new ConveyorSpeed(conveyorTalon,.4).withTimeout(.4) : new WaitCommand(0),
-          new ParallelCommandGroup(new SetShooterSpeed(shooter, 6000),
-                                   new SequentialCommandGroup(new WaitCommand(2), new ConveyorSpeed(conveyorTalon,-.6).withTimeout(3))).withTimeout(7),
+          backConveyor ? new ConveyorSpeed(conveyorTalon,CONVEYOR_BACKUP_SPEED).withTimeout(.4) : new WaitCommand(0),
+          new ParallelCommandGroup(new SetShooterSpeed(shooter, RPM),
+                                   new SequentialCommandGroup(new WaitCommand(WAIT_TIME), 
+                                             new ConveyorSpeed(conveyorTalon, conveyorSpeed).withTimeout(3))).withTimeout(7),
           new SetShooterSpeed(shooter, 0).withTimeout(1),
           new InstantCommand(()-> conveyorTalon.toggleIgnore(false)));
   }

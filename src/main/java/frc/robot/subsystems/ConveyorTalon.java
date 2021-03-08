@@ -27,7 +27,7 @@ public class ConveyorTalon extends SubsystemBase {
 
   public ConveyorTalon() {
     sensor = new TimeOfFlight(2);// to change ID for TOF sensor go to...      ipOfRoboRio:5812
-    sensor.setRangingMode(TimeOfFlight.RangingMode.Short, 0.24);
+    sensor.setRangingMode(TimeOfFlight.RangingMode.Short, 0.24); //0.24 incorrect ?
     indexer = new TalonFX(Constants.CONVEYOR_TALON);
     indexer.config_kP(0, .2, 0);
     indexer.config_kI(0, .0001, 0);
@@ -51,7 +51,7 @@ public class ConveyorTalon extends SubsystemBase {
   }
 
   public boolean getStatus() {
-    return getDistance() < 5.3;
+    return getDistance() < 5.3; 
   }
 
   public boolean isIgnored() {
