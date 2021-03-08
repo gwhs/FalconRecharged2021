@@ -121,7 +121,7 @@ public class GalacticSearch extends SequentialCommandGroup {
 
     // measuring from top down (0 is the top, 180 bottom)
     public static double[] A6 = {180, 30};
-    public static double[] B1 = {15, 60}; 
+    public static double[] B1 = {23, 60}; 
     public static double[] B3 = {90, 60}; 
     public static double[] B3_Front = {130, 60}; 
     public static double[] B7 = {210, 60};
@@ -130,6 +130,7 @@ public class GalacticSearch extends SequentialCommandGroup {
     public static double[] C9 = {270, 90};
     public static double[] D5 = {150, 120};
     public static double[] D6 = {180, 120};
+    public static double[] D6_Front = {220, 120};
     public static double[] D10 = {300, 120};
     public static double[] E6 = {180, 150};
     public static double[] B3_END = {300, 60};
@@ -177,6 +178,7 @@ public class GalacticSearch extends SequentialCommandGroup {
 
     public static double[][] D6_to_Finish_B = {
       D6,
+      D6_Front,
       E6,
       B7,
       C9,
