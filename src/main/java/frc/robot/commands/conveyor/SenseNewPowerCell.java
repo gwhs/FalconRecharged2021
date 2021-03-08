@@ -7,7 +7,7 @@ package frc.robot.commands.conveyor;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.ConveyorTalon;
 
-public class SenseNewPowerCell extends CommandBase {
+public class SenseNewPowerCell extends CommandBase { // do we use this class? get rid of ??
   /** Creates a new newBallSeen. */
   
   private ConveyorTalon conveyorTalon;
