@@ -30,13 +30,14 @@ private boolean isHyp;  //what does this mean?
 private TrajectoryConfig config;
 private Trajectory trajectory;
 private ArrayList<Translation2d> listOfPoints;
+private static double MAX_VELOCITY = 2;
 
 public TrajectoryMaker(Pose2d start, Pose2d end, boolean isHyp) {
     this.start = start;
     this.end = end;
     this.isHyp = isHyp;
     angle = 0;
-    config = new TrajectoryConfig(4, 2);  //make into constants
+    config = new TrajectoryConfig(MAX_VELOCITY, 2);  //make into constants
     config.setStartVelocity(0);
     config.setEndVelocity(0);
     config.setReversed(false);
@@ -49,7 +50,7 @@ public TrajectoryMaker(Pose2d start, Pose2d end, ArrayList<Translation2d> points
     this.end = end;
     this.isHyp = false;
     angle = 0;
-    config = new TrajectoryConfig(3, 2);  // (TrajectoryConfig​(double maxVelocityMetersPerSecond, double maxAccelerationMetersPerSecondSq))
+    config = new TrajectoryConfig(MAX_VELOCITY, 2);  // (TrajectoryConfig​(double maxVelocityMetersPerSecond, double maxAccelerationMetersPerSecondSq))
     config.setStartVelocity(0);
     config.setEndVelocity(0);
     config.setReversed(false);
