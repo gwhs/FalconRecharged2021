@@ -120,17 +120,23 @@ public class GalacticSearch extends SequentialCommandGroup {
     };
 
     // measuring from top down (0 is the top, 180 bottom)
+    // (0,0) is the top left point
+    // (0,180) is bottom left point
+    // (360, 0) is top right point
+    // (360, 180) is bottom right point
+    // (15, y) center of the start zone
+    // (345, y) center of the end zone, x set to 300 for yard
     public static double[] A6 = {180, 30};
     public static double[] B1 = {15, 60}; 
     public static double[] B3 = {90, 60}; 
-    public static double[] B3_Front = {130, 60}; 
+    public static double[] B3_Front = {130, 60}; //Robot goes forward more to avoid bumping C3 powercell
     public static double[] B7 = {210, 60};
     public static double[] B8 = {240, 60};
     public static double[] C3 = {90, 90};
     public static double[] C9 = {270, 90};
     public static double[] D5 = {150, 120};
-    public static double[] D6 = {180, 120};
-    public static double[] D6_Front = {220, 120};
+    public static double[] D6 = {180, 120}; //robot misses this point
+    public static double[] D6_Front = {220, 120}; //avoid bumping E6 powercell
     public static double[] D10 = {300, 120};
     public static double[] E6 = {180, 150};
     public static double[] B3_END = {300, 60};
