@@ -55,7 +55,7 @@ public class GalacticSearch extends SequentialCommandGroup {
       new Finish_Auton(swerveDriveSubsystem, notSeenTrajectory, this)
         .raceWith(new IntakeSpeed(intake, intakeSpeed))
           .raceWith(new SenseNewPowerCell(conveyor)),
-      conveyor::getHasSeen
+      conveyor::waitUntilSeen //getHasSeen
     );
   }
 

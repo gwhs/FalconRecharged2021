@@ -50,6 +50,7 @@ public class ConveyorTalon extends SubsystemBase {
     SmartDashboard.putBoolean("Has Seen", hasSeen);
   }
 
+  // checks if there is a powercell in the conveyor within 5.3 inches from the sensor
   public boolean getStatus() {
     return getDistance() < 5.3; 
   }
@@ -64,6 +65,8 @@ public class ConveyorTalon extends SubsystemBase {
     ignore = toggle;
   }
 
+  //* @return Distance to powercell in inches
+  // TO DO: find the mounting position and direction of the sensor
   public double getDistance()
   {
     return sensor.getRange()*0.0393701;
@@ -83,6 +86,31 @@ public class ConveyorTalon extends SubsystemBase {
 
   public boolean getHasSeen() {
     return hasSeen;
+  }
+
+  /**
+   * checks for powercell within the timeout frame
+   * @param timeout in seconds
+   * @return
+   */
+  public boolean waitUntilSeen() {
+    double currentTime = 0;
+    while (currentTime < 1)
+    {
+      currentTime +=.1;
+      if (getHasSeen()){
+        return true;
+      }
+      try {
+        Thread.sleep(100);
+      }
+      catch(InterruptedException ex) {
+        return false;
+        //Thread.currentThread().interrupt();
+        //to do: check with rob
+      }
+    }
+    return false;
   }
 
   public void setHasSeen(boolean bol) {
