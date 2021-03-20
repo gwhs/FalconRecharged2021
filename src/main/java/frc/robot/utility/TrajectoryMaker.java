@@ -49,12 +49,12 @@ public TrajectoryMaker(Pose2d start, Pose2d end, ArrayList<Translation2d> points
     this.end = end;
     this.isHyp = false;
     angle = 0;
-    //config = new TrajectoryConfig(1, 1); //slower for Bounce
-    config = new TrajectoryConfig(10, 3);  // (TrajectoryConfig​(double maxVelocityMetersPerSecond, double maxAccelerationMetersPerSecondSq))
+    config = new TrajectoryConfig(1, 1); //slower for Bounce
+    //config = new TrajectoryConfig(10, 3);  // (TrajectoryConfig​(double maxVelocityMetersPerSecond, double maxAccelerationMetersPerSecondSq))
     config.setStartVelocity(0);
     config.setEndVelocity(0);
     config.setReversed(false);
-    config.addConstraint(new CentripetalAccelerationConstraint(2.5));
+    config.addConstraint(new CentripetalAccelerationConstraint(2));
     listOfPoints = points;
     trajectory = createTrajectory();
 }
