@@ -146,7 +146,7 @@ public static double[][] testStep= {
         {230,120},
         {250,135},
         {300,140},
-        {300,90},
+        {300,80},
         //{80,80},
         {45,80}, //19
                 };
@@ -187,7 +187,7 @@ public static double[][] testStep= {
         ArrayList<Translation2d> points = translateAndScale(inputPoints, scale);  // make .2 for Hajel's garage.  Turns the 30 foot field to 6 feet
         Pose2d initialPose = new Pose2d(0, 0, new Rotation2d(0));
         Translation2d lastPoint = points.remove(points.size()-1);  // remove last point in array
-        Pose2d endPose = new Pose2d(lastPoint.getX(), lastPoint.getY(), new Rotation2d(0));
+        Pose2d endPose = new Pose2d(lastPoint.getX(), lastPoint.getY(), new Rotation2d(180));
 
         return new TrajectoryMaker(initialPose, endPose, points);
     }
