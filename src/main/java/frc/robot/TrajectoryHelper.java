@@ -253,7 +253,7 @@ public static double[][] testStep= {
     
     public static TrajectoryMaker createBounce1()
     {
-        return createTrajectory(bounce1, GLOBAL_SCALE, Math.PI / 4, 0, true);
+        return createTrajectory(bounce1, GLOBAL_SCALE, 3 * Math.PI / 2, Math.PI / 2, true);
     } 
 
     public static TrajectoryMaker createBarrel()
