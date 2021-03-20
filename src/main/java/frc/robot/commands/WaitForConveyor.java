@@ -9,24 +9,27 @@ public class WaitForConveyor extends CommandBase {
     private long startTime;
     private final double maxWaitTime = 1000;
 
-    public WaitForConveyor(ConveyorTalon conveyor)
-    {
+    public WaitForConveyor(ConveyorTalon conveyor) {
         super();
         conveyorTalon = conveyor;
         addRequirements(conveyorTalon);
     }
-    /** The initial subroutine of a command. Called once when the command is initially scheduled. */
-  public void initialize() {
-    startTime = System.currentTimeMillis();
-  }
 
-  //checks if power cell is in conveyor to finish or one second has gone by
-  public boolean isFinished() { 
-    long currentTime = System.currentTimeMillis();
-      if (conveyorTalon.getHasSeen() || (currentTime - startTime)>maxWaitTime){
-        return true;
-      }
-    return false;
-  }
+    /**
+     * The initial subroutine of a command. Called once when the command is
+     * initially scheduled.
+     */
+    public void initialize() {
+        startTime = System.currentTimeMillis();
+    }
+
+    // checks if power cell is in conveyor to finish or one second has gone by
+    public boolean isFinished() {
+        long currentTime = System.currentTimeMillis();
+        if (conveyorTalon.getHasSeen() || (currentTime - startTime) > maxWaitTime) {
+            return true;
+        }
+        return false;
+    }
 
 }
