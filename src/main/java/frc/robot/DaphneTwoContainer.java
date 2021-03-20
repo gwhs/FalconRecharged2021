@@ -145,7 +145,7 @@ public class DaphneTwoContainer {
     //leftBumper.whileHeld(new ConveyorSpeed( conveyorT, -.7));
     leftBumper.whileHeld(new SetShooterSpeed(shooterMotor, 6000));
     back.whileHeld(new ZeroNavX(swerveDriveSubsystem));
-    buttonX.whileHeld(new ConveyorSpeed( conveyorT, -.5));
+    //buttonX.whileHeld(new ConveyorSpeed( conveyorT, -.5));
     //buttonX.whenPressed(new ToggleClimberGearLock(climberT));
     rightBumper.whenPressed(new AutoShoot(conveyorT, shooterMotor,false));
     //start.whileHeld(new ReadLimelight(limeL));
@@ -176,8 +176,9 @@ public class DaphneTwoContainer {
     
     Command autoCommand0 = new Autonomous(swerveDriveSubsystem, path0.getTrajectory(), path0.getAngle());
     Command autoCommand1 = new Autonomous(swerveDriveSubsystem, path1.getTrajectory(), path1.getAngle());
-    Command bounceCommand = new SequentialCommandGroup(autoCommand0, autoCommand1);
-    start.whenPressed(bounceCommand.withTimeout(60));
+    // Command bounceCommand = new SequentialCommandGroup(autoCommand0, autoCommand1);
+    start.whenPressed(autoCommand0.withTimeout(60));
+    buttonX.whenPressed(autoCommand1.withTimeout(60));
 
 /*
     start.whenPressed(new ConditionalCommand(
