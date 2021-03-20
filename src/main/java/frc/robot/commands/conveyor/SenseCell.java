@@ -29,6 +29,7 @@ public class SenseCell extends CommandBase {
   @Override
   public void initialize() {
     seen = false;
+    conveyorTalon.setHasSeen(false);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -38,6 +39,7 @@ public class SenseCell extends CommandBase {
     System.out.println("Checking if conveyor works: " + seen); //testing for bug in conveyor
     if(seen)
     {
+      conveyorTalon.setHasSeen(true);
       conveyorTalon.setConveyorSpeed(-.5);
     }
     else
