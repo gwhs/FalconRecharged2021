@@ -22,6 +22,15 @@ public class GalacticSearch extends SequentialCommandGroup {
   public static final double INTAKE_DELAY = 1.0;
   // delay for a second when we get to a choice point, to ensure conveyor can notice the ball
   private boolean galacticSearchDone = false;
+  ConveyorTalon conveyorTalon;
+  Intake intake;
+
+  @Override
+  public void end(boolean interrupted) {
+    super.end(interrupted);
+    conveyorTalon.setConveyorSpeed(0);
+    intake.setSpeed(0);
+  }
 
   public void setDone()
   {
@@ -70,6 +79,8 @@ public class GalacticSearch extends SequentialCommandGroup {
     // else D6_to_Finish_B
 
     super();
+    conveyorTalon = conveyor;
+    this.intake = intake;
     addCommands(
     new InstantCommand(intake::lowerIntake, intake),
     new InstantCommand(() -> intake.setSpeed(intakeSpeed),intake),
