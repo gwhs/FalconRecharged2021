@@ -10,6 +10,7 @@ import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.TrajectoryHelper;
+import frc.robot.commands.WaitForConveyor;
 import frc.robot.commands.conveyor.SenseNewPowerCell;
 import frc.robot.commands.intake.IntakeSpeed;
 import frc.robot.commands.swervedrive.Autonomous;
@@ -55,7 +56,7 @@ public class GalacticSearch extends SequentialCommandGroup {
       new Finish_Auton(swerveDriveSubsystem, notSeenTrajectory, this)
         .raceWith(new IntakeSpeed(intake, intakeSpeed))
           .raceWith(new SenseNewPowerCell(conveyor)),
-      conveyor::waitUntilSeen //getHasSeen
+      conveyor::getHasSeen
     );
   }
 
@@ -77,8 +78,11 @@ public class GalacticSearch extends SequentialCommandGroup {
     addCommands(
     new InstantCommand(intake::lowerIntake, intake),
     new Finish_Auton(swerveDriveSubsystem, Start_to_B3, this).raceWith(new IntakeSpeed(intake, intakeSpeed)).raceWith(new SenseNewPowerCell(conveyor)), 
+    new WaitForConveyor(conveyor),
     conditional(swerveDriveSubsystem, intake, conveyor, B3_to_Finish, B3_to_C3),
+    new WaitForConveyor(conveyor),
     conditional(swerveDriveSubsystem, intake, conveyor, C3_to_Finish, C3_to_D6),
+    new WaitForConveyor(conveyor),
     conditional(swerveDriveSubsystem, intake, conveyor, D6_to_Finish_A, D6_to_Finish_B),
     new InstantCommand(swerveDriveSubsystem::stopDriveMotors, swerveDriveSubsystem),
     new IntakeSpeed(intake, 0)
