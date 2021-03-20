@@ -47,10 +47,8 @@ public class GalacticSearch extends SequentialCommandGroup {
   {
     return new ConditionalCommand(
       new Finish_Auton(swerveDriveSubsystem, hasSeenTrajectory, this)
-        .raceWith(new IntakeSpeed(intake, intakeSpeed))
           .raceWith(new SenseCell(conveyor)).andThen(()->setDone()),
       new Finish_Auton(swerveDriveSubsystem, notSeenTrajectory, this)
-        .raceWith(new IntakeSpeed(intake, intakeSpeed))
           .raceWith(new SenseCell(conveyor)),
       conveyor::getHasSeen
     );
@@ -74,7 +72,8 @@ public class GalacticSearch extends SequentialCommandGroup {
     super();
     addCommands(
     new InstantCommand(intake::lowerIntake, intake),
-    new Finish_Auton(swerveDriveSubsystem, Start_to_B3, this).raceWith(new IntakeSpeed(intake, intakeSpeed)).raceWith(new SenseCell(conveyor)), 
+    new InstantCommand(() -> intake.setSpeed(intakeSpeed),intake),
+    new Finish_Auton(swerveDriveSubsystem, Start_to_B3, this).raceWith(new SenseCell(conveyor)), 
     new WaitForConveyor(conveyor),
     conditional(swerveDriveSubsystem, intake, conveyor, B3_to_Finish, B3_to_C3),
     new WaitForConveyor(conveyor),
@@ -82,7 +81,7 @@ public class GalacticSearch extends SequentialCommandGroup {
     new WaitForConveyor(conveyor),
     conditional(swerveDriveSubsystem, intake, conveyor, D6_to_Finish_A, D6_to_Finish_B),
     new InstantCommand(swerveDriveSubsystem::stopDriveMotors, swerveDriveSubsystem),
-    new IntakeSpeed(intake, 0)
+    new InstantCommand(() -> intake.setSpeed(0),intake)
     );
   }
 
