@@ -19,6 +19,7 @@ public class WaitForConveyor extends CommandBase {
      * The initial subroutine of a command. Called once when the command is
      * initially scheduled.
      */
+    //Set the startTime to remember when the command began
     public void initialize() {
         startTime = System.currentTimeMillis();
     }

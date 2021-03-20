@@ -69,6 +69,7 @@ public class GalacticSearch extends SequentialCommandGroup {
   public GalacticSearch(SwerveDriveSubsystem swerveDriveSubsystem, Intake intake, ConveyorTalon conveyor) {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
+    // Waiting 1 second to check for the power cell
     // Start_to_B3 --> if (found B3) B3_to_Finish 
     // else B3_to_C3 --> if (found C3) C3_to_Finish
     // else C3_to_D6 --> if (found D6) D6_to_Finish_A
