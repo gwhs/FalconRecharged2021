@@ -59,6 +59,21 @@ public TrajectoryMaker(Pose2d start, Pose2d end, ArrayList<Translation2d> points
     trajectory = createTrajectory();
 }
 
+public TrajectoryMaker(Pose2d start, Pose2d end, ArrayList<Translation2d> points, boolean isReversed) {
+    this.start = start;
+    this.end = end;
+    this.isHyp = false;
+    angle = 0;
+    //config = new TrajectoryConfig(1, 1); //slower for Bounce
+    config = new TrajectoryConfig(10, 3);  // (TrajectoryConfig​(double maxVelocityMetersPerSecond, double maxAccelerationMetersPerSecondSq))
+    config.setStartVelocity(0);
+    config.setEndVelocity(0);
+    config.setReversed(isReversed);
+    config.addConstraint(new CentripetalAccelerationConstraint(2.5));
+    listOfPoints = points;
+    trajectory = createTrajectory();
+}
+
 
 private Trajectory createTrajectory()
 {

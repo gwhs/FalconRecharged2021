@@ -15,6 +15,7 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.ConditionalCommand;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
+import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
 import frc.robot.commands.ReadLimelight;
@@ -165,14 +166,18 @@ public class DaphneTwoContainer {
    
     //  TrajectoryMaker path = TrajectoryHelper.createBarrel();
 
-   TrajectoryMaker path = TrajectoryHelper.createBarrel();
+   TrajectoryMaker path0 = TrajectoryHelper.createBounce0();
+   TrajectoryMaker path1 = TrajectoryHelper.createBounce1();
 
     //TrajectoryMaker Start_B3 = TrajectoryHelper.Start_to_B3();
     //TrajectoryMaker B3_Finish = TrajectoryHelper.B3_to_Finish();
     //TrajectoryMaker _B3 = TrajectoryHelper.Start_to_B3();
 
-    Command autoCommand = new Autonomous(swerveDriveSubsystem, path.getTrajectory(), path.getAngle());
-    start.whenPressed(autoCommand.withTimeout(60));
+    
+    Command autoCommand0 = new Autonomous(swerveDriveSubsystem, path0.getTrajectory(), path0.getAngle());
+    Command autoCommand1 = new Autonomous(swerveDriveSubsystem, path1.getTrajectory(), path1.getAngle());
+    Command bounceCommand = new SequentialCommandGroup(autoCommand0, autoCommand1);
+    start.whenPressed(bounceCommand.withTimeout(60));
 
 /*
     start.whenPressed(new ConditionalCommand(

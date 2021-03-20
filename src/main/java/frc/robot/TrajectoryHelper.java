@@ -110,21 +110,24 @@ public static double[][] testStep= {
         {30,90},
                };
 
-     public static double[][] bounce = {
+     public static double[][] bounce0 = {
         {30,90}, //1
         {80,80},
+        {95,30}, //3
+     };
+
+     public static double[][] bounce1 = {
         {95,30}, //3
         {100,90},
         {135,145},//5
         {175,135}, //6
         {190,30},
-        {190,130},//8
-        //{225,140},
-        {255,130},
-        {275,30},
-        {270,85}, //12
-        {330,85},
-        
+        // {190,130},//8
+        // //{225,140},
+        // {255,130},
+        // {275,30},
+        // {270,85}, //12
+        // {330,85},
      };
         
      public static double[][] barrel = {
@@ -182,14 +185,25 @@ public static double[][] testStep= {
         return points;
     }
 
-    private static TrajectoryMaker createTrajectory(double [][] inputPoints, double scale)
+    private static TrajectoryMaker createTrajectory(double [][] inputPoints, double scale, double startOrientation, double endOrientation, boolean isReversed) // for bounce
+    {
+        ArrayList<Translation2d> points = translateAndScale(inputPoints, scale);  // make .2 for Hajel's garage.  Turns the 30 foot field to 6 feet
+        Pose2d initialPose = new Pose2d(0, 0, new Rotation2d(startOrientation));
+        Translation2d lastPoint = points.remove(points.size()-1);  // remove last point in array
+        Pose2d endPose = new Pose2d(lastPoint.getX(), lastPoint.getY(), new Rotation2d(endOrientation));
+
+        return new TrajectoryMaker(initialPose, endPose, points, isReversed);
+    }
+
+    
+    private static TrajectoryMaker createTrajectory(double [][] inputPoints, double scale) // for slalom and barrel
     {
         ArrayList<Translation2d> points = translateAndScale(inputPoints, scale);  // make .2 for Hajel's garage.  Turns the 30 foot field to 6 feet
         Pose2d initialPose = new Pose2d(0, 0, new Rotation2d(0));
         Translation2d lastPoint = points.remove(points.size()-1);  // remove last point in array
         Pose2d endPose = new Pose2d(lastPoint.getX(), lastPoint.getY(), new Rotation2d(180));
 
-        return new TrajectoryMaker(initialPose, endPose, points);
+        return new TrajectoryMaker(initialPose, endPose, points, false);
     }
 
     public static TrajectoryMaker createTest4Meters() // test path going only 4 meters forward
@@ -232,9 +246,14 @@ public static double[][] testStep= {
         return createTrajectory(slalom, GLOBAL_SCALE);
     }     
 
-    public static TrajectoryMaker createBounce()
+    public static TrajectoryMaker createBounce0()
     {
-        return createTrajectory(bounce, GLOBAL_SCALE);
+        return createTrajectory(bounce0, GLOBAL_SCALE, 0, 90, false);
+    }
+    
+    public static TrajectoryMaker createBounce1()
+    {
+        return createTrajectory(bounce1, GLOBAL_SCALE, 90, 270, true);
     } 
 
     public static TrajectoryMaker createBarrel()
