@@ -107,7 +107,7 @@ public class Autonomous extends CommandBase {
     }
     //odometry = new SwerveDriveOdometry(kinematics,new Rotation2d(Math.toRadians(0)));
     double angleOfRobotOrientation = drivetrain.getGyroAngle();
-    odometry = new SwerveDriveOdometry(kinematics, new Rotation2d(Math.toRadians(angleOfRobotOrientation)), startingPose);
+    odometry = new SwerveDriveOdometry(kinematics, new Rotation2d(Math.toRadians(angleOfRobotOrientation)), new Pose2d(0, 0, new Rotation2d(Math.toRadians(angleOfRobotOrientation))));
     //odometry.resetPosition(new Pose2d(0, 0, new Rotation2d(0)), new Rotation2d(Math.toRadians(0)));
     time.start();
     boolean isAuto = drivetrain.getIsAuto();
