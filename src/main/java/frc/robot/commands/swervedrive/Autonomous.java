@@ -41,12 +41,25 @@ public class Autonomous extends CommandBase {
   private Timer time;
   private double initGyro;
   private double angle;
+  private Pose2d startingPose;
 
   //Speed constant calulated using 19251 as ticks/rev, 0.3048 ft to m conversion, 2pi*(1/6) is rev tp ft conversion
   public static final double SPEEDCONSTANT = (2*Math.PI*(1.0/6)*0.3048)/19251; //used to swtich from ticks to meters
   public double initPos[];
 
+
   public Autonomous(SwerveDriveSubsystem swerveDriveSubsystem, Trajectory trajectory, double angle) {  //what is the angle parameter here?
+    // Use addRequirements() here to declare subsystem dependencies.
+    // drivetrain = swerveDriveSubsystem;
+    // this.trajectory = trajectory;
+    // addRequirements(drivetrain);
+    // time = new Timer();
+    // initPos = new double[4];
+    // this.angle = angle;
+    this(swerveDriveSubsystem, trajectory, angle, new Pose2d());
+  }
+
+  public Autonomous(SwerveDriveSubsystem swerveDriveSubsystem, Trajectory trajectory, double angle, Pose2d initStartingPose) {  //what is the angle parameter here?
     // Use addRequirements() here to declare subsystem dependencies.
     drivetrain = swerveDriveSubsystem;
     this.trajectory = trajectory;
@@ -54,6 +67,7 @@ public class Autonomous extends CommandBase {
     time = new Timer();
     initPos = new double[4];
     this.angle = angle;
+    startingPose = initStartingPose;
   }
 
   // Called when the command is initially scheduled.
@@ -91,8 +105,10 @@ public class Autonomous extends CommandBase {
       new Translation2d(Constants.MOD_TO_CENTER, -Constants.MOD_TO_CENTER), //(-,-)
       new Translation2d(-Constants.MOD_TO_CENTER, -Constants.MOD_TO_CENTER));
     }
-    odometry = new SwerveDriveOdometry(kinematics,new Rotation2d(Math.toRadians(0)));
-    odometry.resetPosition(new Pose2d(0, 0, new Rotation2d(0)), new Rotation2d(Math.toRadians(0)));
+    //odometry = new SwerveDriveOdometry(kinematics,new Rotation2d(Math.toRadians(0)));
+    double angleOfRobotOrientation = drivetrain.getGyroAngle();
+    odometry = new SwerveDriveOdometry(kinematics, new Rotation2d(Math.toRadians(angleOfRobotOrientation)), startingPose);
+    //odometry.resetPosition(new Pose2d(0, 0, new Rotation2d(0)), new Rotation2d(Math.toRadians(0)));
     time.start();
     boolean isAuto = drivetrain.getIsAuto();
     drivetrain.setFieldOriented(false);

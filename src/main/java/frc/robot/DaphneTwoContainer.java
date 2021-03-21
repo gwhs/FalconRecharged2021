@@ -12,6 +12,8 @@ import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.geometry.Pose2d;
+import edu.wpi.first.wpilibj.geometry.Rotation2d;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.ConditionalCommand;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
@@ -175,7 +177,7 @@ public class DaphneTwoContainer {
 
     
     Command autoCommand0 = new Autonomous(swerveDriveSubsystem, path0.getTrajectory(), path0.getAngle());
-    Command autoCommand1 = new Autonomous(swerveDriveSubsystem, path1.getTrajectory(), path1.getAngle());
+    Command autoCommand1 = new Autonomous(swerveDriveSubsystem, path1.getTrajectory(), path1.getAngle(), new Pose2d(95, 30, new Rotation2d(Math.PI / 2)));
     // Command bounceCommand = new SequentialCommandGroup(autoCommand0, autoCommand1);
     start.whenPressed(autoCommand0.withTimeout(60));
     buttonX.whenPressed(autoCommand1.withTimeout(60));
