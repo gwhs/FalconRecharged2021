@@ -54,7 +54,7 @@ public TrajectoryMaker(Pose2d start, Pose2d end, ArrayList<Translation2d> points
     config.setStartVelocity(0);
     config.setEndVelocity(0);
     config.setReversed(false);
-    config.addConstraint(new CentripetalAccelerationConstraint(2));
+    config.addConstraint(new CentripetalAccelerationConstraint(2.5));
     listOfPoints = points;
     trajectory = createTrajectory();
 }
