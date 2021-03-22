@@ -12,9 +12,12 @@ import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.geometry.Pose2d;
+import edu.wpi.first.wpilibj.geometry.Rotation2d;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.ConditionalCommand;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
+import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
 import frc.robot.commands.ReadLimelight;
@@ -144,7 +147,7 @@ public class DaphneTwoContainer {
     //leftBumper.whileHeld(new ConveyorSpeed( conveyorT, -.7));
     leftBumper.whileHeld(new SetShooterSpeed(shooterMotor, 6000));
     back.whileHeld(new ZeroNavX(swerveDriveSubsystem));
-    buttonX.whileHeld(new ConveyorSpeed( conveyorT, -.5));
+    //buttonX.whileHeld(new ConveyorSpeed( conveyorT, -.5));
     //buttonX.whenPressed(new ToggleClimberGearLock(climberT));
     rightBumper.whenPressed(new AutoShoot(conveyorT, shooterMotor,false));
     //start.whileHeld(new ReadLimelight(limeL));
@@ -165,14 +168,19 @@ public class DaphneTwoContainer {
    
     //  TrajectoryMaker path = TrajectoryHelper.createBarrel();
 
-   TrajectoryMaker path = TrajectoryHelper.createBarrel();
+   TrajectoryMaker path0 = TrajectoryHelper.createBarrel();
+  // TrajectoryMaker path1 = TrajectoryHelper.createBounce1();
 
     //TrajectoryMaker Start_B3 = TrajectoryHelper.Start_to_B3();
     //TrajectoryMaker B3_Finish = TrajectoryHelper.B3_to_Finish();
     //TrajectoryMaker _B3 = TrajectoryHelper.Start_to_B3();
 
-    Command autoCommand = new Autonomous(swerveDriveSubsystem, path.getTrajectory(), path.getAngle());
-    start.whenPressed(autoCommand.withTimeout(60));
+    
+    Command autoCommand0 = new Autonomous(swerveDriveSubsystem, path0.getTrajectory(), path0.getAngle());
+   // Command autoCommand1 = new Autonomous(swerveDriveSubsystem, path1.getTrajectory(), path1.getAngle()); //new Pose2d(95, 30, new Rotation2d(Math.PI / 2))
+    // Command bounceCommand = new SequentialCommandGroup(autoCommand0, autoCommand1);
+    start.whenPressed(autoCommand0.withTimeout(60));
+    //buttonX.whenPressed(autoCommand1.withTimeout(60));
 
 /*
     start.whenPressed(new ConditionalCommand(
