@@ -97,7 +97,7 @@ public static double[][] testStep= {
 
     public static double[][] slalom = { 
         {30,150}, //1
-        {90,145},
+        {90,153},
         {105,90},
         {235,90},
         {250,155}, //5 old: {250, 145}
