@@ -67,6 +67,8 @@ public class GalacticSearch extends SequentialCommandGroup {
   public void initialize() {
     super.initialize();
     galacticSearchDone = false;
+    conveyorTalon.setHasSeen(false);
+    conveyorTalon.toggleIgnore(false);
   }
 
   /*
@@ -122,12 +124,12 @@ public class GalacticSearch extends SequentialCommandGroup {
 
     private static final double[][] driveForward = {
       {30,120},
-      {90,120},
+      {110,120},
     };
 
     private static final double[][] driveForward2 = {
       {90,120},
-      {150,120},
+      {200,120},
     };
 
     private static final double[][] driveRight = {
