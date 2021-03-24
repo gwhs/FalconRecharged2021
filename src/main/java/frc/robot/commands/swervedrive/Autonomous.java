@@ -66,7 +66,7 @@ public class Autonomous extends CommandBase {
     addRequirements(drivetrain);
     time = new Timer();
     initPos = new double[4];
-    this.angle = angle;
+    this.angle = angle; //set to current gyro or expected angle or angle of modules
     startingPose = initStartingPose;
   }
 

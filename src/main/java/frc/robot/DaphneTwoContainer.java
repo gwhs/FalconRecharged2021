@@ -177,8 +177,8 @@ public class DaphneTwoContainer {
 
     
     Command autoCommand0 = new Autonomous(swerveDriveSubsystem, path0.getTrajectory(), path0.getAngle());
-    Command autoCommand1 = new Autonomous(swerveDriveSubsystem, path1.getTrajectory(), path1.getAngle()); //new Pose2d(95, 30, new Rotation2d(Math.PI / 2))
-    // Command bounceCommand = new SequentialCommandGroup(autoCommand0, autoCommand1);
+   Command autoCommand1 = new Autonomous(swerveDriveSubsystem, path1.getTrajectory(), path1.getAngle()); //new Pose2d(95, 30, new Rotation2d(Math.PI / 2))
+    //Command bounceCommand = new SequentialCommandGroup(autoCommand0, autoCommand1);
     start.whenPressed(autoCommand0.withTimeout(60));
     buttonX.whenPressed(autoCommand1.withTimeout(60));
 
@@ -206,6 +206,9 @@ public class DaphneTwoContainer {
   public Command getAutonomousCommand() {
     // An ExampleCommand will run in autonomous
     //How can we change this to select the auto routine from the dashboard?
-    return new AutoPath1(swerveDriveSubsystem);
+    //return new AutoPath1(swerveDriveSubsystem);
+    
+    TrajectoryMaker path0 = TrajectoryHelper.createSlalom();
+    return new Autonomous(swerveDriveSubsystem, path0.getTrajectory(), path0.getAngle());
   }
 }

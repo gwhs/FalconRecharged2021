@@ -116,6 +116,11 @@ public static double[][] testStep= {
         {95,30}, //3
      };
 
+     public static double[][] bounce1Relative = {
+        {0, 0},
+        {50, 10}
+     };
+
      public static double[][] bounce1 = {
         {95,30}, //3
         {100,90},
@@ -253,7 +258,7 @@ public static double[][] testStep= {
     
     public static TrajectoryMaker createBounce1()
     {
-        return createTrajectory(bounce1, GLOBAL_SCALE, 3 * Math.PI / 2, Math.PI / 2, true);
+        return createTrajectory(bounce1Relative, GLOBAL_SCALE, 3 * Math.PI / 2, Math.PI / 2, true);
     } 
 
     public static TrajectoryMaker createBarrel()
