@@ -134,7 +134,7 @@ public class GalacticSearch extends SequentialCommandGroup {
 
     private static final double[][] driveRight = {
       {110,120},
-      {110,150},
+      {110,180},
     };
 
     private static final double[][] driveLeft = {
