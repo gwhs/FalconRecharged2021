@@ -118,7 +118,7 @@ public static double[][] testStep= {
 
      public static double[][] bounce1Relative = {
         {0, 0},
-        {50, 10}
+        {50, 25}
      };
 
      public static double[][] bounce1 = {
