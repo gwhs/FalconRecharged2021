@@ -141,7 +141,7 @@ public class Autonomous extends CommandBase {
     System.out.println("time: " + time.get());
 
     //10* is to give odometry speed in m/s instead of m/100ms
-    odometry.update(new Rotation2d(Math.toRadians(drivetrain.getGyroAngle() - initGyro)), 
+    odometry.update(new Rotation2d(Math.toRadians(drivetrain.getGyroAngle() - initGyro)), //substracting idk, get rid of ???
       new SwerveModuleState(10*drivetrain.getSwerveModule(0).getDriveMotor().getSelectedSensorVelocity()*SPEEDCONSTANT, new Rotation2d(Math.toRadians(drivetrain.getSwerveModule(0).getCurrentAngle()-initPos[0]))),
       new SwerveModuleState(10*drivetrain.getSwerveModule(1).getDriveMotor().getSelectedSensorVelocity()*SPEEDCONSTANT, new Rotation2d(Math.toRadians(drivetrain.getSwerveModule(1).getCurrentAngle()-initPos[1]))),
       new SwerveModuleState(10*drivetrain.getSwerveModule(2).getDriveMotor().getSelectedSensorVelocity()*SPEEDCONSTANT, new Rotation2d(Math.toRadians(drivetrain.getSwerveModule(2).getCurrentAngle()-initPos[2]))),
