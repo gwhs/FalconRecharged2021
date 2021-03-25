@@ -108,6 +108,8 @@ public class Autonomous extends CommandBase {
     //odometry = new SwerveDriveOdometry(kinematics,new Rotation2d(Math.toRadians(0)));
     double angleOfRobotOrientation = drivetrain.getGyroAngle();
     odometry = new SwerveDriveOdometry(kinematics, new Rotation2d(Math.toRadians(angleOfRobotOrientation)), new Pose2d(0, 0, new Rotation2d(Math.toRadians(angleOfRobotOrientation))));
+    //something about new pose 0,0 , init starting pose?
+    
     //odometry.resetPosition(new Pose2d(0, 0, new Rotation2d(0)), new Rotation2d(Math.toRadians(0)));
     time.start();
     boolean isAuto = drivetrain.getIsAuto();
@@ -127,7 +129,7 @@ public class Autonomous extends CommandBase {
     initPos[1] = angle;
     initPos[2] = angle;
     initPos[3] = angle;
-    drivetrain.zeroGyro(); //comment out maybe, if we don't do relative
+    //drivetrain.zeroGyro(); //comment out maybe, if we don't do relative
     initGyro = drivetrain.getGyroAngle();
     SmartDashboard.putNumber("Init Gyro", initGyro);
 
