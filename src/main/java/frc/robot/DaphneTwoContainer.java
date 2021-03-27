@@ -180,8 +180,8 @@ public class DaphneTwoContainer {
     //TrajectoryMaker _B3 = TrajectoryHelper.Start_to_B3();
 
     
-    Command autoCommand0 = new Autonomous(swerveDriveSubsystem, path0.getTrajectory(), path0.getAngle());
-    Command autoCommand1 = new Autonomous(swerveDriveSubsystem, path1.getTrajectory(), path1.getAngle()); //new Pose2d(95, 30, new Rotation2d(Math.PI / 2))
+    Command autoCommand0 = new Autonomous(swerveDriveSubsystem, path0.getTrajectory(), path0.getAngle(), new Pose2d(), true);
+    Command autoCommand1 = new Autonomous(swerveDriveSubsystem, path1.getTrajectory(), path1.getAngle(), new Pose2d(), false); //new Pose2d(95, 30, new Rotation2d(Math.PI / 2))
     //Command bounceCommand = new SequentialCommandGroup(autoCommand0, autoCommand1);
     start.whenPressed(autoCommand0.withTimeout(60));
     buttonX.whenPressed(autoCommand1.withTimeout(60));
@@ -228,6 +228,6 @@ public class DaphneTwoContainer {
     //return new AutoPath1(swerveDriveSubsystem);
     
     TrajectoryMaker path0 = TrajectoryHelper.createSlalom();
-    return new Autonomous(swerveDriveSubsystem, path0.getTrajectory(), path0.getAngle());
+    return new Autonomous(swerveDriveSubsystem, path0.getTrajectory(), path0.getAngle(), new Pose2d(), true);
   }
 }

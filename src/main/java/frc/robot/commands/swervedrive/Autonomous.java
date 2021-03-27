@@ -40,6 +40,8 @@ public class Autonomous extends CommandBase {
   private SwerveDriveSubsystem drivetrain;
   private Timer time;
   private double initGyro;
+  private static double firstGyroAngle;
+  private boolean firstAutoPath;
   private double angle;
   private Pose2d startingPose;
 
@@ -56,10 +58,10 @@ public class Autonomous extends CommandBase {
     // time = new Timer();
     // initPos = new double[4];
     // this.angle = angle;
-    this(swerveDriveSubsystem, trajectory, angle, new Pose2d());
+    this(swerveDriveSubsystem, trajectory, angle, new Pose2d(), true);
   }
 
-  public Autonomous(SwerveDriveSubsystem swerveDriveSubsystem, Trajectory trajectory, double angle, Pose2d initStartingPose) {  //what is the angle parameter here?
+  public Autonomous(SwerveDriveSubsystem swerveDriveSubsystem, Trajectory trajectory, double angle, Pose2d initStartingPose, boolean initfirstAutoPath) {  //what is the angle parameter here?
     // Use addRequirements() here to declare subsystem dependencies.
     drivetrain = swerveDriveSubsystem;
     this.trajectory = trajectory;
@@ -68,6 +70,7 @@ public class Autonomous extends CommandBase {
     initPos = new double[4];
     this.angle = angle; //set to current gyro or expected angle or angle of modules
     startingPose = initStartingPose;
+    firstAutoPath = initfirstAutoPath;
   }
 
   // Called when the command is initially scheduled.
@@ -130,7 +133,13 @@ public class Autonomous extends CommandBase {
     initPos[2] = angle;
     initPos[3] = angle;
     //drivetrain.zeroGyro(); //comment out maybe, if we don't do relative
-    initGyro = drivetrain.getGyroAngle();
+    if(firstAutoPath) {
+      initGyro = drivetrain.getGyroAngle();
+      firstGyroAngle = initGyro;
+    }
+    else {
+      initGyro = firstGyroAngle;
+    }
     SmartDashboard.putNumber("Init Gyro", initGyro);
 
   }
