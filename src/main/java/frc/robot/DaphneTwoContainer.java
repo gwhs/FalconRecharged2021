@@ -140,10 +140,10 @@ public class DaphneTwoContainer {
     /*
     The following is an example of an inline command.  No need to create a CommandBase Subclass for simple commands
     */
-    buttonA.whenPressed(new InstantCommand(intake::toggleIntakeSolenoidMode, intake));
+    //buttonA.whenPressed(new InstantCommand(intake::toggleIntakeSolenoidMode, intake));
 
-    buttonY.whileHeld(new ConveyorSpeed( conveyorT, .5)); //while Y is held down conveyor runs
-    buttonB.whileHeld(new IntakeSpeed(intake,-.5)); //while b is held down intake runs
+    //buttonY.whileHeld(new ConveyorSpeed( conveyorT, .5)); //while Y is held down conveyor runs
+    //buttonB.whileHeld(new IntakeSpeed(intake,-.5)); //while b is held down intake runs
     //leftBumper.whileHeld(new ConveyorSpeed( conveyorT, -.7));
     leftBumper.whileHeld(new SetShooterSpeed(shooterMotor, 6000));
     back.whileHeld(new ZeroNavX(swerveDriveSubsystem));
@@ -170,20 +170,34 @@ public class DaphneTwoContainer {
 
    TrajectoryMaker path0 = TrajectoryHelper.createBounce0();
    TrajectoryMaker path1 = TrajectoryHelper.createBounce1();
+   TrajectoryMaker path2 = TrajectoryHelper.createLeg1();
+   TrajectoryMaker path3 = TrajectoryHelper.createLeg2();
+   TrajectoryMaker path4 = TrajectoryHelper.createLeg3();
+   TrajectoryMaker path5 = TrajectoryHelper.createLeg4();
 
     //TrajectoryMaker Start_B3 = TrajectoryHelper.Start_to_B3();
     //TrajectoryMaker B3_Finish = TrajectoryHelper.B3_to_Finish();
     //TrajectoryMaker _B3 = TrajectoryHelper.Start_to_B3();
 
     
-    Command autoCommand0 = new Autonomous(swerveDriveSubsystem, path0.getTrajectory(), path0.getAngle());
-   Command autoCommand1 = new Autonomous(swerveDriveSubsystem, path1.getTrajectory(), 90); //new Pose2d(95, 30, new Rotation2d(Math.PI / 2))
+    //Command autoCommand0 = new Autonomous(swerveDriveSubsystem, path0.getTrajectory(), path0.getAngle());
+   //Command autoCommand1 = new Autonomous(swerveDriveSubsystem, path1.getTrajectory(), 90); //new Pose2d(95, 30, new Rotation2d(Math.PI / 2))
     //Command bounceCommand = new SequentialCommandGroup(autoCommand0, autoCommand1);
-    start.whenPressed(autoCommand0.withTimeout(60));
-    buttonX.whenPressed(autoCommand1.withTimeout(60));
+    //start.whenPressed(autoCommand0.withTimeout(60));
+    //buttonX.whenPressed(autoCommand1.withTimeout(60));
 
-    //Command galacticSearch = new GalacticSearch(swerveDriveSubsystem, intake, conveyorT);
-    //Command autoCommand = new Autonomous(swerveDriveSubsystem, path.getTrajectory(), path.getAngle());
+    Command autoCommand2 = new Autonomous(swerveDriveSubsystem, path2.getTrajectory(), path2.getAngle());
+    Command autoCommand3 = new Autonomous(swerveDriveSubsystem, path3.getTrajectory(), path3.getAngle());
+    Command autoCommand4 = new Autonomous(swerveDriveSubsystem, path4.getTrajectory(), path4.getAngle());
+    Command autoCommand5 = new Autonomous(swerveDriveSubsystem, path5.getTrajectory(), path5.getAngle());
+
+    buttonY.whenPressed(autoCommand2.withTimeout(60));
+    buttonX.whenPressed(autoCommand3.withTimeout(60));
+    buttonA.whenPressed(autoCommand4.withTimeout(60));
+    buttonB.whenPressed(autoCommand5.withTimeout(60));
+
+
+    Command galacticSearch = new GalacticSearch(swerveDriveSubsystem, intake, conveyorT);
     //start.whenPressed(galacticSearch);//autoCommand.withTimeout(60)
 
 

@@ -91,6 +91,26 @@ public static double[][] testStep= {
         {30,90},
                };
 
+    public static double[][] leg1 = {
+        {0,0},
+        {60,0},
+    };
+
+    public static double[][] leg2 = {
+        {60,0},
+        {60,60},
+    };
+
+    public static double[][] leg3 = {
+        {60,60},
+        {0,60},
+    };
+
+    public static double[][] leg4 = {
+        {0,60},
+        {0,0},
+    };
+
      public static double[][] bounce0 = {
         {30,90}, //1
         {80,80},
@@ -237,6 +257,29 @@ public static double[][] testStep= {
     {
         return createTrajectory(bounce1, GLOBAL_SCALE, 3 * Math.PI / 2, Math.PI / 2, true);
     } 
+
+    //go forward, turn 90 degrees right
+    public static TrajectoryMaker createLeg1()
+    {
+        return createTrajectory(leg1, GLOBAL_SCALE, 0, Math.PI / 2, false);
+    }
+
+    //go forward, turn 90 degrees right
+    public static TrajectoryMaker createLeg2()
+    {
+        return createTrajectory(leg2, GLOBAL_SCALE, Math.PI / 2, Math.PI, false);
+    }
+
+    public static TrajectoryMaker createLeg3()
+    {
+        return createTrajectory(leg3, GLOBAL_SCALE, Math.PI, 3*Math.PI / 2, false);
+    }
+
+    public static TrajectoryMaker createLeg4()
+    {
+        return createTrajectory(leg4, GLOBAL_SCALE, 3*Math.PI / 2, 0, false);
+    }
+
 
     public static TrajectoryMaker createBarrel()
     {
