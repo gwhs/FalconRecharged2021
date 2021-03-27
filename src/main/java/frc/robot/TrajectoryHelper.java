@@ -146,7 +146,7 @@ public static double[][] testStep= {
         {275,30},
         {270,85}, //11
         {330,85}
-     }
+     };
         
      public static double[][] barrel = {
         {30,90}, //1
