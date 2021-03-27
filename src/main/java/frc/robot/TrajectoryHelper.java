@@ -258,6 +258,11 @@ public static double[][] testStep= {
         return createTrajectory(bounce1, GLOBAL_SCALE, 3 * Math.PI / 2, Math.PI / 2, true);
     } 
 
+    public static TrajectoryMaker createBounce2()
+    {
+        return createTrajectory(bounce2, GLOBAL_SCALE, Math.PI / 2, 3 * Math.PI / 2, false);
+    } 
+
     //go forward, turn 90 degrees right
     public static TrajectoryMaker createLeg1()
     {
