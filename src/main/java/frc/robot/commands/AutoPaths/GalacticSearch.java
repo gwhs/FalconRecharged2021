@@ -8,7 +8,8 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.ConditionalCommand;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
-import edu.wpi.first.wpilibj2.command.WaitCommand;
+import frc.robot.commands.WaitForConveyor;
+import frc.robot.commands.conveyor.SenseCell;
 import frc.robot.commands.conveyor.SenseNewPowerCell;
 import frc.robot.commands.intake.IntakeSpeed;
 import frc.robot.subsystems.ConveyorTalon;
@@ -21,6 +22,15 @@ public class GalacticSearch extends SequentialCommandGroup {
   public static final double INTAKE_DELAY = 1.0;
   // delay for a second when we get to a choice point, to ensure conveyor can notice the ball
   private boolean galacticSearchDone = false;
+  ConveyorTalon conveyorTalon;
+  Intake intake;
+
+  @Override
+  public void end(boolean interrupted) {
+    super.end(interrupted);
+    conveyorTalon.setConveyorSpeed(0);
+    intake.setSpeed(0);
+  }
 
   public void setDone()
   {
@@ -46,11 +56,9 @@ public class GalacticSearch extends SequentialCommandGroup {
   {
     return new ConditionalCommand(
       new Finish_Auton(swerveDriveSubsystem, hasSeenTrajectory, this)
-        .raceWith(new IntakeSpeed(intake, intakeSpeed))
-          .raceWith(new SenseNewPowerCell(conveyor)).andThen(()->setDone()),
+          .raceWith(new SenseCell(conveyor)).andThen(()->setDone()),
       new Finish_Auton(swerveDriveSubsystem, notSeenTrajectory, this)
-        .raceWith(new IntakeSpeed(intake, intakeSpeed))
-          .raceWith(new SenseNewPowerCell(conveyor)),
+          .raceWith(new SenseCell(conveyor)),
       conveyor::getHasSeen
     );
   }
@@ -59,58 +67,74 @@ public class GalacticSearch extends SequentialCommandGroup {
   public void initialize() {
     super.initialize();
     galacticSearchDone = false;
-  }
-
-  public GalacticSearch(SwerveDriveSubsystem swerveDriveSubsystem, Intake intake, ConveyorTalon conveyor) {
-    // Add your commands in the addCommands() call, e.g.
-    // addCommands(new FooCommand(), new BarCommand());
-    // Start_to_B3 --> if (found B3) B3_to_Finish
-    // else B3_to_C3 --> if (found C3) C3_to_Finish
-    // else C3_to_D6 --> if (found D6) D6_to_Finish_A
-    // else D6_to_Finish_B
-
-    super();
-    addCommands(
-      new InstantCommand(intake::lowerIntake, intake),
-      new Finish_Auton(swerveDriveSubsystem, Start_to_B3, this).raceWith(new IntakeSpeed(intake, intakeSpeed)).raceWith(new SenseNewPowerCell(conveyor)),
-      new WaitCommand(INTAKE_DELAY),
-      conditional(swerveDriveSubsystem, intake, conveyor, B3_to_Finish, B3_to_C3),
-      new WaitCommand(INTAKE_DELAY),
-      conditional(swerveDriveSubsystem, intake, conveyor, C3_to_Finish, C3_to_D6),
-      new WaitCommand(INTAKE_DELAY),
-      conditional(swerveDriveSubsystem, intake, conveyor, D6_to_Finish_A, D6_to_Finish_B),
-      new InstantCommand(swerveDriveSubsystem::stopDriveMotors, swerveDriveSubsystem),
-      new IntakeSpeed(intake, 0)
-    );
+    conveyorTalon.setHasSeen(false);
+    conveyorTalon.toggleIgnore(false);
   }
 
   /*
   public GalacticSearch(SwerveDriveSubsystem swerveDriveSubsystem, Intake intake, ConveyorTalon conveyor) {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
-    // Start_to_B3 --> if (found B3) B3_to_Finish
+    // Waiting 1 second to check for the power cell
+    // Start_to_B3 --> if (found B3) B3_to_Finish 
     // else B3_to_C3 --> if (found C3) C3_to_Finish
     // else C3_to_D6 --> if (found D6) D6_to_Finish_A
     // else D6_to_Finish_B
 
     super();
+    conveyorTalon = conveyor;
+    this.intake = intake;
     addCommands(
     new InstantCommand(intake::lowerIntake, intake),
-    new Finish_Auton(swerveDriveSubsystem, driveForward, this).raceWith(new IntakeSpeed(intake, intakeSpeed)).raceWith(new SenseNewPowerCell(conveyor)),
-    conditional(swerveDriveSubsystem, intake, conveyor, driveRight, driveLeft),
+    new InstantCommand(() -> intake.setSpeed(intakeSpeed),intake),
+    new Finish_Auton(swerveDriveSubsystem, Start_to_B3, this).raceWith(new SenseCell(conveyor)), 
+    new WaitForConveyor(conveyor),
+    conditional(swerveDriveSubsystem, intake, conveyor, B3_to_Finish, B3_to_C3),
+    new WaitForConveyor(conveyor),
+    conditional(swerveDriveSubsystem, intake, conveyor, C3_to_Finish, C3_to_D6),
+    new WaitForConveyor(conveyor),
+    conditional(swerveDriveSubsystem, intake, conveyor, D6_to_Finish_A, D6_to_Finish_B),
     new InstantCommand(swerveDriveSubsystem::stopDriveMotors, swerveDriveSubsystem),
-    new IntakeSpeed(intake, 0)
+    new InstantCommand(() -> intake.setSpeed(0),intake)
     );
   } */
 
+  public GalacticSearch(SwerveDriveSubsystem swerveDriveSubsystem, Intake intake, ConveyorTalon conveyor) {
+    // Add your commands in the addCommands() call, e.g.
+    // addCommands(new FooCommand(), new BarCommand());
+    // Waiting 1 second to check for the power cell
+    // Start_to_B3 --> if (found B3) B3_to_Finish 
+    // else B3_to_C3 --> if (found C3) C3_to_Finish
+    // else C3_to_D6 --> if (found D6) D6_to_Finish_A
+    // else D6_to_Finish_B
+
+    super();
+    conveyorTalon = conveyor;
+    this.intake = intake;
+    addCommands(
+    new InstantCommand(intake::lowerIntake, intake),
+    new InstantCommand(() -> intake.setSpeed(intakeSpeed),intake),
+    new Finish_Auton(swerveDriveSubsystem, driveForward, this).raceWith(new SenseCell(conveyor)), 
+    new WaitForConveyor(conveyor),
+    conditional(swerveDriveSubsystem, intake, conveyor, driveForward2, driveRight),
+    new InstantCommand(swerveDriveSubsystem::stopDriveMotors, swerveDriveSubsystem),
+    new InstantCommand(() -> intake.setSpeed(0),intake)
+    );
+  }
+
     private static final double[][] driveForward = {
       {30,120},
-      {90,120},
+      {110,120},
+    };
+
+    private static final double[][] driveForward2 = {
+      {110,120},
+      {200,120},
     };
 
     private static final double[][] driveRight = {
-      {90,120},
-      {90,150},
+      {110,120},
+      {110,180},
     };
 
     private static final double[][] driveLeft = {
