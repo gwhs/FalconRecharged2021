@@ -180,21 +180,21 @@ public class DaphneTwoContainer {
     //TrajectoryMaker _B3 = TrajectoryHelper.Start_to_B3();
 
     
-    //Command autoCommand0 = new Autonomous(swerveDriveSubsystem, path0.getTrajectory(), path0.getAngle());
-   //Command autoCommand1 = new Autonomous(swerveDriveSubsystem, path1.getTrajectory(), 90); //new Pose2d(95, 30, new Rotation2d(Math.PI / 2))
+    Command autoCommand0 = new Autonomous(swerveDriveSubsystem, path0.getTrajectory(), path0.getAngle());
+    Command autoCommand1 = new Autonomous(swerveDriveSubsystem, path1.getTrajectory(), path1.getAngle()); //new Pose2d(95, 30, new Rotation2d(Math.PI / 2))
     //Command bounceCommand = new SequentialCommandGroup(autoCommand0, autoCommand1);
-    //start.whenPressed(autoCommand0.withTimeout(60));
-    //buttonX.whenPressed(autoCommand1.withTimeout(60));
+    start.whenPressed(autoCommand0.withTimeout(60));
+    buttonX.whenPressed(autoCommand1.withTimeout(60));
 
-    Command autoCommand2 = new Autonomous(swerveDriveSubsystem, path2.getTrajectory(), path2.getAngle());
-    Command autoCommand3 = new Autonomous(swerveDriveSubsystem, path3.getTrajectory(), path3.getAngle());
-    Command autoCommand4 = new Autonomous(swerveDriveSubsystem, path4.getTrajectory(), path4.getAngle());
-    Command autoCommand5 = new Autonomous(swerveDriveSubsystem, path5.getTrajectory(), path5.getAngle());
+    //Command autoCommand2 = new Autonomous(swerveDriveSubsystem, path2.getTrajectory(), path2.getAngle());
+    //Command autoCommand3 = new Autonomous(swerveDriveSubsystem, path3.getTrajectory(), path3.getAngle());
+    //Command autoCommand4 = new Autonomous(swerveDriveSubsystem, path4.getTrajectory(), path4.getAngle());
+    //Command autoCommand5 = new Autonomous(swerveDriveSubsystem, path5.getTrajectory(), path5.getAngle());
 
-    buttonY.whenPressed(autoCommand2.withTimeout(60));
-    buttonX.whenPressed(autoCommand3.withTimeout(60));
-    buttonA.whenPressed(autoCommand4.withTimeout(60));
-    buttonB.whenPressed(autoCommand5.withTimeout(60));
+    // buttonY.whenPressed(autoCommand2.withTimeout(60));
+    // buttonX.whenPressed(autoCommand3.withTimeout(60));
+    // buttonA.whenPressed(autoCommand4.withTimeout(60));
+    // buttonB.whenPressed(autoCommand5.withTimeout(60));
 
 
     Command galacticSearch = new GalacticSearch(swerveDriveSubsystem, intake, conveyorT);
