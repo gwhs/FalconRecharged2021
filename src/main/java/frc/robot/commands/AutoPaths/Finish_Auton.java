@@ -9,28 +9,37 @@ package frc.robot.commands.AutoPaths;
 
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.TrajectoryHelper;
+import frc.robot.utility.TrajectoryMaker;
 import frc.robot.commands.swervedrive.Autonomous;
-import frc.robot.commands.swervedrive.TurnToAngleProfiled;
 import frc.robot.subsystems.Drive.SwerveDriveSubsystem;
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
 // https://docs.wpilib.org/en/latest/docs/software/commandbased/convenience-features.html
-public class B3_Finish_Auton extends SequentialCommandGroup {
+public class Finish_Auton extends SequentialCommandGroup {
   /**
-   * Creates a new AutoPath1.
-   * 
-   * 
-   * This is just an Auto used for general testing. 
+   * Creates a trajectory that runs 
+   * if galactic search is done ends early
    */
-  public B3_Finish_Auton(SwerveDriveSubsystem swerveDriveSubsystem) {  // test forward path
-   
-    super(
-      //new Autonomous(swerveDriveSubsystem, TrajectoryHelper.createTestMultiPath().getTrajectory(), TrajectoryHelper.createTestMultiPath().getAngle())
-      
-      
-      new Autonomous(swerveDriveSubsystem, TrajectoryHelper.B3_to_Finish().getTrajectory(), TrajectoryHelper.B3_to_Finish().getAngle()).withTimeout(1)
-    );
+  public GalacticSearch search;
+
+  /**
+   * checks for galacticSearchDone 
+   */
+  @Override
+  public boolean isFinished() {
+    return super.isFinished() || search.getDone();
   }
+
+  public Finish_Auton(SwerveDriveSubsystem swerveDriveSubsystem, double[][] inputPoints, GalacticSearch galacticSearch) {  // test forward path
+   
+    super();
+    TrajectoryMaker trajectory = TrajectoryHelper.createTrajectory(inputPoints);
+    addCommands(
+      new Autonomous(swerveDriveSubsystem, trajectory.getTrajectory(), trajectory.getAngle()).withTimeout(5)
+    );
+    this.search = galacticSearch; 
+  }
+
   
 }

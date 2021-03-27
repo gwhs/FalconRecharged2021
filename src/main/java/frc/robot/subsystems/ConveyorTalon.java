@@ -27,7 +27,7 @@ public class ConveyorTalon extends SubsystemBase {
 
   public ConveyorTalon() {
     sensor = new TimeOfFlight(2);// to change ID for TOF sensor go to...      ipOfRoboRio:5812
-    sensor.setRangingMode(TimeOfFlight.RangingMode.Short, 0.24);
+    sensor.setRangingMode(TimeOfFlight.RangingMode.Short, 0.24); //0.24 incorrect ?
     indexer = new TalonFX(Constants.CONVEYOR_TALON);
     indexer.config_kP(0, .2, 0);
     indexer.config_kI(0, .0001, 0);
@@ -50,8 +50,9 @@ public class ConveyorTalon extends SubsystemBase {
     SmartDashboard.putBoolean("Has Seen", hasSeen);
   }
 
+  // checks if there is a powercell in the conveyor within 5.3 inches from the sensor
   public boolean getStatus() {
-    return getDistance() < 5.3;
+    return getDistance() < 5.3; 
   }
 
   public boolean isIgnored() {
@@ -64,6 +65,8 @@ public class ConveyorTalon extends SubsystemBase {
     ignore = toggle;
   }
 
+  //* @return Distance to powercell in inches
+  // TO DO: find the mounting position and direction of the sensor
   public double getDistance()
   {
     return sensor.getRange()*0.0393701;

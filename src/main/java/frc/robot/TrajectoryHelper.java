@@ -76,25 +76,6 @@ public static double[][] testStep= {
         {0,0}
     };
 
-
-    public static double[][] Start_to_B3= {
-        {30,120},
-        {90,120},
-    };
-
-    public static double[][] B3_to_C3=  {
-        {90,120},
-        {90,90},
-    };
-    
-    public static double[][] B3_to_Finish = {
-        {90,120},
-        {150,60},
-        {180,150},
-        {345,150},
-    };
-        
-
     public static double[][] slalom = { 
         {30,150}, //1
         {80,145},
@@ -217,6 +198,11 @@ public static double[][] testStep= {
         return new TrajectoryMaker(initialPose, endPose, points, false);
     }
 
+    public static TrajectoryMaker createTrajectory(double [][] inputPoints)
+    {
+        return createTrajectory(inputPoints, GLOBAL_SCALE);
+    }
+
     public static TrajectoryMaker createTest4Meters() // test path going only 4 meters forward
     {
         return createTrajectory(test4Meters, GLOBAL_SCALE);
@@ -236,22 +222,7 @@ public static double[][] testStep= {
     {
         return createTrajectory(testStep, GLOBAL_SCALE);
     }
-
-    public static TrajectoryMaker Start_to_B3()
-    {
-        return createTrajectory(Start_to_B3, GLOBAL_SCALE);
-    }
-
-    public static TrajectoryMaker B3_to_Finish()
-    {
-        return createTrajectory(B3_to_Finish, GLOBAL_SCALE);
-    }
-
-    public static TrajectoryMaker B3_to_C3()
-    {
-        return createTrajectory(B3_to_C3, GLOBAL_SCALE);
-    }
-
+    
     public static TrajectoryMaker createSlalom()
     {
         return createTrajectory(slalom, GLOBAL_SCALE);
