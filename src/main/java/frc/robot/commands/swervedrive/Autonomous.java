@@ -188,7 +188,7 @@ public class Autonomous extends CommandBase {
     drivetrain.setIsAuto(false);
     time.reset();
     System.out.println("AutoEnded");
-    odometry.resetPosition(new Pose2d(0, 0, new Rotation2d(0)), new Rotation2d(Math.toRadians(0)));
+    //odometry.resetPosition(new Pose2d(0, 0, new Rotation2d(0)), new Rotation2d(Math.toRadians(0)));
   }
 
   // Returns true when the command should end.
