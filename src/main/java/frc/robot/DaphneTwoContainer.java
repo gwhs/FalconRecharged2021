@@ -183,7 +183,7 @@ public class DaphneTwoContainer {
     
     Command autoCommand0 = new Autonomous(swerveDriveSubsystem, path0.getTrajectory(), path0.getAngle(), new Pose2d(), true);
     Command autoCommand1 = new Autonomous(swerveDriveSubsystem, path1.getTrajectory(), path1.getAngle(), new Pose2d(), false); //new Pose2d(95, 30, new Rotation2d(Math.PI / 2))
-    Command autoCommand2 = new Autonomous(swerveDriveSubsystem, path2.getTrajectory(), path2.getAngle(), new Pose2d(), true);
+    Command autoCommand2 = new Autonomous(swerveDriveSubsystem, path2.getTrajectory(), path2.getAngle(), new Pose2d(), false);
     Command bounceCommand = new SequentialCommandGroup(autoCommand0, autoCommand1);
     start.whenPressed(bounceCommand.withTimeout(60));
     buttonX.whenPressed(autoCommand2.withTimeout(60));
