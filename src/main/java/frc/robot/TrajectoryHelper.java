@@ -124,7 +124,7 @@ public static double[][] testStep= {
 
      public static double[][] bounce1 = {
         {95,30}, //3
-        {100,90},
+        {115,95}, // 100, 90
         {135,145},//5
         {175,135}, //6
         {190,25},
