@@ -12,6 +12,7 @@ import frc.robot.commands.WaitForConveyor;
 import frc.robot.commands.conveyor.SenseCell;
 import frc.robot.commands.conveyor.SenseNewPowerCell;
 import frc.robot.commands.intake.IntakeSpeed;
+import frc.robot.commands.swervedrive.Autonomous;
 import frc.robot.subsystems.ConveyorTalon;
 import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.Drive.SwerveDriveSubsystem;
@@ -52,12 +53,13 @@ public class GalacticSearch extends SequentialCommandGroup {
    * @param notSeenTrajectory
    * @return
    */
-  public Command conditional(SwerveDriveSubsystem swerveDriveSubsystem, Intake intake, ConveyorTalon conveyor, double[][] hasSeenTrajectory, double[][] notSeenTrajectory)
+  public Command conditional(SwerveDriveSubsystem swerveDriveSubsystem, Intake intake, ConveyorTalon conveyor, double[][] hasSeenTrajectory, double[][] notSeenTrajectory, double endOrientation)
   {
+
     return new ConditionalCommand(
-      new Finish_Auton(swerveDriveSubsystem, hasSeenTrajectory, this, false)
+      new Finish_Auton(swerveDriveSubsystem, hasSeenTrajectory, this, false, Autonomous.getEndOrientation(), 0)
           .raceWith(new SenseCell(conveyor)).andThen(()->setDone()),
-      new Finish_Auton(swerveDriveSubsystem, notSeenTrajectory, this, false)
+      new Finish_Auton(swerveDriveSubsystem, notSeenTrajectory, this, false, Autonomous.getEndOrientation(), endOrientation)
           .raceWith(new SenseCell(conveyor)),
       conveyor::getHasSeen
     );
@@ -86,13 +88,13 @@ public class GalacticSearch extends SequentialCommandGroup {
     addCommands(
     new InstantCommand(intake::lowerIntake, intake),
     new InstantCommand(() -> intake.setSpeed(intakeSpeed),intake),
-    new Finish_Auton(swerveDriveSubsystem, Start_to_B3, this, true).raceWith(new SenseCell(conveyor)), 
+    new Finish_Auton(swerveDriveSubsystem, Start_to_B3, this, true, 0, 0).raceWith(new SenseCell(conveyor)), 
     new WaitForConveyor(conveyor),
-    conditional(swerveDriveSubsystem, intake, conveyor, B3_to_Finish, B3_to_C3),
+    conditional(swerveDriveSubsystem, intake, conveyor, B3_to_Finish, B3_to_C3, Math.PI/2),
     new WaitForConveyor(conveyor),
-    conditional(swerveDriveSubsystem, intake, conveyor, C3_to_Finish, C3_to_D6),
+    conditional(swerveDriveSubsystem, intake, conveyor, C3_to_Finish, C3_to_D6, Math.PI/4),
     new WaitForConveyor(conveyor),
-    conditional(swerveDriveSubsystem, intake, conveyor, D6_to_Finish_A, D6_to_Finish_B),
+    conditional(swerveDriveSubsystem, intake, conveyor, D6_to_Finish_A, D6_to_Finish_B, 0),
     new InstantCommand(swerveDriveSubsystem::stopDriveMotors, swerveDriveSubsystem),
     new InstantCommand(() -> intake.setSpeed(0),intake)
     );

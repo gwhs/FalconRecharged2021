@@ -30,10 +30,10 @@ public class Finish_Auton extends SequentialCommandGroup {
     return super.isFinished() || search.getDone();
   }
 
-  public Finish_Auton(SwerveDriveSubsystem swerveDriveSubsystem, double[][] inputPoints, GalacticSearch galacticSearch, boolean firstPath) {  // test forward path
+  public Finish_Auton(SwerveDriveSubsystem swerveDriveSubsystem, double[][] inputPoints, GalacticSearch galacticSearch, boolean firstPath, double startOrientation, double endOrientation) {  // test forward path
    
     super();
-    TrajectoryMaker trajectory = TrajectoryHelper.createTrajectory(inputPoints);
+    TrajectoryMaker trajectory = TrajectoryHelper.createTrajectory(inputPoints, 0.827, startOrientation, endOrientation, false);
     addCommands(
       new Autonomous(swerveDriveSubsystem, trajectory.getTrajectory(), trajectory.getAngle(), firstPath).withTimeout(5)
     );

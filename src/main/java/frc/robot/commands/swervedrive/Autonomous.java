@@ -43,6 +43,7 @@ public class Autonomous extends CommandBase {
   private static double firstGyroAngle;
   private boolean firstAutoPath;
   private double angle;
+  private static double endOrientation;
 
   //Speed constant calulated using 19251 as ticks/rev, 0.3048 ft to m conversion, 2pi*(1/6) is rev tp ft conversion
   public static final double SPEEDCONSTANT = (2*Math.PI*(1.0/6)*0.3048)/19251; //used to swtich from ticks to meters
@@ -200,6 +201,11 @@ public class Autonomous extends CommandBase {
     time.reset();
     System.out.println("AutoEnded");
     //odometry.resetPosition(new Pose2d(0, 0, new Rotation2d(0)), new Rotation2d(Math.toRadians(0)));
+    endOrientation = drivetrain.getGyroAngle()-initGyro;
+  }
+
+  public static double getEndOrientation() {
+    return endOrientation;
   }
 
   // Returns true when the command should end.

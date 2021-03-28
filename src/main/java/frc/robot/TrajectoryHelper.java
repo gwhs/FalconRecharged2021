@@ -203,7 +203,7 @@ public static double[][] testStep= {
         return points;
     }
 
-    private static TrajectoryMaker createTrajectory(double [][] inputPoints, double scale, double startOrientation, double endOrientation, boolean isReversed) // for bounce
+    public static TrajectoryMaker createTrajectory(double [][] inputPoints, double scale, double startOrientation, double endOrientation, boolean isReversed) // for bounce
     {
         ArrayList<Translation2d> points = translateAndScale(inputPoints, scale);  // make .2 for Hajel's garage.  Turns the 30 foot field to 6 feet
         Pose2d initialPose = new Pose2d(0, 0, new Rotation2d(startOrientation));
@@ -214,7 +214,7 @@ public static double[][] testStep= {
     }
 
     
-    private static TrajectoryMaker createTrajectory(double [][] inputPoints, double scale) // for slalom and barrel
+    public static TrajectoryMaker createTrajectory(double [][] inputPoints, double scale) // for slalom and barrel
     {
         ArrayList<Translation2d> points = translateAndScale(inputPoints, scale);  // make .2 for Hajel's garage.  Turns the 30 foot field to 6 feet
         Pose2d initialPose = new Pose2d(0, 0, new Rotation2d(0));
