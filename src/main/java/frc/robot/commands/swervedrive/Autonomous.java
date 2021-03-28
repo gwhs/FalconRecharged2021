@@ -43,7 +43,6 @@ public class Autonomous extends CommandBase {
   private static double firstGyroAngle;
   private boolean firstAutoPath;
   private double angle;
-  private Pose2d startingPose;
 
   //Speed constant calulated using 19251 as ticks/rev, 0.3048 ft to m conversion, 2pi*(1/6) is rev tp ft conversion
   public static final double SPEEDCONSTANT = (2*Math.PI*(1.0/6)*0.3048)/19251; //used to swtich from ticks to meters
@@ -58,10 +57,10 @@ public class Autonomous extends CommandBase {
     // time = new Timer();
     // initPos = new double[4];
     // this.angle = angle;
-    this(swerveDriveSubsystem, trajectory, angle, new Pose2d(), true);
+    this(swerveDriveSubsystem, trajectory, angle, true);
   }
 
-  public Autonomous(SwerveDriveSubsystem swerveDriveSubsystem, Trajectory trajectory, double angle, Pose2d initStartingPose, boolean initfirstAutoPath) {  //what is the angle parameter here?
+  public Autonomous(SwerveDriveSubsystem swerveDriveSubsystem, Trajectory trajectory, double angle, boolean firstAutoPath) {  //what is the angle parameter here?
     // Use addRequirements() here to declare subsystem dependencies.
     drivetrain = swerveDriveSubsystem;
     this.trajectory = trajectory;
@@ -69,8 +68,7 @@ public class Autonomous extends CommandBase {
     time = new Timer();
     initPos = new double[4];
     this.angle = angle; //set to current gyro or expected angle or angle of modules
-    startingPose = initStartingPose;
-    firstAutoPath = initfirstAutoPath;
+    this.firstAutoPath = firstAutoPath;
   }
 
   // Called when the command is initially scheduled.
