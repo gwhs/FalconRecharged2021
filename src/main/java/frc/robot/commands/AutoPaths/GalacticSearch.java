@@ -71,7 +71,6 @@ public class GalacticSearch extends SequentialCommandGroup {
     conveyorTalon.toggleIgnore(false);
   }
 
-  /*
   public GalacticSearch(SwerveDriveSubsystem swerveDriveSubsystem, Intake intake, ConveyorTalon conveyor) {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
@@ -97,8 +96,9 @@ public class GalacticSearch extends SequentialCommandGroup {
     new InstantCommand(swerveDriveSubsystem::stopDriveMotors, swerveDriveSubsystem),
     new InstantCommand(() -> intake.setSpeed(0),intake)
     );
-  } */
+  } 
 
+  /*
   public GalacticSearch(SwerveDriveSubsystem swerveDriveSubsystem, Intake intake, ConveyorTalon conveyor) {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
@@ -120,7 +120,7 @@ public class GalacticSearch extends SequentialCommandGroup {
     new InstantCommand(swerveDriveSubsystem::stopDriveMotors, swerveDriveSubsystem),
     new InstantCommand(() -> intake.setSpeed(0),intake)
     );
-  }
+  } */
 
     private static final double[][] driveForward = {
       {30,120},
