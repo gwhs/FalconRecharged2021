@@ -35,7 +35,7 @@ public class Finish_Auton extends SequentialCommandGroup {
     super();
     TrajectoryMaker trajectory = TrajectoryHelper.createTrajectory(inputPoints, 0.827, startOrientation, endOrientation, false);
     addCommands(
-      new Autonomous(swerveDriveSubsystem, trajectory.getTrajectory(), trajectory.getAngle(), firstPath).withTimeout(5)
+      new Autonomous(swerveDriveSubsystem, trajectory.getTrajectory(), trajectory.getAngle(), firstPath).withTimeout(60)
     );
     this.search = galacticSearch; 
   }
