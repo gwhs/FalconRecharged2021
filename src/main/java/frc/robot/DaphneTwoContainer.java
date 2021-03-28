@@ -140,10 +140,10 @@ public class DaphneTwoContainer {
     /*
     The following is an example of an inline command.  No need to create a CommandBase Subclass for simple commands
     */
-    //buttonA.whenPressed(new InstantCommand(intake::toggleIntakeSolenoidMode, intake));
+    buttonA.whenPressed(new InstantCommand(intake::toggleIntakeSolenoidMode, intake));
 
-    //buttonY.whileHeld(new ConveyorSpeed( conveyorT, .5)); //while Y is held down conveyor runs
-    //buttonB.whileHeld(new IntakeSpeed(intake,-.5)); //while b is held down intake runs
+    buttonY.whileHeld(new ConveyorSpeed( conveyorT, .5)); //while Y is held down conveyor runs
+    buttonB.whileHeld(new IntakeSpeed(intake,-.5)); //while b is held down intake runs
     //leftBumper.whileHeld(new ConveyorSpeed( conveyorT, -.7));
     leftBumper.whileHeld(new SetShooterSpeed(shooterMotor, 6000));
     back.whileHeld(new ZeroNavX(swerveDriveSubsystem));
