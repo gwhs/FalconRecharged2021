@@ -231,7 +231,14 @@ public class DaphneTwoContainer {
     //How can we change this to select the auto routine from the dashboard?
     //return new AutoPath1(swerveDriveSubsystem);
     
-    TrajectoryMaker path0 = TrajectoryHelper.createSlalom();
-    return new Autonomous(swerveDriveSubsystem, path0.getTrajectory(), path0.getAngle(), true);
+    TrajectoryMaker path0 = TrajectoryHelper.createBounce0();
+    TrajectoryMaker path1 = TrajectoryHelper.createBounce1();
+    TrajectoryMaker path2 = TrajectoryHelper.createBounce2();
+    TrajectoryMaker path3 = TrajectoryHelper.createBounce3();
+    Command autoCommand0 = new Autonomous(swerveDriveSubsystem, path0.getTrajectory(), path0.getAngle(), true);
+    Command autoCommand1 = new Autonomous(swerveDriveSubsystem, path1.getTrajectory(), path1.getAngle(), false); //new Pose2d(95, 30, new Rotation2d(Math.PI / 2))
+    Command autoCommand2 = new Autonomous(swerveDriveSubsystem, path2.getTrajectory(), path2.getAngle(), false);
+    Command autoCommand3 = new Autonomous(swerveDriveSubsystem, path3.getTrajectory(), path3.getAngle(), false);
+    return new SequentialCommandGroup(autoCommand0, autoCommand1, autoCommand2, autoCommand3);
   }
 }
