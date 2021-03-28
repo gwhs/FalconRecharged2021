@@ -164,10 +164,10 @@ public class GalacticSearch extends SequentialCommandGroup {
     private static final double[] D6_Front = {220, 120}; //avoid bumping E6 powercell
     private static final double[] D10 = {300, 120};
     private static final double[] E6 = {180, 150};
-    private static final double[] B3_END = {345, 60};
-    private static final double[] C3_END = {345, 30};
-    private static final double[] D6_END_A = {345, 120};
-    private static final double[] D6_END_B = {345, 90};
+    private static final double[] B3_END = {330, 60};
+    private static final double[] C3_END = {330, 30};
+    private static final double[] D6_END_A = {330, 120};
+    private static final double[] D6_END_B = {330, 90};
 
     private static final double[][] Start_to_B3= {
         B1,
