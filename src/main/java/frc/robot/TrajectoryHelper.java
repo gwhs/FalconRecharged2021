@@ -144,8 +144,8 @@ public static double[][] testStep= {
 
      public static double[][] bounce3 = {
         {275,15},
-        {270,70}, //11
-        {330,70}
+        {270,85}, //11
+        {330,85}
      };
         
      public static double[][] barrel = {
