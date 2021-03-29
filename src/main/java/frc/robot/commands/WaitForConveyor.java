@@ -7,7 +7,7 @@ public class WaitForConveyor extends CommandBase {
 
     ConveyorTalon conveyorTalon;
     private long startTime;
-    private final double maxWaitTime = 500;
+    private final double maxWaitTime = 250;
 
     public WaitForConveyor(ConveyorTalon conveyor) {
         super();

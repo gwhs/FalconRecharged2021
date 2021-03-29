@@ -163,7 +163,7 @@ public class GalacticSearch extends SequentialCommandGroup {
     private static final double[] D6 = {180, 120}; //robot misses this point (180, 120) ??
     private static final double[] D6_Front = {230, 120}; //avoid bumping E6 powercell
     private static final double[] D10 = {300, 120};
-    private static final double[] E6 = {180, 150};
+    private static final double[] E6 = {170, 150};
     private static final double[] B3_END = {330, 60};
     private static final double[] C3_END = {330, 30};
     private static final double[] D6_END_A = {330, 120};
