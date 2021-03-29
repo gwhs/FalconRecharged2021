@@ -154,10 +154,10 @@ public class GalacticSearch extends SequentialCommandGroup {
     private static final double[] A6 = {180, 30};
     private static final double[] B1 = {15, 60};
     private static final double[] B3 = {90, 60};
-    private static final double[] B3_Front = {130, 60}; //Robot goes forward more to avoid bumping C3 powercell
+    private static final double[] B3_Front = {140, 60}; //Robot goes forward more to avoid bumping C3 powercell
     private static final double[] B7 = {210, 60};
     private static final double[] B8 = {240, 60};
-    private static final double[] C3 = {90, 90};
+    private static final double[] C3 = {80, 90};
     private static final double[] C9 = {270, 90};
     private static final double[] D5 = {150, 120};
     private static final double[] D6 = {180, 120}; //robot misses this point (180, 120) ??
