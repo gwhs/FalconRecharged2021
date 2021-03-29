@@ -53,13 +53,13 @@ public class GalacticSearch extends SequentialCommandGroup {
    * @param notSeenTrajectory
    * @return
    */
-  public Command conditional(SwerveDriveSubsystem swerveDriveSubsystem, Intake intake, ConveyorTalon conveyor, double[][] hasSeenTrajectory, double[][] notSeenTrajectory, double endOrientation)
+  public Command conditional(SwerveDriveSubsystem swerveDriveSubsystem, Intake intake, ConveyorTalon conveyor, double[][] hasSeenTrajectory, double[][] notSeenTrajectory)
   {
 
     return new ConditionalCommand(
       new Finish_Auton(swerveDriveSubsystem, hasSeenTrajectory, this, false, Autonomous.getEndOrientation(), 0)
           .raceWith(new SenseCell(conveyor)).andThen(()->setDone()),
-      new Finish_Auton(swerveDriveSubsystem, notSeenTrajectory, this, false, Autonomous.getEndOrientation(), endOrientation)
+      new Finish_Auton(swerveDriveSubsystem, notSeenTrajectory, this, false, Autonomous.getEndOrientation(), 0)
           .raceWith(new SenseCell(conveyor)),
       conveyor::getHasSeen
     );
@@ -90,11 +90,11 @@ public class GalacticSearch extends SequentialCommandGroup {
     new InstantCommand(() -> intake.setSpeed(intakeSpeed),intake),
     new Finish_Auton(swerveDriveSubsystem, Start_to_B3, this, true, 0, 0).raceWith(new SenseCell(conveyor)), 
     new WaitForConveyor(conveyor),
-    conditional(swerveDriveSubsystem, intake, conveyor, B3_to_Finish, B3_to_C3, 0),
+    conditional(swerveDriveSubsystem, intake, conveyor, B3_to_Finish, B3_to_C3),
     new WaitForConveyor(conveyor),
-    conditional(swerveDriveSubsystem, intake, conveyor, C3_to_Finish, C3_to_D6, 0),
+    conditional(swerveDriveSubsystem, intake, conveyor, C3_to_Finish, C3_to_D6),
     new WaitForConveyor(conveyor),
-    conditional(swerveDriveSubsystem, intake, conveyor, D6_to_Finish_A, D6_to_Finish_B, 0),
+    conditional(swerveDriveSubsystem, intake, conveyor, D6_to_Finish_A, D6_to_Finish_B),
     new InstantCommand(swerveDriveSubsystem::stopDriveMotors, swerveDriveSubsystem),
     new InstantCommand(() -> intake.setSpeed(0),intake)
     );
