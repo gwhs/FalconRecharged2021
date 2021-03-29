@@ -92,7 +92,7 @@ public class GalacticSearch extends SequentialCommandGroup {
     new WaitForConveyor(conveyor),
     conditional(swerveDriveSubsystem, intake, conveyor, B3_to_Finish, B3_to_C3, 0),
     new WaitForConveyor(conveyor),
-    conditional(swerveDriveSubsystem, intake, conveyor, C3_to_Finish, C3_to_D6, Math.PI/4),
+    conditional(swerveDriveSubsystem, intake, conveyor, C3_to_Finish, C3_to_D6, 0),
     new WaitForConveyor(conveyor),
     conditional(swerveDriveSubsystem, intake, conveyor, D6_to_Finish_A, D6_to_Finish_B, 0),
     new InstantCommand(swerveDriveSubsystem::stopDriveMotors, swerveDriveSubsystem),
@@ -161,7 +161,7 @@ public class GalacticSearch extends SequentialCommandGroup {
     private static final double[] C9 = {270, 90};
     private static final double[] D5 = {150, 120};
     private static final double[] D6 = {180, 120}; //robot misses this point (180, 120) ??
-    private static final double[] D6_Front = {240, 110}; //avoid bumping E6 powercell
+    private static final double[] D6_Front = {230, 120}; //avoid bumping E6 powercell
     private static final double[] D10 = {300, 120};
     private static final double[] E6 = {180, 150};
     private static final double[] B3_END = {330, 60};
