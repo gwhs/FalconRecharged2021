@@ -19,7 +19,7 @@ import frc.robot.subsystems.Drive.SwerveDriveSubsystem;
 
 public class GalacticSearch extends SequentialCommandGroup {
   /** Creates a new SensorTest. */
-  public static final double intakeSpeed = -.5;
+  public static final double intakeSpeed = -.75;
   public static final double INTAKE_DELAY = 1.0;
   // delay for a second when we get to a choice point, to ensure conveyor can notice the ball
   private boolean galacticSearchDone = false;
