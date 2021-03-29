@@ -141,7 +141,7 @@ public class DaphneTwoContainer {
     The following is an example of an inline command.  No need to create a CommandBase Subclass for simple commands
     */
     buttonA.whenPressed(new InstantCommand(intake::toggleIntakeSolenoidMode, intake));
-
+    buttonX.whenPressed(new ToggleFieldOrientedCommand(swerveDriveSubsystem));
     buttonY.whileHeld(new ConveyorSpeed( conveyorT, .5)); //while Y is held down conveyor runs
     buttonB.whileHeld(new IntakeSpeed(intake,-.5)); //while b is held down intake runs
     //leftBumper.whileHeld(new ConveyorSpeed( conveyorT, -.7));

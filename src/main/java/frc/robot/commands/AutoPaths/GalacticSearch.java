@@ -152,18 +152,18 @@ public class GalacticSearch extends SequentialCommandGroup {
     // (15, y) center of the start zone
     // (345, y) center of the end zone, x set to 300 for yard
     private static final double[] A6 = {180, 30};
-    private static final double[] B1 = {12, 60};
-    private static final double[] B3 = {90, 60};
+    private static final double[] B1 = {12, 60}; //(30,60)
+    private static final double[] B3 = {90, 60}; 
     private static final double[] B3_Front = {140, 60}; //Robot goes forward more to avoid bumping C3 powercell
-    private static final double[] B7 = {210, 60};
-    private static final double[] B8 = {240, 60};
-    private static final double[] C3 = {80, 90};
-    private static final double[] C9 = {270, 90};
+    private static final double[] B7 = {210, 60}; 
+    private static final double[] B8 = {240, 60}; 
+    private static final double[] C3 = {80, 90}; //(90,90)
+    private static final double[] C9 = {270, 90}; 
     private static final double[] D5 = {150, 120};
     private static final double[] D6 = {180, 120}; //robot misses this point (180, 120) ??
     private static final double[] D6_Front = {230, 120}; //avoid bumping E6 powercell
     private static final double[] D10 = {300, 120};
-    private static final double[] E6 = {170, 150};
+    private static final double[] E6 = {170, 150}; //(180,150)
     private static final double[] B3_END = {330, 60};
     private static final double[] C3_END = {330, 30};
     private static final double[] D6_END_A = {330, 120};
