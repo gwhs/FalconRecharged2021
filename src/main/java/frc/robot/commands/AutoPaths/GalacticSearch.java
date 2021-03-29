@@ -155,7 +155,7 @@ public class GalacticSearch extends SequentialCommandGroup {
     private static final double[] B1 = {15, 60};
     private static final double[] B3 = {90, 60};
     private static final double[] B3_Front = {130, 60}; //Robot goes forward more to avoid bumping C3 powercell
-    private static final double[] B7 = {215, 60};
+    private static final double[] B7 = {210, 60};
     private static final double[] B8 = {240, 60};
     private static final double[] C3 = {90, 90};
     private static final double[] C9 = {270, 90};
