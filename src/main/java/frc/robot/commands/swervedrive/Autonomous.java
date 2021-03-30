@@ -119,10 +119,10 @@ public class Autonomous extends CommandBase {
     drivetrain.setIsAuto(true);
     drivetrain.swapPIDSlot(1);
     drivetrain.swapDrivePIDSlot(1);
-    drivetrain.getSwerveModule(0).setTargetAngle(angle, isAuto);
-    drivetrain.getSwerveModule(1).setTargetAngle(angle, isAuto);
-    drivetrain.getSwerveModule(2).setTargetAngle(180+angle, isAuto);  //what is up with this module?
-    drivetrain.getSwerveModule(3).setTargetAngle(angle, isAuto);
+    // drivetrain.getSwerveModule(0).setTargetAngle(angle, isAuto);
+    // drivetrain.getSwerveModule(1).setTargetAngle(angle, isAuto);
+    // drivetrain.getSwerveModule(2).setTargetAngle(180+angle, isAuto);  //what is up with this module?
+    // drivetrain.getSwerveModule(3).setTargetAngle(angle, isAuto);
     drivetrain.getSwerveModule(0).getDriveMotor().setInverted(true);
     drivetrain.getSwerveModule(1).getDriveMotor().setInverted(true);
     drivetrain.getSwerveModule(2).getDriveMotor().setInverted(true);
