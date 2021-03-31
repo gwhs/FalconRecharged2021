@@ -88,7 +88,7 @@ public class GalacticSearch extends SequentialCommandGroup {
     addCommands(
     new InstantCommand(intake::lowerIntake, intake),
     new InstantCommand(() -> intake.setSpeed(intakeSpeed),intake),
-    //new Finish_Auton(swerveDriveSubsystem, driveForward, this, true, 0, 0),
+    new Finish_Auton(swerveDriveSubsystem, driveForward, this, true, 0, 0).raceWith(new SenseCell(conveyor)), 
     new Finish_Auton(swerveDriveSubsystem, Start_to_B3, this, false, 0, 0).raceWith(new SenseCell(conveyor)), 
     new WaitForConveyor(conveyor),
     conditional(swerveDriveSubsystem, intake, conveyor, B3_to_Finish, B3_to_C3),
@@ -125,22 +125,22 @@ public class GalacticSearch extends SequentialCommandGroup {
     );
   } */
 
-    private static final double[][] driveForward = {
+    private static double[][] driveForward = {
       {12,60},
       {15,60},
     };
 
-    private static final double[][] driveForward2 = {
+    private static double[][] driveForward2 = {
       {110,120},
       {200,120},
     };
 
-    private static final double[][] driveRight = {
+    private static double[][] driveRight = {
       {110,120},
       {110,180},
     };
 
-    private static final double[][] driveLeft = {
+    private static double[][] driveLeft = {
       {90,120},
       {90,90},
     };
