@@ -141,6 +141,7 @@ public class Autonomous extends CommandBase {
     // }
     if(firstAutoPath) {
       firstGyroAngle = drivetrain.getGyroAngle();
+      
     }
     initGyro = firstGyroAngle;
     SmartDashboard.putNumber("Init Gyro", initGyro);
