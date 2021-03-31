@@ -171,8 +171,8 @@ public class GalacticSearch extends SequentialCommandGroup {
     private static final double[] D6_END_B = {330, 90};
 
     private static final double[][] Start_to_B3= {
-      {12,60},
       B1,
+      B3,
     };
 
     private static final double[][] Start_to_B32= {
