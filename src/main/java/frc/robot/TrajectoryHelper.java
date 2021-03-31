@@ -173,6 +173,11 @@ public static double[][] testStep= {
         {45,80}, //19
                 };
 
+        private static final double[][] driveForward = {
+            {12,60},
+            {15,60},
+        };
+
     public static double GLOBAL_SCALE = 0.827;
 
     /**
@@ -229,6 +234,11 @@ public static double[][] testStep= {
     {
         return createTrajectory(inputPoints, GLOBAL_SCALE);
     }
+
+    public static TrajectoryMaker createDriveForward() // test path going only 4 meters forward
+    {
+        return createTrajectory(driveForward, GLOBAL_SCALE, 0, 0, false);
+    }   
 
     public static TrajectoryMaker createTest4Meters() // test path going only 4 meters forward
     {
