@@ -30,8 +30,8 @@ private boolean isHyp;  //what does this mean?
 private TrajectoryConfig config;
 private Trajectory trajectory;
 private ArrayList<Translation2d> listOfPoints;
-private static double MAX_VELOCITY = 1; //Meters per second
-private static double MAX_ACCELERATION = 1; // Meters per second squared
+private static double MAX_VELOCITY = 2; //Meters per second
+private static double MAX_ACCELERATION = 2; // Meters per second squared
 
 public TrajectoryMaker(Pose2d start, Pose2d end, boolean isHyp) {
     this.start = start;
@@ -51,7 +51,7 @@ public TrajectoryMaker(Pose2d start, Pose2d end, ArrayList<Translation2d> points
     this.end = end;
     this.isHyp = false;
     angle = 0;
-    config = new TrajectoryConfig(0.5, 0.5); //slower for Bounce
+    config = new TrajectoryConfig(MAX_VELOCITY,MAX_ACCELERATION); //slower for Bounce
     //config = new TrajectoryConfig(10, 3);  // (TrajectoryConfig​(double maxVelocityMetersPerSecond, double maxAccelerationMetersPerSecondSq))
     config.setStartVelocity(0);
     config.setEndVelocity(0);
@@ -67,7 +67,7 @@ public TrajectoryMaker(Pose2d start, Pose2d end, ArrayList<Translation2d> points
     this.isHyp = false;
     angle = 0;
     //config = new TrajectoryConfig(1, 1); //slower for Bounce
-    config = new TrajectoryConfig(0.5, 0.5);  // (TrajectoryConfig​(double maxVelocityMetersPerSecond, double maxAccelerationMetersPerSecondSq))
+    config = new TrajectoryConfig(MAX_VELOCITY,MAX_ACCELERATION);  // (TrajectoryConfig​(double maxVelocityMetersPerSecond, double maxAccelerationMetersPerSecondSq))
     config.setStartVelocity(0);
     config.setEndVelocity(0);
     config.setReversed(isReversed);

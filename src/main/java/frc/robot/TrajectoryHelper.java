@@ -124,10 +124,11 @@ public static double[][] testStep= {
 
      public static double[][] bounce1 = {
         {95,30}, //3
-        {100,90},
+        {100, 85},
+        {120,100}, // 100, 90
         {135,145},//5
         {175,135}, //6
-        {190,30},
+        {190,25},
         // {190,130},//8
         // {255,130},
         // {275,30},
@@ -136,10 +137,16 @@ public static double[][] testStep= {
      };
 
      public static double[][] bounce2 = {
-        {190,30},
-        {190,130},//8
-        {225,140},
-        {255,130},
+        {190,25},
+        {175,135},//8
+        {255,135},
+        {275,15},
+     };
+
+     public static double[][] bounce3 = {
+        {275,15},
+        {265,75}, //11
+        {330,75}
      };
         
      public static double[][] barrel = {
@@ -165,6 +172,11 @@ public static double[][] testStep= {
         //{80,80},
         {45,80}, //19
                 };
+
+        private static double[][] driveForward = {
+            {12,60},
+            {15,60},
+        };
 
     public static double GLOBAL_SCALE = 0.827;
 
@@ -197,7 +209,7 @@ public static double[][] testStep= {
         return points;
     }
 
-    private static TrajectoryMaker createTrajectory(double [][] inputPoints, double scale, double startOrientation, double endOrientation, boolean isReversed) // for bounce
+    public static TrajectoryMaker createTrajectory(double [][] inputPoints, double scale, double startOrientation, double endOrientation, boolean isReversed) // for bounce
     {
         ArrayList<Translation2d> points = translateAndScale(inputPoints, scale);  // make .2 for Hajel's garage.  Turns the 30 foot field to 6 feet
         Pose2d initialPose = new Pose2d(0, 0, new Rotation2d(startOrientation));
@@ -208,7 +220,7 @@ public static double[][] testStep= {
     }
 
     
-    private static TrajectoryMaker createTrajectory(double [][] inputPoints, double scale) // for slalom and barrel
+    public static TrajectoryMaker createTrajectory(double [][] inputPoints, double scale) // for slalom and barrel
     {
         ArrayList<Translation2d> points = translateAndScale(inputPoints, scale);  // make .2 for Hajel's garage.  Turns the 30 foot field to 6 feet
         Pose2d initialPose = new Pose2d(0, 0, new Rotation2d(0));
@@ -222,6 +234,11 @@ public static double[][] testStep= {
     {
         return createTrajectory(inputPoints, GLOBAL_SCALE);
     }
+
+    public static TrajectoryMaker createDriveForward() // test path going only 4 meters forward
+    {
+        return createTrajectory(driveForward, GLOBAL_SCALE, 0, 0, false);
+    }   
 
     public static TrajectoryMaker createTest4Meters() // test path going only 4 meters forward
     {
@@ -257,6 +274,16 @@ public static double[][] testStep= {
     {
         return createTrajectory(bounce1, GLOBAL_SCALE, 3 * Math.PI / 2, Math.PI / 2, true);
     } 
+
+    public static TrajectoryMaker createBounce2()
+    {
+        return createTrajectory(bounce2, GLOBAL_SCALE, Math.PI / 2, 3 * Math.PI / 2, false);
+    }
+    
+    public static TrajectoryMaker createBounce3()
+    {
+        return createTrajectory(bounce3, GLOBAL_SCALE, 3 * Math.PI / 2, Math.PI, true);
+    }
 
     //go forward, turn 90 degrees right
     public static TrajectoryMaker createLeg1()

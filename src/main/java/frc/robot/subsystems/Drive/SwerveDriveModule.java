@@ -176,8 +176,8 @@ public class SwerveDriveModule extends SubsystemBase {
 
         final double currentAngle = mAngleMotor.getSelectedSensorPosition(0) * (360.0 / 1024.0);
         double currentAngleMod = currentAngle % 360;
-        if (currentAngleMod < 0)
-            currentAngleMod += 360;
+        //if (currentAngleMod < 0)
+           // currentAngleMod += 360;
 
         double delta = currentAngleMod - targetAngle;
 
