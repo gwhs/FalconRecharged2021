@@ -89,7 +89,7 @@ public class GalacticSearch extends SequentialCommandGroup {
     new InstantCommand(intake::lowerIntake, intake),
     new InstantCommand(() -> intake.setSpeed(intakeSpeed),intake),
     new Finish_Auton(swerveDriveSubsystem, Start_to_B3, this, true, 0, 0).raceWith(new SenseCell(conveyor)), 
-    //new Finish_Auton(swerveDriveSubsystem, Start_to_B32, this, false, 0, 0).raceWith(new SenseCell(conveyor)), 
+    new Finish_Auton(swerveDriveSubsystem, Start_to_B32, this, false, 0, 0).raceWith(new SenseCell(conveyor)), 
     new WaitForConveyor(conveyor),
     conditional(swerveDriveSubsystem, intake, conveyor, B3_to_Finish, B3_to_C3),
     new WaitForConveyor(conveyor),
