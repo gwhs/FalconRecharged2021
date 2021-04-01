@@ -304,12 +304,12 @@ public static double[][] testStep= {
     
     public static TrajectoryMaker createBounce10()
     {
-        return createTrajectory(bounce10, GLOBAL_SCALE, 3 * Math.PI / 2, 3 * Math.PI / 2, true);
+        return createTrajectory(bounce10, GLOBAL_SCALE, 3 * Math.PI / 2, Math.toRadians(84.8), true);
     }
     
     public static TrajectoryMaker createBounce11()
     {
-        return createTrajectory(bounce11, GLOBAL_SCALE, 3 * Math.PI / 2, Math.PI / 2, true);
+        return createTrajectory(bounce11, GLOBAL_SCALE, Math.toRadians(84.8), Math.PI / 2, true);
     }
 
     public static TrajectoryMaker createBounce20()
