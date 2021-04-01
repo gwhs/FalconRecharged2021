@@ -113,11 +113,11 @@ public static double[][] testStep= {
 
      public static double[][] bounce00 = {
         {30, 90},
-        {80, 80} 
+        {37, 90},
      };
 
      public static double[][] bounce01 = {
-                 //1
+        {37, 90},         //1
         {80, 80},
         {95,30}, //3
      };
@@ -134,10 +134,10 @@ public static double[][] testStep= {
 
      public static double[][] bounce10 = {
         {95, 30},
-        {100, 85}
+        {95, 37},
      };
      public static double[][] bounce11 = {
-        //3
+        {95, 37},//3
         {100, 85},
         {125,100}, // 100, 90
         {135,145},//5
@@ -152,10 +152,10 @@ public static double[][] testStep= {
 
      public static double[][] bounce20 = {
          {190, 25},
-         {175, 135}
+         {190, 32},
      };
      public static double[][] bounce21 = {
-        
+        {190, 32},
         {175,135},//8
         {255,135},
         {275,15},
@@ -163,10 +163,11 @@ public static double[][] testStep= {
 
      public static double[][] bounce30 = {
         {275,15},
-        {265,75}
+        {275, 22},
      };
 
      public static double[][] bounce31 = {
+        {275, 22},
         {265,75}, //11
         {330,75}
      };
@@ -294,42 +295,42 @@ public static double[][] testStep= {
     
     public static TrajectoryMaker createBounce00()
     {
-        return createTrajectory(bounce00, GLOBAL_SCALE, 0, Math.toRadians(-42.3), false);
+        return createTrajectory(bounce00, GLOBAL_SCALE, 0, 0, false); //Math.toRadians(-42.3)
     }
 
     public static TrajectoryMaker createBounce01()
     {
-        return createTrajectory(bounce01, GLOBAL_SCALE, Math.toRadians(-42.3), 3 * Math.PI / 2, false);
+        return createTrajectory(bounce01, GLOBAL_SCALE, 0, 3 * Math.PI / 2, false);
     }
     
     public static TrajectoryMaker createBounce10()
     {
-        return createTrajectory(bounce10, GLOBAL_SCALE, Math.PI / 2, Math.toRadians(60.85), true);
+        return createTrajectory(bounce10, GLOBAL_SCALE, Math.PI / 2, Math.PI / 2, true); //Math.toRadians(60.85)
     }
     
     public static TrajectoryMaker createBounce11()
     {
-        return createTrajectory(bounce11, GLOBAL_SCALE, Math.toRadians(60.85), Math.PI / 2, true);
+        return createTrajectory(bounce11, GLOBAL_SCALE, Math.PI / 2, Math.PI / 2, true);
     }
 
     public static TrajectoryMaker createBounce20()
     {
-        return createTrajectory(bounce20, GLOBAL_SCALE, Math.PI / 2, Math.toRadians(45), false);
+        return createTrajectory(bounce20, GLOBAL_SCALE, Math.PI / 2, Math.PI / 2, false); //Math.toRadians(45)
     }
 
     public static TrajectoryMaker createBounce21()
     {
-        return createTrajectory(bounce21, GLOBAL_SCALE, Math.toRadians(45), 3 * Math.PI / 2, false);
+        return createTrajectory(bounce21, GLOBAL_SCALE, Math.PI / 2, 3 * Math.PI / 2, false);
     }
     
     public static TrajectoryMaker createBounce30()
     {
-        return createTrajectory(bounce30, GLOBAL_SCALE, 3 * Math.PI / 2, Math.toRadians(90), true);
+        return createTrajectory(bounce30, GLOBAL_SCALE, 3 * Math.PI / 2, 3 * Math.PI / 2, true);
     }
 
     public static TrajectoryMaker createBounce31()
     {
-        return createTrajectory(bounce31, GLOBAL_SCALE, Math.toRadians(90), Math.PI, true);
+        return createTrajectory(bounce31, GLOBAL_SCALE, 3 * Math.PI / 2, Math.PI, true);
     }
 
     //go forward, turn 90 degrees right
