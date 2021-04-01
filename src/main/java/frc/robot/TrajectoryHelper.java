@@ -113,12 +113,12 @@ public static double[][] testStep= {
 
      public static double[][] bounce00 = {
         {30,90},
-        {40, 93} 
+        {80, 80} 
      };
 
      public static double[][] bounce01 = {
                  //1
-        {40, 93},
+        {80, 80},
         {95,30}, //3
      };
 
@@ -294,12 +294,12 @@ public static double[][] testStep= {
     
     public static TrajectoryMaker createBounce00()
     {
-        return createTrajectory(bounce00, GLOBAL_SCALE, 0, Math.toRadians(-17), false);
+        return createTrajectory(bounce00, GLOBAL_SCALE, 0, Math.toRadians(-11.3), false);
     }
 
     public static TrajectoryMaker createBounce01()
     {
-        return createTrajectory(bounce01, GLOBAL_SCALE, Math.toRadians(-17), 3 * Math.PI / 2, false);
+        return createTrajectory(bounce01, GLOBAL_SCALE, Math.toRadians(-11.3), 3 * Math.PI / 2, false);
     }
     
     public static TrajectoryMaker createBounce10()
