@@ -304,7 +304,7 @@ public static double[][] testStep= {
     
     public static TrajectoryMaker createBounce10()
     {
-        return createTrajectory(bounce10, GLOBAL_SCALE, 3 * Math.PI / 2, Math.toRadians(84.8), true);
+        return createTrajectory(bounce10, GLOBAL_SCALE, Math.PI / 2, Math.toRadians(84.8), true);
     }
     
     public static TrajectoryMaker createBounce11()
@@ -314,12 +314,12 @@ public static double[][] testStep= {
 
     public static TrajectoryMaker createBounce20()
     {
-        return createTrajectory(bounce20, GLOBAL_SCALE, Math.PI / 2, Math.PI / 2, false);
+        return createTrajectory(bounce20, GLOBAL_SCALE, Math.PI / 2, Math.toRadians(82.2), false);
     }
 
     public static TrajectoryMaker createBounce21()
     {
-        return createTrajectory(bounce21, GLOBAL_SCALE, Math.PI / 2, 3 * Math.PI / 2, false);
+        return createTrajectory(bounce21, GLOBAL_SCALE, Math.toRadians(82.2), 3 * Math.PI / 2, false);
     }
     
     public static TrajectoryMaker createBounce30()
