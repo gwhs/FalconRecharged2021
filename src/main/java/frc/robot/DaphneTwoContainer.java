@@ -212,7 +212,7 @@ public class DaphneTwoContainer {
     //Command autoCommand4 = new Autonomous(swerveDriveSubsystem, path4.getTrajectory(), path4.getAngle(), true);
     Command galacticSearch = new GalacticSearch(swerveDriveSubsystem, intake, conveyorT);
     //Command galacticSearchCommand = new SequentialCommandGroup(autoCommand4, galacticSearch);
-    start.whenPressed(galacticSearch);//autoCommand.withTimeout(60)
+    //start.whenPressed(galacticSearch);//autoCommand.withTimeout(60)
 
 
 /*
