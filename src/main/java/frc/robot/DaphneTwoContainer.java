@@ -172,6 +172,7 @@ public class DaphneTwoContainer {
    TrajectoryMaker path1 = TrajectoryHelper.createBounce1();
    TrajectoryMaker path2 = TrajectoryHelper.createBounce2();
    TrajectoryMaker path3 = TrajectoryHelper.createBounce3();
+   TrajectoryMaker path4 = TrajectoryHelper.createBounce1Relative();
   //  TrajectoryMaker path2 = TrajectoryHelper.createLeg1();
   //  TrajectoryMaker path3 = TrajectoryHelper.createLeg2();
   //  TrajectoryMaker path4 = TrajectoryHelper.createLeg3();
@@ -187,7 +188,8 @@ public class DaphneTwoContainer {
     Command autoCommand2 = new Autonomous(swerveDriveSubsystem, path2.getTrajectory(), path2.getAngle(), false);
     Command autoCommand3 = new Autonomous(swerveDriveSubsystem, path3.getTrajectory(), path3.getAngle(), false);
     Command bounceCommand = new SequentialCommandGroup(autoCommand0, autoCommand1, autoCommand2, autoCommand3);
-    start.whenPressed(bounceCommand.withTimeout(60));
+    Command bounce1RelativeCommand = new Autonomous(swerveDriveSubsystem, path3.getTrajectory(), path3.getAngle(), true);
+    start.whenPressed(bounce1RelativeCommand.withTimeout(60));
     //buttonX.whenPressed(autoCommand2.withTimeout(60));
 
     //Command autoCommand2 = new Autonomous(swerveDriveSubsystem, path2.getTrajectory(), path2.getAngle());

@@ -119,7 +119,7 @@ public static double[][] testStep= {
 
      public static double[][] bounce1Relative = {
         {0, 0},
-        {50, 25}
+        {30, 0}
      };
 
      public static double[][] bounce1 = {
@@ -264,6 +264,11 @@ public static double[][] testStep= {
     {
         return createTrajectory(slalom, GLOBAL_SCALE);
     }     
+
+    public static TrajectoryMaker createBounce1Relative()
+    {
+        return createTrajectory(bounce1Relative, GLOBAL_SCALE, 0, 0, false);
+    }
 
     public static TrajectoryMaker createBounce0()
     {
