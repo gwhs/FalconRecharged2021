@@ -294,42 +294,42 @@ public static double[][] testStep= {
     
     public static TrajectoryMaker createBounce00()
     {
-        return createTrajectory(bounce00, GLOBAL_SCALE, 0, Math.toRadians(-11.3), false);
+        return createTrajectory(bounce00, GLOBAL_SCALE, 0, Math.toRadians(-84), false);
     }
 
     public static TrajectoryMaker createBounce01()
     {
-        return createTrajectory(bounce01, GLOBAL_SCALE, Math.toRadians(-11.3), 3 * Math.PI / 2, false);
+        return createTrajectory(bounce01, GLOBAL_SCALE, Math.toRadians(-84), 3 * Math.PI / 2, false);
     }
     
     public static TrajectoryMaker createBounce10()
     {
-        return createTrajectory(bounce10, GLOBAL_SCALE, Math.PI / 2, Math.toRadians(84.8), true);
+        return createTrajectory(bounce10, GLOBAL_SCALE, Math.PI / 2, Math.toRadians(31), true);
     }
     
     public static TrajectoryMaker createBounce11()
     {
-        return createTrajectory(bounce11, GLOBAL_SCALE, Math.toRadians(84.8), Math.PI / 2, true);
+        return createTrajectory(bounce11, GLOBAL_SCALE, Math.toRadians(31), Math.PI / 2, true);
     }
 
     public static TrajectoryMaker createBounce20()
     {
-        return createTrajectory(bounce20, GLOBAL_SCALE, Math.PI / 2, Math.toRadians(82.2), false);
+        return createTrajectory(bounce20, GLOBAL_SCALE, Math.PI / 2, Math.toRadians(90), false);
     }
 
     public static TrajectoryMaker createBounce21()
     {
-        return createTrajectory(bounce21, GLOBAL_SCALE, Math.toRadians(82.2), 3 * Math.PI / 2, false);
+        return createTrajectory(bounce21, GLOBAL_SCALE, Math.toRadians(90), 3 * Math.PI / 2, false);
     }
     
     public static TrajectoryMaker createBounce30()
     {
-        return createTrajectory(bounce30, GLOBAL_SCALE, 3 * Math.PI / 2, 3 * Math.PI / 2, true);
+        return createTrajectory(bounce30, GLOBAL_SCALE, 3 * Math.PI / 2, Math.toRadians(90), true);
     }
 
     public static TrajectoryMaker createBounce31()
     {
-        return createTrajectory(bounce31, GLOBAL_SCALE, 3 * Math.PI / 2, Math.PI, true);
+        return createTrajectory(bounce31, GLOBAL_SCALE, Math.toRadians(90), Math.PI, true);
     }
 
     //go forward, turn 90 degrees right
