@@ -187,7 +187,7 @@ public class DaphneTwoContainer {
 
     
     Command autoCommand00 = new Autonomous(swerveDriveSubsystem, path00.getTrajectory(), path00.getAngle(), true);
-    Command autoCommand01 = new Autonomous(swerveDriveSubsystem, path01.getTrajectory(), path01.getAngle(), true);
+    Command autoCommand01 = new Autonomous(swerveDriveSubsystem, path01.getTrajectory(), path01.getAngle(), false);
     Command autoCommand10 = new Autonomous(swerveDriveSubsystem, path10.getTrajectory(), path10.getAngle(), false); //new Pose2d(95, 30, new Rotation2d(Math.PI / 2))
     Command autoCommand11 = new Autonomous(swerveDriveSubsystem, path11.getTrajectory(), path11.getAngle(), false); //new Pose2d(95, 30, new Rotation2d(Math.PI / 2))
     Command autoCommand20 = new Autonomous(swerveDriveSubsystem, path20.getTrajectory(), path20.getAngle(), false);
@@ -195,7 +195,7 @@ public class DaphneTwoContainer {
     Command autoCommand30 = new Autonomous(swerveDriveSubsystem, path30.getTrajectory(), path30.getAngle(), false);
     Command autoCommand31 = new Autonomous(swerveDriveSubsystem, path31.getTrajectory(), path31.getAngle(), false);
     Command bounceCommand = new SequentialCommandGroup(autoCommand00, autoCommand01, autoCommand10, autoCommand11); // autoCommand20, autoCommand21, autoCommand30, autoCommand31);
-    start.whenPressed(autoCommand00.withTimeout(60));
+    start.whenPressed(bounceCommand.withTimeout(60));
     //buttonX.whenPressed(autoCommand2.withTimeout(60));
 
     //Command autoCommand2 = new Autonomous(swerveDriveSubsystem, path2.getTrajectory(), path2.getAngle());

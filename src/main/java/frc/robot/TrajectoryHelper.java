@@ -112,7 +112,7 @@ public static double[][] testStep= {
     };
 
      public static double[][] bounce00 = {
-        {30,90},
+        {30, 90},
         {80, 80} 
      };
 
