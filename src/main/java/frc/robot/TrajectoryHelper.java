@@ -294,12 +294,12 @@ public static double[][] testStep= {
     
     public static TrajectoryMaker createBounce00()
     {
-        return createTrajectory(bounce00, GLOBAL_SCALE, 0, 0, false);
+        return createTrajectory(bounce00, GLOBAL_SCALE, 0, Math.toRadians(17), false);
     }
 
     public static TrajectoryMaker createBounce01()
     {
-        return createTrajectory(bounce01, GLOBAL_SCALE, 0, 3 * Math.PI / 2, false);
+        return createTrajectory(bounce01, GLOBAL_SCALE, Math.toRadians(17), 3 * Math.PI / 2, false);
     }
     
     public static TrajectoryMaker createBounce10()
