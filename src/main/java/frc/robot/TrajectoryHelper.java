@@ -111,9 +111,14 @@ public static double[][] testStep= {
         {0,0},
     };
 
-     public static double[][] bounce0 = {
-        {30,90}, //1
-        {80,80},
+     public static double[][] bounce00 = {
+        {30,90},
+        {40, 93} 
+     };
+
+     public static double[][] bounce01 = {
+                 //1
+        {40, 93},
         {95,30}, //3
      };
 
@@ -122,8 +127,17 @@ public static double[][] testStep= {
         {50, 25}
      };
 
-     public static double[][] bounce1 = {
-        {95,30}, //3
+     public static double[][] test = {
+         {95, 30},
+         {110, 30}
+     };
+
+     public static double[][] bounce10 = {
+        {95, 30},
+        {100, 85}
+     };
+     public static double[][] bounce11 = {
+        //3
         {100, 85},
         {120,100}, // 100, 90
         {135,145},//5
@@ -136,15 +150,23 @@ public static double[][] testStep= {
         // {330,85},
      };
 
-     public static double[][] bounce2 = {
-        {190,25},
+     public static double[][] bounce20 = {
+         {190, 25},
+         {175, 135}
+     };
+     public static double[][] bounce21 = {
+        
         {175,135},//8
         {255,135},
         {275,15},
      };
 
-     public static double[][] bounce3 = {
+     public static double[][] bounce30 = {
         {275,15},
+        {265,75}
+     };
+
+     public static double[][] bounce31 = {
         {265,75}, //11
         {330,75}
      };
@@ -240,6 +262,11 @@ public static double[][] testStep= {
         return createTrajectory(driveForward, GLOBAL_SCALE, 0, 0, false);
     }   
 
+    public static TrajectoryMaker createTest() // test path going only 4 meters forward
+    {
+        return createTrajectory(test, GLOBAL_SCALE, 0, 0, true);
+    }   
+
     public static TrajectoryMaker createTest4Meters() // test path going only 4 meters forward
     {
         return createTrajectory(test4Meters, GLOBAL_SCALE);
@@ -263,26 +290,46 @@ public static double[][] testStep= {
     public static TrajectoryMaker createSlalom()
     {
         return createTrajectory(slalom, GLOBAL_SCALE);
-    }     
-
-    public static TrajectoryMaker createBounce0()
-    {
-        return createTrajectory(bounce0, GLOBAL_SCALE, 0, 3 * Math.PI / 2, false);
     }
     
-    public static TrajectoryMaker createBounce1()
+    public static TrajectoryMaker createBounce00()
     {
-        return createTrajectory(bounce1, GLOBAL_SCALE, 3 * Math.PI / 2, Math.PI / 2, true);
-    } 
+        return createTrajectory(bounce00, GLOBAL_SCALE, 0, 0, false);
+    }
 
-    public static TrajectoryMaker createBounce2()
+    public static TrajectoryMaker createBounce01()
     {
-        return createTrajectory(bounce2, GLOBAL_SCALE, Math.PI / 2, 3 * Math.PI / 2, false);
+        return createTrajectory(bounce01, GLOBAL_SCALE, 0, 3 * Math.PI / 2, false);
     }
     
-    public static TrajectoryMaker createBounce3()
+    public static TrajectoryMaker createBounce10()
     {
-        return createTrajectory(bounce3, GLOBAL_SCALE, 3 * Math.PI / 2, Math.PI, true);
+        return createTrajectory(bounce10, GLOBAL_SCALE, 3 * Math.PI / 2, 3 * Math.PI / 2, true);
+    }
+    
+    public static TrajectoryMaker createBounce11()
+    {
+        return createTrajectory(bounce11, GLOBAL_SCALE, 3 * Math.PI / 2, Math.PI / 2, true);
+    }
+
+    public static TrajectoryMaker createBounce20()
+    {
+        return createTrajectory(bounce20, GLOBAL_SCALE, Math.PI / 2, Math.PI / 2, false);
+    }
+
+    public static TrajectoryMaker createBounce21()
+    {
+        return createTrajectory(bounce21, GLOBAL_SCALE, Math.PI / 2, 3 * Math.PI / 2, false);
+    }
+    
+    public static TrajectoryMaker createBounce30()
+    {
+        return createTrajectory(bounce30, GLOBAL_SCALE, 3 * Math.PI / 2, 3 * Math.PI / 2, true);
+    }
+
+    public static TrajectoryMaker createBounce31()
+    {
+        return createTrajectory(bounce31, GLOBAL_SCALE, 3 * Math.PI / 2, Math.PI, true);
     }
 
     //go forward, turn 90 degrees right
