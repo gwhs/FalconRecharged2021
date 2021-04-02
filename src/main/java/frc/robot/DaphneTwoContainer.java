@@ -199,7 +199,7 @@ public class DaphneTwoContainer {
     Command autoCommand31 = new Autonomous(swerveDriveSubsystem, path31.getTrajectory(), path31.getAngle(), false);
     
     Command bounceCommand = new SequentialCommandGroup(autoCommand00, autoCommand01, autoCommand10, autoCommand11, autoCommand20, autoCommand21, autoCommand30, autoCommand31); 
-    start.whenPressed(bounceCommand.withTimeout(60));
+    //start.whenPressed(bounceCommand.withTimeout(60));
     //buttonX.whenPressed(autoCommand2.withTimeout(60));
 
     //Command autoCommand2 = new Autonomous(swerveDriveSubsystem, path2.getTrajectory(), path2.getAngle());
@@ -216,7 +216,7 @@ public class DaphneTwoContainer {
     //Command autoCommand4 = new Autonomous(swerveDriveSubsystem, path4.getTrajectory(), path4.getAngle(), true);
     Command galacticSearch = new GalacticSearch(swerveDriveSubsystem, intake, conveyorT);
     //Command galacticSearchCommand = new SequentialCommandGroup(autoCommand4, galacticSearch);
-    //start.whenPressed(galacticSearch);//autoCommand.withTimeout(60)
+    start.whenPressed(galacticSearch);//autoCommand.withTimeout(60)
 
 
 /*
@@ -270,7 +270,7 @@ public class DaphneTwoContainer {
     Command autoCommand31 = new Autonomous(swerveDriveSubsystem, path31.getTrajectory(), path31.getAngle(), false);
     
     //return new SequentialCommandGroup(autoCommand00, autoCommand01, autoCommand10, autoCommand11, autoCommand20, autoCommand21, autoCommand30, autoCommand31); 
-    return new Autonomous(swerveDriveSubsystem, path.getTrajectory(), path.getAngle());
+     return new Autonomous(swerveDriveSubsystem, path.getTrajectory(), path.getAngle());
     //return new GalacticSearch(swerveDriveSubsystem, intake, conveyorT);
   }
 }
