@@ -171,9 +171,13 @@ public static double[][] testStep= {
         {285,102}, //11
         {330,102}
      };
-        
+    
+     public static double[][] barrel0 = {
+         {30, 90},
+         {37, 90}
+     };
      public static double[][] barrel = {
-        {30,90}, //1
+        {37,90}, //1
         {60,90}, 
         {120,90},
         {150,90},
@@ -356,9 +360,14 @@ public static double[][] testStep= {
     }
 
 
+    public static TrajectoryMaker createBarrel0()
+    {
+        return createTrajectory(barrel0, GLOBAL_SCALE, 0, 0, false);
+    }
+
     public static TrajectoryMaker createBarrel()
     {
-        return createTrajectory(barrel, GLOBAL_SCALE, 0, Math.PI / 2, false);
+        return createTrajectory(barrel, GLOBAL_SCALE, 0, 3 * Math.PI / 2, false);
     }
 
     // Need better documentation here.  What are these doing?  Are the units in meters?
