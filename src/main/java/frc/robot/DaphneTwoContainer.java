@@ -246,7 +246,7 @@ public class DaphneTwoContainer {
     //return new AutoPath1(swerveDriveSubsystem);
     
 
-    
+   TrajectoryMaker path = TrajectoryHelper.createBarrel();
    TrajectoryMaker path00 = TrajectoryHelper.createBounce00();
    TrajectoryMaker path01 = TrajectoryHelper.createBounce01();
    TrajectoryMaker path10 = TrajectoryHelper.createBounce10();
@@ -269,7 +269,8 @@ public class DaphneTwoContainer {
     Command autoCommand30 = new Autonomous(swerveDriveSubsystem, path30.getTrajectory(), path30.getAngle(), false);
     Command autoCommand31 = new Autonomous(swerveDriveSubsystem, path31.getTrajectory(), path31.getAngle(), false);
     
-    return new SequentialCommandGroup(autoCommand00, autoCommand01, autoCommand10, autoCommand11, autoCommand20, autoCommand21, autoCommand30, autoCommand31); 
+    //return new SequentialCommandGroup(autoCommand00, autoCommand01, autoCommand10, autoCommand11, autoCommand20, autoCommand21, autoCommand30, autoCommand31); 
+    return new Autonomous(swerveDriveSubsystem, path.getTrajectory(), path.getAngle());
     //return new GalacticSearch(swerveDriveSubsystem, intake, conveyorT);
   }
 }
