@@ -30,7 +30,7 @@ private boolean isHyp;  //what does this mean?
 private TrajectoryConfig config;
 private Trajectory trajectory;
 private ArrayList<Translation2d> listOfPoints;
-private static double MAX_VELOCITY = 2; //Meters per second
+private static double MAX_VELOCITY = 10; //Meters per second
 private static double MAX_ACCELERATION = 2; // Meters per second squared
 
 public TrajectoryMaker(Pose2d start, Pose2d end, boolean isHyp) {
