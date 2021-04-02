@@ -151,24 +151,24 @@ public static double[][] testStep= {
      };
 
      public static double[][] bounce20 = {
-         {190, 25},
-         {190, 32},
+         {185, 25},
+         {185, 32},
      };
      public static double[][] bounce21 = {
-        {190, 32},
+        {185, 32},
         {185,135},//8
-        {260,135},
+        {265,135},
         {275,25},
      };
 
      public static double[][] bounce30 = {
-        {275,25},
-        {275, 32},
+        {277,25},
+        {277, 32},
      };
 
      public static double[][] bounce31 = {
-        {275, 32},
-        {275,90}, //11
+        {277, 32},
+        {285,90}, //11
         {330,90}
      };
         
