@@ -358,7 +358,7 @@ public static double[][] testStep= {
 
     public static TrajectoryMaker createBarrel()
     {
-        return createTrajectory(barrel, GLOBAL_SCALE, 0, Math.PI, false);
+        return createTrajectory(barrel, GLOBAL_SCALE, 0, Math.PI / 2, false);
     }
 
     // Need better documentation here.  What are these doing?  Are the units in meters?
