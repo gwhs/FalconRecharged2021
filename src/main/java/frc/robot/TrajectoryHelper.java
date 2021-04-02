@@ -168,7 +168,7 @@ public static double[][] testStep= {
 
      public static double[][] bounce31 = {
         {275, 32},
-        {265,90}, //11
+        {275,90}, //11
         {330,90}
      };
         
