@@ -82,13 +82,13 @@ public static double[][] testStep= {
         {95,90},
         {235,90},
         {240,155}, //5 old: {250, 145}
-        {300,155}, //old: {300, 145}
-        {300,90},
-        {250,90},
+        {305,155}, //old: {300, 145}
+        {305,90},
+        {255,90},
         {230,155}, //old: {230, 145}
         {95,155}, //10 old: {90, 145}
         {60,90},
-        {30,90},
+        {25,90},
                };
 
     public static double[][] leg1 = {
@@ -294,7 +294,7 @@ public static double[][] testStep= {
     
     public static TrajectoryMaker createSlalom()
     {
-        return createTrajectory(slalom, GLOBAL_SCALE);
+        return createTrajectory(slalom, GLOBAL_SCALE, 0, Math.PI, false);
     }
     
     public static TrajectoryMaker createBounce00()
