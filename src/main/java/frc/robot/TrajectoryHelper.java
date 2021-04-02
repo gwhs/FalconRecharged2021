@@ -196,8 +196,8 @@ public static double[][] testStep= {
         {250,135},
         {300,140},
         {310,80},
-        {80,80},
-        {45,70}, //19
+        {80,70},
+        {45,65}, //19
                 };
 
         private static double[][] driveForward = {
