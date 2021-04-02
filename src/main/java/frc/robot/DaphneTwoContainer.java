@@ -278,7 +278,7 @@ public class DaphneTwoContainer {
     
     //return new SequentialCommandGroup(autoCommand00, autoCommand01, autoCommand10, autoCommand11, autoCommand20, autoCommand21, autoCommand30, autoCommand31); 
     //return new SequentialCommandGroup(autoCommand0, autoCommand1);
-    new Autonomous(swerveDriveSubsystem, path0.getTrajectory(), path0.getAngle(), true);
+    return new Autonomous(swerveDriveSubsystem, path0.getTrajectory(), path0.getAngle(), true);
     //return new GalacticSearch(swerveDriveSubsystem, intake, conveyorT);
   }
 }
