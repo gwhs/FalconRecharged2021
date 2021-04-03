@@ -120,7 +120,7 @@ public class DaphneTwoContainer {
     buttonY.whileHeld(new ConveyorSpeed( conveyorT, .5)); //while Y is held down conveyor runs
     leftBumper.whileHeld(new SetShooterSpeed(shooterMotor, 6000));
     back.whileHeld(new ZeroNavX(swerveDriveSubsystem));
-    buttonX.whenPressed((new ConveyorSpeed( conveyorT, DaphneTwoConstants.CONVEYOR_UNLOADS_SPEED)).withTimeout(3)); // change 5000 milliseconds later
+    buttonX.whenPressed((new ConveyorSpeed( conveyorT, DaphneTwoConstants.CONVEYOR_UNLOADS_SPEED)).withTimeout(3)); // change seconds later
     rightBumper.whenPressed(new AutoShoot(conveyorT, shooterMotor, false, DaphneTwoConstants.GREEN_RPM, DaphneTwoConstants.CONVEYOR_UNLOADS_SPEED));
     start.whenPressed(new InstantCommand(() -> {shooterMotor.setMotorRPM(0);}, shooterMotor)); 
 
