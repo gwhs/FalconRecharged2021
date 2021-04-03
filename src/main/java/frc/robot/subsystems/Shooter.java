@@ -27,7 +27,6 @@ public class Shooter extends SubsystemBase {
   private double pidI = 0;
   private double pidD = 2.5;
   private double pidF = 0.04928;
-
   
 
 
@@ -58,6 +57,14 @@ public class Shooter extends SubsystemBase {
     //motor1.configClosedloopRamp(0); // may be what we are looking for to ramp Velocity
   }
 
+  public void toggleShooter(double rpm) {
+    if(getMotorRPM() > 100) { // change 100 later
+      setMotorRPM(0);
+    }
+    else {
+      setMotorRPM(rpm);
+    }
+  } 
 
 /**
  * spins the shooter motor as a percentage of its power

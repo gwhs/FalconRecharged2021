@@ -128,7 +128,7 @@ public class DaphneTwoContainer {
     rightBumper.whenPressed(new AutoShoot(conveyorT, shooterMotor, false, DaphneTwoConstants.GREEN_RPM, DaphneTwoConstants.CONVEYOR_UNLOADS_SPEED));
     
     //toggle shooter
-    //buttonB.
+    buttonB.whenPressed(new InstantCommand(() -> {shooterMotor.toggleShooter(DaphneTwoConstants.GREEN_RPM);}, shooterMotor)); //change 1000 rpm later
   }
   /**
    * Use this method to define your button->command mappings. Buttons can be
