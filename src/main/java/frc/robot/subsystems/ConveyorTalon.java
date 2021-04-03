@@ -61,7 +61,7 @@ public class ConveyorTalon extends SubsystemBase {
 
   public void toggleIgnore(boolean toggle)
   {
-    System.out.println(toggle);
+    System.out.println("toggling ignore, old value = " + toggle);
     ignore = toggle;
   }
 
