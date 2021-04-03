@@ -65,6 +65,7 @@ public class Shooter extends SubsystemBase {
     else {
       maintainRPM = true;
       setMotorRPM(rpm);
+      
     }
   } 
 

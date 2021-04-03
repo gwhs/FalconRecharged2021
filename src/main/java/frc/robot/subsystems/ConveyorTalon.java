@@ -24,6 +24,7 @@ public class ConveyorTalon extends SubsystemBase {
   private TalonFX indexer; 
   private boolean ignore;
   private boolean hasSeen;
+  private boolean on = false;;
 
   public ConveyorTalon() {
     sensor = new TimeOfFlight(2);// to change ID for TOF sensor go to...      ipOfRoboRio:5812
@@ -90,6 +91,16 @@ public class ConveyorTalon extends SubsystemBase {
 
   public void setHasSeen(boolean bol) {
       hasSeen = bol;
+  }
+
+  public void toggleConveyor(double speed) {
+    on = !on;
+    if(on) {
+      setConveyorSpeed(speed);
+    }
+    else {
+      setConveyorSpeed(0);
+    }
   }
 
 }
