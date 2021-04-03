@@ -27,7 +27,7 @@ public class Shooter extends SubsystemBase {
   private double pidI = 0;
   private double pidD = 2.5;
   private double pidF = 0.04928;
-  
+  private boolean maintainRPM = false;
 
 
   // The PID values below work for inner port at 3600 RPM <- Input Num
@@ -58,10 +58,12 @@ public class Shooter extends SubsystemBase {
   }
 
   public void toggleShooter(double rpm) {
-    if(Math.abs(getMotorRPM()) > 100) { // change 100 later
+    if(maintainRPM) { 
+      maintainRPM = false;
       setMotorPower(0);
     }
     else {
+      maintainRPM = true;
       setMotorRPM(rpm);
     }
   } 
