@@ -129,6 +129,7 @@ public class DaphneTwoContainer {
     
     //toggle shooter
     buttonB.whenPressed(new InstantCommand(() -> {shooterMotor.toggleShooter(DaphneTwoConstants.GREEN_RPM);}, shooterMotor)); //change 1000 rpm later
+    //buttonB.whenPressed(new InstantCommand((DaphneTwoConstants.GREEN_RPM) -> toggleShooter() //looking for something that doesn't take parameters  
   }
   /**
    * Use this method to define your button->command mappings. Buttons can be
