@@ -119,12 +119,9 @@ public class DaphneTwoContainer {
     //buttonA.whenPressed(new InstantCommand(intake::toggleIntakeSolenoidMode, intake));
 
     buttonY.whileHeld(new ConveyorSpeed( conveyorT, .5)); //while Y is held down conveyor runs
-    //buttonB.whileHeld(new IntakeSpeed(intake,-.5)); //while b is held down intake runs
-    //leftBumper.whileHeld(new ConveyorSpeed( conveyorT, -.7));
     leftBumper.whileHeld(new SetShooterSpeed(shooterMotor, 6000));
     back.whileHeld(new ZeroNavX(swerveDriveSubsystem));
     buttonX.whenPressed((new ConveyorSpeed( conveyorT, DaphneTwoConstants.CONVEYOR_UNLOADS_SPEED)).withTimeout(5000)); // change 5000 milliseconds later
-    //buttonX.whenPressed(new ToggleClimberGearLock(climberT));
     rightBumper.whenPressed(new AutoShoot(conveyorT, shooterMotor, false, DaphneTwoConstants.GREEN_RPM, DaphneTwoConstants.CONVEYOR_UNLOADS_SPEED));
     
     //toggle shooter
