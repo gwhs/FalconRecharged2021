@@ -100,16 +100,43 @@ public class DaphneTwoContainer {
     //climberT.setDefaultCommand(new ClimberArmSpeed(climberT, mXboxController2));
 
     // configure the buttons
-    configureButtonBindings();
+    //configureButtonBindingsForAuto();
+    configureButtonsForPowerPort();
   }
 
+  public void configureButtonsForPowerPort() {
+    JoystickButton buttonA = new JoystickButton(mXboxController, XboxController.Button.kA.value);
+    JoystickButton buttonX = new JoystickButton(mXboxController, XboxController.Button.kX.value);
+    JoystickButton buttonB = new JoystickButton(mXboxController, XboxController.Button.kB.value);
+    JoystickButton buttonY = new JoystickButton(mXboxController, XboxController.Button.kY.value);
+    JoystickButton leftBumper = new JoystickButton(mXboxController, XboxController.Button.kBumperLeft.value);
+    JoystickButton rightBumper = new JoystickButton(mXboxController, XboxController.Button.kBumperRight.value);
+    JoystickButton back = new JoystickButton(mXboxController, XboxController.Button.kBack.value);
+    JoystickButton start = new JoystickButton(mXboxController, XboxController.Button.kStart.value);
+    JoystickButton stickLeft = new JoystickButton(mXboxController, XboxController.Button.kStickLeft.value);
+    JoystickButton stickRight = new JoystickButton(mXboxController, XboxController.Button.kStickRight.value);
+
+    //buttonA.whenPressed(new InstantCommand(intake::toggleIntakeSolenoidMode, intake));
+
+    buttonY.whileHeld(new ConveyorSpeed( conveyorT, .5)); //while Y is held down conveyor runs
+    //buttonB.whileHeld(new IntakeSpeed(intake,-.5)); //while b is held down intake runs
+    //leftBumper.whileHeld(new ConveyorSpeed( conveyorT, -.7));
+    leftBumper.whileHeld(new SetShooterSpeed(shooterMotor, 6000));
+    back.whileHeld(new ZeroNavX(swerveDriveSubsystem));
+    buttonX.whenPressed((new ConveyorSpeed( conveyorT, DaphneTwoConstants.CONVEYOR_UNLOADS_SPEED)).withTimeout(5000)); // change 5000 milliseconds later
+    //buttonX.whenPressed(new ToggleClimberGearLock(climberT));
+    rightBumper.whenPressed(new AutoShoot(conveyorT, shooterMotor, false, DaphneTwoConstants.GREEN_RPM, DaphneTwoConstants.CONVEYOR_UNLOADS_SPEED));
+    
+    //toggle shooter
+    //buttonB.
+  }
   /**
    * Use this method to define your button->command mappings. Buttons can be
    * created by instantiating a {@link GenericHID} or one of its subclasses
    * ({@link edu.wpi.first.wpilibj.Joystick} or {@link XboxController}), and then
    * passing it to a {@link edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
-  private void configureButtonBindings() {
+  private void configureButtonBindingsForAuto() {
     JoystickButton buttonA = new JoystickButton(mXboxController, XboxController.Button.kA.value);
     JoystickButton buttonX = new JoystickButton(mXboxController, XboxController.Button.kX.value);
     JoystickButton buttonB = new JoystickButton(mXboxController, XboxController.Button.kB.value);
