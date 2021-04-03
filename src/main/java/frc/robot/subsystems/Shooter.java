@@ -58,7 +58,7 @@ public class Shooter extends SubsystemBase {
   }
 
   public void toggleShooter(double rpm) {
-    if(getMotorRPM() > 100) { // change 100 later
+    if(Math.abs(getMotorRPM()) > 100) { // change 100 later
       setMotorRPM(0);
     }
     else {

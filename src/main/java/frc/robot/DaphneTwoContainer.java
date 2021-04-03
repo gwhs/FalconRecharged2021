@@ -116,14 +116,14 @@ public class DaphneTwoContainer {
     JoystickButton stickLeft = new JoystickButton(mXboxController, XboxController.Button.kStickLeft.value);
     JoystickButton stickRight = new JoystickButton(mXboxController, XboxController.Button.kStickRight.value);
 
-    //buttonA.whenPressed(new InstantCommand(intake::toggleIntakeSolenoidMode, intake));
 
     buttonY.whileHeld(new ConveyorSpeed( conveyorT, .5)); //while Y is held down conveyor runs
     leftBumper.whileHeld(new SetShooterSpeed(shooterMotor, 6000));
     back.whileHeld(new ZeroNavX(swerveDriveSubsystem));
     buttonX.whenPressed((new ConveyorSpeed( conveyorT, DaphneTwoConstants.CONVEYOR_UNLOADS_SPEED)).withTimeout(5000)); // change 5000 milliseconds later
     rightBumper.whenPressed(new AutoShoot(conveyorT, shooterMotor, false, DaphneTwoConstants.GREEN_RPM, DaphneTwoConstants.CONVEYOR_UNLOADS_SPEED));
-    
+    start.whenPressed(new InstantCommand(() -> {shooterMotor.setMotorRPM(0);}, shooterMotor)); 
+
     //toggle shooter
     buttonB.whenPressed(new InstantCommand(() -> {shooterMotor.toggleShooter(DaphneTwoConstants.GREEN_RPM);}, shooterMotor)); //change 1000 rpm later
     //buttonB.whenPressed(new InstantCommand((DaphneTwoConstants.GREEN_RPM) -> toggleShooter() //looking for something that doesn't take parameters  
