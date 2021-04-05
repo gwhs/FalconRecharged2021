@@ -33,6 +33,6 @@ public final class DaphneTwoConstants {
 
     public static final int GREEN_RPM = 5650; //speed to shoot from right in front
     public static final int YELLOW_RPM = 4000; //speed to shoot from yellow zone
-    public static final double CONVEYOR_UNLOADS_SPEED = -0.6;
+    public static final double CONVEYOR_UNLOADS_SPEED = -0.3;
 
 }
