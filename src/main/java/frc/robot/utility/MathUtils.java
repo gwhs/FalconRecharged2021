@@ -11,7 +11,7 @@ public class MathUtils
                 return input;
             }
         }
-        if (Math.abs(input) < 0.25) 
+        if (Math.abs(input) < limit) 
             return 0;
         return input;
     }
