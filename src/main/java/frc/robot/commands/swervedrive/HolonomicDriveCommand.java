@@ -38,9 +38,9 @@ public class HolonomicDriveCommand extends CommandBase {
 			- mXboxController.getTriggerAxis(Hand.kRight); //trigger values are between 0 and 1, left is -1 and right is +1
 		double strafe = mXboxController.getX(Hand.kLeft); //real: pos
 
-		forward = MathUtils.deadband(forward, mDrivetrain.isFieldOriented());
-		strafe = MathUtils.deadband(strafe, mDrivetrain.isFieldOriented());
-		rotation = MathUtils.deadband(rotation, mDrivetrain.isFieldOriented());
+		forward = MathUtils.deadband(forward, 0.175, mDrivetrain.isFieldOriented());
+		strafe = MathUtils.deadband(strafe, 0.175, mDrivetrain.isFieldOriented());
+		rotation = MathUtils.deadband(rotation, 0.1, mDrivetrain.isFieldOriented());
 
 		
 		mDrivetrain.swapPIDSlot(0);
