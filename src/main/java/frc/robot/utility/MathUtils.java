@@ -11,8 +11,9 @@ public class MathUtils
                 return input;
             }
         }
-        if (Math.abs(input) < limit) 
+        if (Math.abs(input) < limit) {
             return 0;
+        }
         return input;
     }
     // public static double deadband(double input) {
