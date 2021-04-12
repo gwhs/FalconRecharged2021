@@ -22,6 +22,7 @@ public class Intake extends SubsystemBase {
   private CANSparkMax intakeController;
   private DoubleSolenoid rightSolenoid;
   private DoubleSolenoid leftSolenoid;
+  private boolean motorOn = false;
 
   public Intake() {
     intakeController = new CANSparkMax(Constants.INTAKE_SPARK, MotorType.kBrushless);
@@ -57,6 +58,15 @@ public class Intake extends SubsystemBase {
     }
   }
 
+  public void toggleIntakeMotor(double speed) {
+    motorOn = !motorOn;
+    if(motorOn) {
+      setSpeed(speed);
+    }
+    else {
+      setSpeed(0);
+    }
+  }
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
