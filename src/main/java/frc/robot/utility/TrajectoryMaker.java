@@ -30,8 +30,11 @@ private boolean isHyp;  //what does this mean?
 private TrajectoryConfig config;
 private Trajectory trajectory;
 private ArrayList<Translation2d> listOfPoints;
-private static double MAX_VELOCITY = 1; //Meters per second
-private static double MAX_ACCELERATION = 1; // Meters per second squared
+
+private static double MAX_VELOCITY = 10; //Meters per second
+private static double MAX_ACCELERATION = 3.5; // Meters per second squared
+private static double MAX_CENTRIPETAL = 3.5;
+
 
 public TrajectoryMaker(Pose2d start, Pose2d end, boolean isHyp) {
     this.start = start;
@@ -42,7 +45,9 @@ public TrajectoryMaker(Pose2d start, Pose2d end, boolean isHyp) {
     config.setStartVelocity(0);
     config.setEndVelocity(0);
     config.setReversed(false);
-    config.addConstraint(new CentripetalAccelerationConstraint(1));
+
+    config.addConstraint(new CentripetalAccelerationConstraint(MAX_CENTRIPETAL));
+
     listOfPoints = new ArrayList<Translation2d>();
     trajectory = createTrajectory();
 }
@@ -56,7 +61,7 @@ public TrajectoryMaker(Pose2d start, Pose2d end, ArrayList<Translation2d> points
     config.setStartVelocity(0);
     config.setEndVelocity(0);
     config.setReversed(false);
-    config.addConstraint(new CentripetalAccelerationConstraint(2));
+    config.addConstraint(new CentripetalAccelerationConstraint(MAX_CENTRIPETAL));
     listOfPoints = points;
     trajectory = createTrajectory();
 }
@@ -71,7 +76,7 @@ public TrajectoryMaker(Pose2d start, Pose2d end, ArrayList<Translation2d> points
     config.setStartVelocity(0);
     config.setEndVelocity(0);
     config.setReversed(isReversed);
-    config.addConstraint(new CentripetalAccelerationConstraint(2));
+    config.addConstraint(new CentripetalAccelerationConstraint(MAX_CENTRIPETAL));
     listOfPoints = points;
     trajectory = createTrajectory();
 }

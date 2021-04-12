@@ -77,18 +77,30 @@ public static double[][] testStep= {
     };
 
     public static double[][] slalom = { 
+        // {30,150}, //1
+        // {80,145},
+        // {95,90},
+        // {235,90},
+        // {240,155}, //5 old: {250, 145}
+        // {305,155}, //old: {300, 145}
+        // {305,90},
+        // {255,90},
+        // {230,155}, //old: {230, 145}
+        // {95,155}, //10 old: {90, 145}
+        // {60,90},
+        // {25,90},
         {30,150}, //1
-        {80,145},
-        {95,90},
-        {235,90},
-        {240,155}, //5 old: {250, 145}
-        {300,155}, //old: {300, 145}
-        {300,90},
-        {250,90},
-        {230,155}, //old: {230, 145}
-        {95,155}, //10 old: {90, 145}
-        {60,90},
-        {30,90},
+        {90,153},
+        {105,85},
+        {235,85},
+        {250,155}, //5 old: {250, 145}
+        {315,155}, //old: {300, 145}
+        {315,85},
+        {245,80},
+        {220,155}, //old: {230, 145}
+        {80,150}, //10 old: {90, 145}
+        {65,75},
+        {20,75},
                };
 
     public static double[][] leg1 = {
@@ -111,21 +123,35 @@ public static double[][] testStep= {
         {0,0},
     };
 
-     public static double[][] bounce0 = {
-        {30,90}, //1
-        {80,80},
-        {95,30}, //3
-     };
-
      public static double[][] bounce1Relative = {
         {0, 0},
         {30, 0}
      };
 
-     public static double[][] bounce1 = {
+     public static double[][] test = {
+         {95, 30},
+         {110, 30}
+     };
+
+     public static double[][] bounce00 = {
+        {30, 90},
+        {37, 90},
+     };
+
+     public static double[][] bounce01 = {
+        {37, 90},         //1
+        {90, 77},
         {95,30}, //3
+     };
+
+     public static double[][] bounce10 = {
+        {95, 30},
+        {95, 37},
+     };
+     public static double[][] bounce11 = {
+        {95, 37},//3
         {100, 85},
-        {120,100}, // 100, 90
+        {125,100}, // 100, 90
         {135,145},//5
         {175,135}, //6
         {190,25},
@@ -136,21 +162,34 @@ public static double[][] testStep= {
         // {330,85},
      };
 
-     public static double[][] bounce2 = {
-        {190,25},
-        {175,135},//8
-        {255,135},
-        {275,15},
+     public static double[][] bounce20 = {
+         {185, 25},
+         {185, 32},
+     };
+     public static double[][] bounce21 = {
+        {185, 32},
+        {185,135},//8
+        {265,135},
+        {275,25},
      };
 
-     public static double[][] bounce3 = {
-        {275,15},
-        {265,75}, //11
-        {330,75}
+     public static double[][] bounce30 = {
+        {277,25},
+        {277, 32},
      };
-        
+
+     public static double[][] bounce31 = {
+        {277, 32},
+        {285,102}, //11
+        {330,102}
+     };
+    
+     public static double[][] barrel0 = {
+         {30, 90},
+         {37, 90}
+     };
      public static double[][] barrel = {
-        {30,90}, //1
+        {37,90}, //1
         {60,90}, 
         {120,90},
         {150,90},
@@ -168,9 +207,9 @@ public static double[][] testStep= {
         {230,120},
         {250,135},
         {300,140},
-        {300,80},
-        //{80,80},
-        {45,80}, //19
+        {310,80},
+        {80,70},
+        {45,65}, //19
                 };
 
         private static double[][] driveForward = {
@@ -240,6 +279,11 @@ public static double[][] testStep= {
         return createTrajectory(driveForward, GLOBAL_SCALE, 0, 0, false);
     }   
 
+    public static TrajectoryMaker createTest() // test path going only 4 meters forward
+    {
+        return createTrajectory(test, GLOBAL_SCALE, 0, 0, true);
+    }   
+
     public static TrajectoryMaker createTest4Meters() // test path going only 4 meters forward
     {
         return createTrajectory(test4Meters, GLOBAL_SCALE);
@@ -262,32 +306,49 @@ public static double[][] testStep= {
     
     public static TrajectoryMaker createSlalom()
     {
-        return createTrajectory(slalom, GLOBAL_SCALE);
-    }     
-
-    public static TrajectoryMaker createBounce1Relative()
-    {
-        return createTrajectory(bounce1Relative, GLOBAL_SCALE, 0, 0, false);
-    }
-
-    public static TrajectoryMaker createBounce0()
-    {
-        return createTrajectory(bounce0, GLOBAL_SCALE, 0, 3 * Math.PI / 2, false);
+        return createTrajectory(slalom, GLOBAL_SCALE, 0, Math.PI, false);
     }
     
-    public static TrajectoryMaker createBounce1()
+    public static TrajectoryMaker createBounce00()
     {
-        return createTrajectory(bounce1, GLOBAL_SCALE, 3 * Math.PI / 2, Math.PI / 2, true);
-    } 
+        return createTrajectory(bounce00, GLOBAL_SCALE, 0, 0, false); //Math.toRadians(-42.3)
+    }
 
-    public static TrajectoryMaker createBounce2()
+
+    public static TrajectoryMaker createBounce01()
+
     {
-        return createTrajectory(bounce2, GLOBAL_SCALE, Math.PI / 2, 3 * Math.PI / 2, false);
+        return createTrajectory(bounce01, GLOBAL_SCALE, 0, 3 * Math.PI / 2, false);
     }
     
-    public static TrajectoryMaker createBounce3()
+    public static TrajectoryMaker createBounce10()
     {
-        return createTrajectory(bounce3, GLOBAL_SCALE, 3 * Math.PI / 2, Math.PI, true);
+        return createTrajectory(bounce10, GLOBAL_SCALE, 3 * Math.PI / 2, 3 * Math.PI / 2, true); //Math.toRadians(60.85)
+    }
+    
+    public static TrajectoryMaker createBounce11()
+    {
+        return createTrajectory(bounce11, GLOBAL_SCALE, 3 * Math.PI / 2, Math.PI / 2, true);
+    }
+
+    public static TrajectoryMaker createBounce20()
+    {
+        return createTrajectory(bounce20, GLOBAL_SCALE, Math.PI / 2, Math.PI / 2, false); //Math.toRadians(45)
+    }
+
+    public static TrajectoryMaker createBounce21()
+    {
+        return createTrajectory(bounce21, GLOBAL_SCALE, Math.PI / 2, 3 * Math.PI / 2, false);
+    }
+    
+    public static TrajectoryMaker createBounce30()
+    {
+        return createTrajectory(bounce30, GLOBAL_SCALE, 3 * Math.PI / 2, 3 * Math.PI / 2, true);
+    }
+
+    public static TrajectoryMaker createBounce31()
+    {
+        return createTrajectory(bounce31, GLOBAL_SCALE, 3 * Math.PI / 2, Math.PI, true);
     }
 
     //go forward, turn 90 degrees right
@@ -313,9 +374,14 @@ public static double[][] testStep= {
     }
 
 
+    public static TrajectoryMaker createBarrel0()
+    {
+        return createTrajectory(barrel0, GLOBAL_SCALE, 0, 0, false);
+    }
+
     public static TrajectoryMaker createBarrel()
     {
-        return createTrajectory(barrel, GLOBAL_SCALE);
+        return createTrajectory(barrel, GLOBAL_SCALE, 0, 3 * Math.PI / 2, false);
     }
 
     // Need better documentation here.  What are these doing?  Are the units in meters?
