@@ -231,12 +231,12 @@ public class DaphneTwoContainer {
       */
   }
 
-  public boolean fifty50()
-  {
-    boolean out = Math.random() < 0.5;
-    System.out.println("********************** left " + out);
-    return out;
-  }
+  // public boolean fifty50()
+  // {
+  //   boolean out = Math.random() < 0.5;
+  //   System.out.println("********************** left " + out);
+  //   return out;
+  // }
 
 
   /**
@@ -282,7 +282,8 @@ public class DaphneTwoContainer {
     
     //return new SequentialCommandGroup(autoCommand00, autoCommand01, autoCommand10, autoCommand11, autoCommand20, autoCommand21, autoCommand30, autoCommand31); 
     //return new SequentialCommandGroup(autoCommand0, autoCommand1);
-    return new Autonomous(swerveDriveSubsystem, path0.getTrajectory(), path0.getAngle(), true);
-    //return new GalacticSearch(swerveDriveSubsystem, intake, conveyorT);
+    //return new Autonomous(swerveDriveSubsystem, path0.getTrajectory(), path0.getAngle(), true);
+    return new GalacticSearch(swerveDriveSubsystem, intake, conveyorT);
   }
+
 }
