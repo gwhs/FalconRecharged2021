@@ -12,9 +12,12 @@ import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.geometry.Pose2d;
+import edu.wpi.first.wpilibj.geometry.Rotation2d;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.ConditionalCommand;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
+import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
 import frc.robot.commands.ReadLimelight;
@@ -138,13 +141,13 @@ public class DaphneTwoContainer {
     The following is an example of an inline command.  No need to create a CommandBase Subclass for simple commands
     */
     buttonA.whenPressed(new InstantCommand(intake::toggleIntakeSolenoidMode, intake));
-
+    buttonX.whenPressed(new ToggleFieldOrientedCommand(swerveDriveSubsystem));
     buttonY.whileHeld(new ConveyorSpeed( conveyorT, .5)); //while Y is held down conveyor runs
     buttonB.whileHeld(new IntakeSpeed(intake,-.5)); //while b is held down intake runs
     //leftBumper.whileHeld(new ConveyorSpeed( conveyorT, -.7));
     leftBumper.whileHeld(new SetShooterSpeed(shooterMotor, 6000));
     back.whileHeld(new ZeroNavX(swerveDriveSubsystem));
-    buttonX.whileHeld(new ConveyorSpeed( conveyorT, -.5));
+    //buttonX.whileHeld(new ConveyorSpeed( conveyorT, -.5));
     //buttonX.whenPressed(new ToggleClimberGearLock(climberT));
     rightBumper.whenPressed(new AutoShoot(conveyorT, shooterMotor, false, DaphneTwoConstants.GREEN_RPM, DaphneTwoConstants.CONVEYOR_UNLOADS_SPEED));
     //start.whileHeld(new ReadLimelight(limeL));
@@ -165,15 +168,60 @@ public class DaphneTwoContainer {
    
     //  TrajectoryMaker path = TrajectoryHelper.createBarrel();
 
-   TrajectoryMaker path = TrajectoryHelper.createBarrel();
+
+   TrajectoryMaker path00 = TrajectoryHelper.createBounce00();
+   TrajectoryMaker path01 = TrajectoryHelper.createBounce01();
+   TrajectoryMaker path10 = TrajectoryHelper.createBounce10();
+   TrajectoryMaker path11 = TrajectoryHelper.createBounce11();
+   TrajectoryMaker path20 = TrajectoryHelper.createBounce20();
+   TrajectoryMaker path21 = TrajectoryHelper.createBounce21();
+   TrajectoryMaker path30 = TrajectoryHelper.createBounce30();
+   TrajectoryMaker path31 = TrajectoryHelper.createBounce31();
+
+  //  TrajectoryMaker path2 = TrajectoryHelper.createLeg1();
+  //  TrajectoryMaker path3 = TrajectoryHelper.createLeg2();
+  //  TrajectoryMaker path4 = TrajectoryHelper.createLeg3();
+  //  TrajectoryMaker path5 = TrajectoryHelper.createLeg4();
 
     //TrajectoryMaker Start_B3 = TrajectoryHelper.Start_to_B3();
     //TrajectoryMaker B3_Finish = TrajectoryHelper.B3_to_Finish();
     //TrajectoryMaker _B3 = TrajectoryHelper.Start_to_B3();
 
+    
+
+    Command autoCommand00 = new Autonomous(swerveDriveSubsystem, path00.getTrajectory(), path00.getAngle(), true);
+    Command autoCommand01 = new Autonomous(swerveDriveSubsystem, path01.getTrajectory(), path01.getAngle(), false);
+    
+    Command autoCommand10 = new Autonomous(swerveDriveSubsystem, path10.getTrajectory(), path10.getAngle(), false); //new Pose2d(95, 30, new Rotation2d(Math.PI / 2))
+    Command autoCommand11 = new Autonomous(swerveDriveSubsystem, path11.getTrajectory(), path11.getAngle(), false); //new Pose2d(95, 30, new Rotation2d(Math.PI / 2))
+    
+    Command autoCommand20 = new Autonomous(swerveDriveSubsystem, path20.getTrajectory(), path20.getAngle(), false);
+    Command autoCommand21 = new Autonomous(swerveDriveSubsystem, path21.getTrajectory(), path21.getAngle(), false);
+    
+    Command autoCommand30 = new Autonomous(swerveDriveSubsystem, path30.getTrajectory(), path30.getAngle(), false);
+    Command autoCommand31 = new Autonomous(swerveDriveSubsystem, path31.getTrajectory(), path31.getAngle(), false);
+    
+    Command bounceCommand = new SequentialCommandGroup(autoCommand00, autoCommand01, autoCommand10, autoCommand11, autoCommand20, autoCommand21, autoCommand30, autoCommand31); 
+    //start.whenPressed(bounceCommand.withTimeout(60));
+
+    //buttonX.whenPressed(autoCommand2.withTimeout(60));
+
+    //Command autoCommand2 = new Autonomous(swerveDriveSubsystem, path2.getTrajectory(), path2.getAngle());
+    //Command autoCommand3 = new Autonomous(swerveDriveSubsystem, path3.getTrajectory(), path3.getAngle());
+    //Command autoCommand4 = new Autonomous(swerveDriveSubsystem, path4.getTrajectory(), path4.getAngle());
+    //Command autoCommand5 = new Autonomous(swerveDriveSubsystem, path5.getTrajectory(), path5.getAngle());
+
+    // buttonY.whenPressed(autoCommand2.withTimeout(60));
+    // buttonX.whenPressed(autoCommand3.withTimeout(60));
+    // buttonA.whenPressed(autoCommand4.withTimeout(60));
+    // buttonB.whenPressed(autoCommand5.withTimeout(60));
+
+    //TrajectoryMaker path4 = TrajectoryHelper.createDriveForward();
+    //Command autoCommand4 = new Autonomous(swerveDriveSubsystem, path4.getTrajectory(), path4.getAngle(), true);
     Command galacticSearch = new GalacticSearch(swerveDriveSubsystem, intake, conveyorT);
-    Command autoCommand = new Autonomous(swerveDriveSubsystem, path.getTrajectory(), path.getAngle());
-    start.whenPressed(galacticSearch);//autoCommand.withTimeout(60)
+    //Command galacticSearchCommand = new SequentialCommandGroup(autoCommand4, galacticSearch);
+    //start.whenPressed(galacticSearch);//autoCommand.withTimeout(60)
+
 
 /*
     start.whenPressed(new ConditionalCommand(
@@ -199,6 +247,42 @@ public class DaphneTwoContainer {
   public Command getAutonomousCommand() {
     // An ExampleCommand will run in autonomous
     //How can we change this to select the auto routine from the dashboard?
-    return new AutoPath1(swerveDriveSubsystem);
+    //return new AutoPath1(swerveDriveSubsystem);
+    
+
+   TrajectoryMaker path0 = TrajectoryHelper.createSlalom();
+   //TrajectoryMaker path = TrajectoryHelper.createBarrel();
+   
+   //Command autoCommand0 = new Autonomous(swerveDriveSubsystem, path0.getTrajectory(), path0.getAngle(), true);
+   //Command autoCommand1 = new Autonomous(swerveDriveSubsystem, path.getTrajectory(), path.getAngle(), false);
+
+
+
+   TrajectoryMaker path00 = TrajectoryHelper.createBounce00();
+   TrajectoryMaker path01 = TrajectoryHelper.createBounce01();
+   TrajectoryMaker path10 = TrajectoryHelper.createBounce10();
+   TrajectoryMaker path11 = TrajectoryHelper.createBounce11();
+   TrajectoryMaker path20 = TrajectoryHelper.createBounce20();
+   TrajectoryMaker path21 = TrajectoryHelper.createBounce21();
+   TrajectoryMaker path30 = TrajectoryHelper.createBounce30();
+   TrajectoryMaker path31 = TrajectoryHelper.createBounce31();
+
+
+    Command autoCommand00 = new Autonomous(swerveDriveSubsystem, path00.getTrajectory(), path00.getAngle(), true);
+    Command autoCommand01 = new Autonomous(swerveDriveSubsystem, path01.getTrajectory(), path01.getAngle(), false);
+    
+    Command autoCommand10 = new Autonomous(swerveDriveSubsystem, path10.getTrajectory(), path10.getAngle(), false); //new Pose2d(95, 30, new Rotation2d(Math.PI / 2))
+    Command autoCommand11 = new Autonomous(swerveDriveSubsystem, path11.getTrajectory(), path11.getAngle(), false); //new Pose2d(95, 30, new Rotation2d(Math.PI / 2))
+    
+    Command autoCommand20 = new Autonomous(swerveDriveSubsystem, path20.getTrajectory(), path20.getAngle(), false);
+    Command autoCommand21 = new Autonomous(swerveDriveSubsystem, path21.getTrajectory(), path21.getAngle(), false);
+    
+    Command autoCommand30 = new Autonomous(swerveDriveSubsystem, path30.getTrajectory(), path30.getAngle(), false);
+    Command autoCommand31 = new Autonomous(swerveDriveSubsystem, path31.getTrajectory(), path31.getAngle(), false);
+    
+    //return new SequentialCommandGroup(autoCommand00, autoCommand01, autoCommand10, autoCommand11, autoCommand20, autoCommand21, autoCommand30, autoCommand31); 
+    //return new SequentialCommandGroup(autoCommand0, autoCommand1);
+    return new Autonomous(swerveDriveSubsystem, path0.getTrajectory(), path0.getAngle(), true);
+    //return new GalacticSearch(swerveDriveSubsystem, intake, conveyorT);
   }
 }

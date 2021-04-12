@@ -12,13 +12,14 @@ import frc.robot.commands.WaitForConveyor;
 import frc.robot.commands.conveyor.SenseCell;
 import frc.robot.commands.conveyor.SenseNewPowerCell;
 import frc.robot.commands.intake.IntakeSpeed;
+import frc.robot.commands.swervedrive.Autonomous;
 import frc.robot.subsystems.ConveyorTalon;
 import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.Drive.SwerveDriveSubsystem;
 
 public class GalacticSearch extends SequentialCommandGroup {
   /** Creates a new SensorTest. */
-  public static final double intakeSpeed = -.5;
+  public static final double intakeSpeed = -1;
   public static final double INTAKE_DELAY = 1.0;
   // delay for a second when we get to a choice point, to ensure conveyor can notice the ball
   private boolean galacticSearchDone = false;
@@ -54,10 +55,11 @@ public class GalacticSearch extends SequentialCommandGroup {
    */
   public Command conditional(SwerveDriveSubsystem swerveDriveSubsystem, Intake intake, ConveyorTalon conveyor, double[][] hasSeenTrajectory, double[][] notSeenTrajectory)
   {
+
     return new ConditionalCommand(
-      new Finish_Auton(swerveDriveSubsystem, hasSeenTrajectory, this)
+      new Finish_Auton(swerveDriveSubsystem, hasSeenTrajectory, this, false, Autonomous.getEndOrientation(), 0)
           .raceWith(new SenseCell(conveyor)).andThen(()->setDone()),
-      new Finish_Auton(swerveDriveSubsystem, notSeenTrajectory, this)
+      new Finish_Auton(swerveDriveSubsystem, notSeenTrajectory, this, false, Autonomous.getEndOrientation(), 0)
           .raceWith(new SenseCell(conveyor)),
       conveyor::getHasSeen
     );
@@ -71,7 +73,6 @@ public class GalacticSearch extends SequentialCommandGroup {
     conveyorTalon.toggleIgnore(false);
   }
 
-  /*
   public GalacticSearch(SwerveDriveSubsystem swerveDriveSubsystem, Intake intake, ConveyorTalon conveyor) {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
@@ -87,7 +88,8 @@ public class GalacticSearch extends SequentialCommandGroup {
     addCommands(
     new InstantCommand(intake::lowerIntake, intake),
     new InstantCommand(() -> intake.setSpeed(intakeSpeed),intake),
-    new Finish_Auton(swerveDriveSubsystem, Start_to_B3, this).raceWith(new SenseCell(conveyor)), 
+    new Finish_Auton(swerveDriveSubsystem, Start_to_B3, this, true, 0, 0).raceWith(new SenseCell(conveyor)), 
+    new Finish_Auton(swerveDriveSubsystem, Start_to_B32, this, false, 0, 0).raceWith(new SenseCell(conveyor)), 
     new WaitForConveyor(conveyor),
     conditional(swerveDriveSubsystem, intake, conveyor, B3_to_Finish, B3_to_C3),
     new WaitForConveyor(conveyor),
@@ -97,8 +99,9 @@ public class GalacticSearch extends SequentialCommandGroup {
     new InstantCommand(swerveDriveSubsystem::stopDriveMotors, swerveDriveSubsystem),
     new InstantCommand(() -> intake.setSpeed(0),intake)
     );
-  } */
+  } 
 
+  /*
   public GalacticSearch(SwerveDriveSubsystem swerveDriveSubsystem, Intake intake, ConveyorTalon conveyor) {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
@@ -120,24 +123,24 @@ public class GalacticSearch extends SequentialCommandGroup {
     new InstantCommand(swerveDriveSubsystem::stopDriveMotors, swerveDriveSubsystem),
     new InstantCommand(() -> intake.setSpeed(0),intake)
     );
-  }
+  } */
 
-    private static final double[][] driveForward = {
-      {30,120},
-      {110,120},
+    private static double[][] driveForward = {
+      {12,60},
+      {15,60},
     };
 
-    private static final double[][] driveForward2 = {
+    private static double[][] driveForward2 = {
       {110,120},
       {200,120},
     };
 
-    private static final double[][] driveRight = {
+    private static double[][] driveRight = {
       {110,120},
       {110,180},
     };
 
-    private static final double[][] driveLeft = {
+    private static double[][] driveLeft = {
       {90,120},
       {90,90},
     };
@@ -149,27 +152,33 @@ public class GalacticSearch extends SequentialCommandGroup {
     // (360, 180) is bottom right point
     // (15, y) center of the start zone
     // (345, y) center of the end zone, x set to 300 for yard
-    private static final double[] A6 = {180, 30};
-    private static final double[] B1 = {15, 60};
-    private static final double[] B3 = {90, 60};
-    private static final double[] B3_Front = {130, 60}; //Robot goes forward more to avoid bumping C3 powercell
-    private static final double[] B7 = {210, 60};
-    private static final double[] B8 = {240, 60};
-    private static final double[] C3 = {90, 90};
-    private static final double[] C9 = {270, 90};
-    private static final double[] D5 = {150, 120};
-    private static final double[] D6 = {180, 120}; //robot misses this point
-    private static final double[] D6_Front = {220, 120}; //avoid bumping E6 powercell
+    private static final double[] A6 = {180, 30}; //(180,30)
+    private static final double[] B1 = {22, 60}; //(30,60)
+    private static final double[] B1Test = {15, 60}; 
+    private static final double[] B3 = {90, 60}; 
+    private static final double[] B3_Front = {140, 60}; //Robot goes forward more to avoid bumping C3 powercell
+    private static final double[] B7 = {205, 60}; //{210,60}
+    private static final double[] B8 = {240, 60}; 
+    private static final double[] C3 = {80, 90}; //(90,90)
+    private static final double[] C9 = {270, 90}; 
+    private static final double[] D5 = {145, 115}; //(150, 120)
+    private static final double[] D6 = {180, 115}; //(180, 120)
+    private static final double[] D6_Front = {230, 120}; //avoid bumping E6 powercell
     private static final double[] D10 = {300, 120};
-    private static final double[] E6 = {180, 150};
-    private static final double[] B3_END = {300, 60};
-    private static final double[] C3_END = {300, 30};
-    private static final double[] D6_END_A = {300, 120};
-    private static final double[] D6_END_B = {300, 90};
+    private static final double[] E6 = {170, 150}; //(180,150)
+    private static final double[] B3_END = {330, 60};
+    private static final double[] C3_END = {330, 30};
+    private static final double[] D6_END_A = {330, 120};
+    private static final double[] D6_END_B = {330, 90};
 
     private static final double[][] Start_to_B3= {
-        B1,
-        B3,
+      B1Test,
+      B1,
+    };
+
+    private static final double[][] Start_to_B32= {
+      B1,
+      B3,
     };
 
     private static final double[][] B3_to_C3=  {
