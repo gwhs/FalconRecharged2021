@@ -168,6 +168,7 @@ public class DaphneTwoContainer {
    
     //  TrajectoryMaker path = TrajectoryHelper.createBarrel();
 
+
    TrajectoryMaker path00 = TrajectoryHelper.createBounce00();
    TrajectoryMaker path01 = TrajectoryHelper.createBounce01();
    TrajectoryMaker path10 = TrajectoryHelper.createBounce10();
@@ -176,6 +177,7 @@ public class DaphneTwoContainer {
    TrajectoryMaker path21 = TrajectoryHelper.createBounce21();
    TrajectoryMaker path30 = TrajectoryHelper.createBounce30();
    TrajectoryMaker path31 = TrajectoryHelper.createBounce31();
+
   //  TrajectoryMaker path2 = TrajectoryHelper.createLeg1();
   //  TrajectoryMaker path3 = TrajectoryHelper.createLeg2();
   //  TrajectoryMaker path4 = TrajectoryHelper.createLeg3();
@@ -186,6 +188,7 @@ public class DaphneTwoContainer {
     //TrajectoryMaker _B3 = TrajectoryHelper.Start_to_B3();
 
     
+
     Command autoCommand00 = new Autonomous(swerveDriveSubsystem, path00.getTrajectory(), path00.getAngle(), true);
     Command autoCommand01 = new Autonomous(swerveDriveSubsystem, path01.getTrajectory(), path01.getAngle(), false);
     
@@ -200,6 +203,7 @@ public class DaphneTwoContainer {
     
     Command bounceCommand = new SequentialCommandGroup(autoCommand00, autoCommand01, autoCommand10, autoCommand11, autoCommand20, autoCommand21, autoCommand30, autoCommand31); 
     //start.whenPressed(bounceCommand.withTimeout(60));
+
     //buttonX.whenPressed(autoCommand2.withTimeout(60));
 
     //Command autoCommand2 = new Autonomous(swerveDriveSubsystem, path2.getTrajectory(), path2.getAngle());
@@ -216,7 +220,7 @@ public class DaphneTwoContainer {
     //Command autoCommand4 = new Autonomous(swerveDriveSubsystem, path4.getTrajectory(), path4.getAngle(), true);
     Command galacticSearch = new GalacticSearch(swerveDriveSubsystem, intake, conveyorT);
     //Command galacticSearchCommand = new SequentialCommandGroup(autoCommand4, galacticSearch);
-    start.whenPressed(galacticSearch);//autoCommand.withTimeout(60)
+    //start.whenPressed(galacticSearch);//autoCommand.withTimeout(60)
 
 
 /*

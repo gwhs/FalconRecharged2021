@@ -125,7 +125,7 @@ public static double[][] testStep= {
 
      public static double[][] bounce1Relative = {
         {0, 0},
-        {50, 25}
+        {30, 0}
      };
 
      public static double[][] test = {
@@ -314,7 +314,9 @@ public static double[][] testStep= {
         return createTrajectory(bounce00, GLOBAL_SCALE, 0, 0, false); //Math.toRadians(-42.3)
     }
 
+
     public static TrajectoryMaker createBounce01()
+
     {
         return createTrajectory(bounce01, GLOBAL_SCALE, 0, 3 * Math.PI / 2, false);
     }
