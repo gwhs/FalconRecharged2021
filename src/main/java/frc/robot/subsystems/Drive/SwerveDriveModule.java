@@ -26,7 +26,8 @@ public class SwerveDriveModule extends SubsystemBase {
      */
 
 
-    private double mLastError = 0, mLastTargetAngle = 0;
+    //private double mLastError = 0; // what is mLastError?
+    private double mLastTargetAngle = 0;
 
     private final int mModuleNumber;
 
@@ -202,8 +203,8 @@ public class SwerveDriveModule extends SubsystemBase {
 
         targetAngle += currentAngle - currentAngleMod;
 
-        final double currentError = mAngleMotor.getClosedLoopError(0);
-        mLastError = currentError;
+        //final double currentError = mAngleMotor.getClosedLoopError(0); // ??
+        //mLastError = currentError; // ??
         targetAngle *= 1024.0 / 360.0;
         mAngleMotor.set(ControlMode.Position, targetAngle);
 

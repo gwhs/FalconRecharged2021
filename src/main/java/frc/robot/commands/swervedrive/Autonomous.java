@@ -114,7 +114,7 @@ public class Autonomous extends CommandBase {
     
     //odometry.resetPosition(new Pose2d(0, 0, new Rotation2d(0)), new Rotation2d(Math.toRadians(0)));
     time.start();
-    boolean isAuto = drivetrain.getIsAuto();
+    //boolean isAuto = drivetrain.getIsAuto();
     drivetrain.setFieldOriented(false);
     drivetrain.setIsAuto(true);
     drivetrain.swapPIDSlot(1);
@@ -131,17 +131,8 @@ public class Autonomous extends CommandBase {
     initPos[1] = angle;
     initPos[2] = angle;
     initPos[3] = angle;
-    //drivetrain.zeroGyro(); //comment out maybe, if we don't do relative
-    // if(firstAutoPath) {
-    //   initGyro = drivetrain.getGyroAngle();
-    //   firstGyroAngle = initGyro;
-    // }
-    // else {
-    //   initGyro = firstGyroAngle;
-    // }
     if(firstAutoPath) {
       firstGyroAngle = drivetrain.getGyroAngle();
-      
     }
     initGyro = firstGyroAngle;
     SmartDashboard.putNumber("Init Gyro", initGyro);

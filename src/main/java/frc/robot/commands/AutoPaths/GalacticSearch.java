@@ -10,8 +10,6 @@ import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.commands.WaitForConveyor;
 import frc.robot.commands.conveyor.SenseCell;
-import frc.robot.commands.conveyor.SenseNewPowerCell;
-import frc.robot.commands.intake.IntakeSpeed;
 import frc.robot.commands.swervedrive.Autonomous;
 import frc.robot.subsystems.ConveyorTalon;
 import frc.robot.subsystems.Intake;
@@ -101,45 +99,27 @@ public class GalacticSearch extends SequentialCommandGroup {
     );
   } 
 
-  /*
-  public GalacticSearch(SwerveDriveSubsystem swerveDriveSubsystem, Intake intake, ConveyorTalon conveyor) {
-    // Add your commands in the addCommands() call, e.g.
-    // addCommands(new FooCommand(), new BarCommand());
-    // Waiting 1 second to check for the power cell
-    // Start_to_B3 --> if (found B3) B3_to_Finish 
-    // else B3_to_C3 --> if (found C3) C3_to_Finish
-    // else C3_to_D6 --> if (found D6) D6_to_Finish_A
-    // else D6_to_Finish_B
+ 
 
-    super();
-    conveyorTalon = conveyor;
-    this.intake = intake;
-    addCommands(
-    new InstantCommand(intake::lowerIntake, intake),
-    new InstantCommand(() -> intake.setSpeed(intakeSpeed),intake),
-    new Finish_Auton(swerveDriveSubsystem, driveForward, this).raceWith(new SenseCell(conveyor)), 
-    new WaitForConveyor(conveyor),
-    conditional(swerveDriveSubsystem, intake, conveyor, driveForward2, driveRight),
-    new InstantCommand(swerveDriveSubsystem::stopDriveMotors, swerveDriveSubsystem),
-    new InstantCommand(() -> intake.setSpeed(0),intake)
-    );
-  } */
-
+    @SuppressWarnings ("unused")
     private static double[][] driveForward = {
       {12,60},
       {15,60},
     };
 
+    @SuppressWarnings ("unused")
     private static double[][] driveForward2 = {
       {110,120},
       {200,120},
     };
 
+    @SuppressWarnings ("unused")
     private static double[][] driveRight = {
       {110,120},
       {110,180},
     };
 
+    @SuppressWarnings ("unused")
     private static double[][] driveLeft = {
       {90,120},
       {90,90},

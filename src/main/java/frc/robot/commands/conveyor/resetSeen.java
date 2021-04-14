@@ -13,7 +13,7 @@ import frc.robot.subsystems.ConveyorTalon;
 public class resetSeen extends InstantCommand {
   private ConveyorTalon conveyorTalon;
 
-  public resetSeen() {
+  public resetSeen(ConveyorTalon conveyorTalon) {
     // Use addRequirements() here to declare subsystem dependencies.
     this.conveyorTalon = conveyorTalon;
     addRequirements(conveyorTalon);

@@ -12,10 +12,7 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
-import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.DaphneTwoConstants;
-import frc.robot.subsystems.Drive.SwerveDriveSubsystem;
 
 public class LimelightPortal extends SubsystemBase {
   /**
@@ -31,11 +28,11 @@ public class LimelightPortal extends SubsystemBase {
   public void periodic() {
     // This method will be called once per scheduler run
 
-
-    NetworkTable shooterLL = NetworkTableInstance.getDefault().getTable("limelight-shooter"); // 10.55.7.11
-    NetworkTableEntry shX = shooterLL.getEntry("tx");
-    NetworkTableEntry shY = shooterLL.getEntry("ty");
-    NetworkTableEntry shA = shooterLL.getEntry("ta");
+    // what's this for?
+    // NetworkTable shooterLL = NetworkTableInstance.getDefault().getTable("limelight-shooter"); // 10.55.7.11
+    // NetworkTableEntry shX = shooterLL.getEntry("tx");
+    // NetworkTableEntry shY = shooterLL.getEntry("ty");
+    // NetworkTableEntry shA = shooterLL.getEntry("ta");
   }
 
   public void printLoc()
@@ -57,8 +54,8 @@ public class LimelightPortal extends SubsystemBase {
   {
     NetworkTable shooterLL = NetworkTableInstance.getDefault().getTable("limelight-shooter"); // 10.55.7.11
     NetworkTableEntry shX = shooterLL.getEntry("tx");
-    NetworkTableEntry shY = shooterLL.getEntry("ty");
-    NetworkTableEntry shA = shooterLL.getEntry("ta");
+    //NetworkTableEntry shY = shooterLL.getEntry("ty");
+    //NetworkTableEntry shA = shooterLL.getEntry("ta");
 
     double x = shX.getDouble(0.0);
     //double y = shY.getDouble(0.0);
@@ -70,9 +67,9 @@ public class LimelightPortal extends SubsystemBase {
   public double getDistance()
   {
     NetworkTable shooterLL = NetworkTableInstance.getDefault().getTable("limelight-shooter"); // 10.55.7.11
-    NetworkTableEntry shX = shooterLL.getEntry("tx");
+    //NetworkTableEntry shX = shooterLL.getEntry("tx");
     NetworkTableEntry shY = shooterLL.getEntry("ty");
-    NetworkTableEntry shA = shooterLL.getEntry("ta");
+    //NetworkTableEntry shA = shooterLL.getEntry("ta");
 
     //double x = shX.getDouble(0.0);
     double y = shY.getDouble(0.0);
