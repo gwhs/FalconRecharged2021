@@ -63,6 +63,7 @@ public class DaphneTwoContainer {
    */
   public DaphneTwoContainer() {
     // create all the subsystems needed in this robot
+    //zeroOffset changes when encoder position gets thrown off
     SwerveDriveModule m0 = new SwerveDriveModule(0, new TalonSRX(DaphneTwoConstants.ANGLE2_TALON), new TalonFX(DaphneTwoConstants.DRIVE2_TALON), 213); //real:390 practice: 212
     SwerveDriveModule m1 = new SwerveDriveModule(1, new TalonSRX(DaphneTwoConstants.ANGLE1_TALON), new TalonFX(DaphneTwoConstants.DRIVE1_TALON), 175); //real:293 practice: 59
     SwerveDriveModule m2 = new SwerveDriveModule(2, new TalonSRX(DaphneTwoConstants.ANGLE3_TALON), new TalonFX(DaphneTwoConstants.DRIVE3_TALON), 293); //real:298 practice: 56

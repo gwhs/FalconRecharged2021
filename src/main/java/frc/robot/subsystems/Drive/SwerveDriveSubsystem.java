@@ -7,10 +7,13 @@ import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Constants;
 
+//ANGLE MOTOR TAKING LONG ROUTE ISSUE 
 public class SwerveDriveSubsystem extends HolonomicDrivetrain { // + is clockwise - is counter clockwise test commit 2 electric bugaloo
-	private static final double WHEELBASE = 22.5; 
-	private static final double TRACKWIDTH = 22.5;
-	//private static final double RATIO = Math.sqrt(Math.pow(WHEELBASE, 2) + Math.pow(TRACKWIDTH, 2)); // calculates diagonal
+	
+	//used for calculating angle of wheels when rotating robot, describe kinematic parameters
+	private static final double WHEELBASE = 22.5; //distance between front and back wheels
+	private static final double TRACKWIDTH = 22.5; //distance between left and right wheels
+
 	private boolean isAuto;
 	
 	/*
@@ -21,13 +24,9 @@ public class SwerveDriveSubsystem extends HolonomicDrivetrain { // + is clockwis
 	 */
 	private final SwerveDriveModule[] mSwerveModules = new SwerveDriveModule[4];
 
-	public AHRS mNavX = new AHRS(SPI.Port.kMXP, (byte) 200);
+	private AHRS mNavX = new AHRS(SPI.Port.kMXP, (byte) 200); //initialize NavX to read orientation/bearing of robot
 
-	public SwerveDriveSubsystem(SwerveDriveModule m0, SwerveDriveModule m1, SwerveDriveModule m2, SwerveDriveModule m3) { // add PID controll stuff for Drive Motors
-		initModules(m0, m1, m2, m3);
-	}
-
-	private void initModules(SwerveDriveModule m0, SwerveDriveModule m1, SwerveDriveModule m2, SwerveDriveModule m3) { // add PID controll stuff for Drive Motors
+	public SwerveDriveSubsystem(SwerveDriveModule m0, SwerveDriveModule m1, SwerveDriveModule m2, SwerveDriveModule m3) { 
 		mSwerveModules[0] = m0;
 		mSwerveModules[1] = m1;
 		mSwerveModules[2] = m2;
@@ -40,9 +39,10 @@ public class SwerveDriveSubsystem extends HolonomicDrivetrain { // + is clockwis
 		// mSwerveModules[2].getDriveMotor().setInverted(false); //real: false
 		//mSwerveModules[3].getDriveMotor().setInverted(TalonFXInvertType.CounterClockwise); //real: false
 		
+		//might have to do w/ wheel spinning the wrong way
 		 mSwerveModules[0].getAngleMotor().setInverted(true); //real: true
+		 mSwerveModules[1].getAngleMotor().setInverted(true); //real: true 
 		 mSwerveModules[2].getAngleMotor().setInverted(true); //real: true
-		 mSwerveModules[1].getAngleMotor().setInverted(true); //real: true
 		 mSwerveModules[3].getAngleMotor().setInverted(true); //real: true
 
 		mSwerveModules[0].resetEncoder();
@@ -92,6 +92,8 @@ public class SwerveDriveSubsystem extends HolonomicDrivetrain { // + is clockwis
 	public void holonomicDrive(double forward, double strafe, double rotation) {
 		forward *= getSpeedMultiplier();
 		strafe *= getSpeedMultiplier();
+		
+		//forwrd in fieldOriented is driver mode, forward will be relative to field
 		if (isFieldOriented()) {
 			
 			double angleRad = Math.toRadians(getGyroAngle());

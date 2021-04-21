@@ -14,12 +14,13 @@ import frc.robot.subsystems.Drive.SwerveDriveSubsystem;
 import frc.robot.utility.MathUtils;
 
 public class HolonomicDriveCommand extends CommandBase {
-  /**
-   * Creates a new HolonomicDriveCommand.
-   */
-  private final SwerveDriveSubsystem mDrivetrain;
-  private final XboxController mXboxController;
+ 
+  	private final SwerveDriveSubsystem mDrivetrain;
+  	private final XboxController mXboxController;
 
+	/**
+      * Creates a new HolonomicDriveCommand.
+      */
 	public HolonomicDriveCommand(SwerveDriveSubsystem drivetrain, XboxController mXboxController) {
 		mDrivetrain = drivetrain;
 		addRequirements(drivetrain);
@@ -28,26 +29,28 @@ public class HolonomicDriveCommand extends CommandBase {
 
 	@Override
 	public void execute() {
-		if(mDrivetrain.getIsAuto())
-		{
+		
+		//sets reobot oriented when auto
+		if(mDrivetrain.getIsAuto()) {
 			mDrivetrain.setFieldOriented(false);
 		}
 		
-		double forward = mXboxController.getY(Hand.kLeft); //real: positive
+		//raw joystick values
+		double forward = mXboxController.getY(Hand.kLeft); //real: pos
 		double rotation = mXboxController.getTriggerAxis(Hand.kLeft) 
 			- mXboxController.getTriggerAxis(Hand.kRight); //trigger values are between 0 and 1, left is -1 and right is +1
 		double strafe = mXboxController.getX(Hand.kLeft); //real: pos
-
-		forward = MathUtils.deadband(forward, 0.175, mDrivetrain.isFieldOriented());
-		strafe = MathUtils.deadband(strafe, 0.175, mDrivetrain.isFieldOriented());
-		rotation = MathUtils.deadband(rotation, 0.1, mDrivetrain.isFieldOriented());
-
 		
-		mDrivetrain.swapPIDSlot(0);
-		mDrivetrain.holonomicDrive(forward, -strafe, rotation);
+		//filters raw joystick values to avoid joystick drift
+		double filteredForward = MathUtils.deadband(forward, 0.175, mDrivetrain.isFieldOriented());
+		double filteredStrafe = MathUtils.deadband(strafe, 0.175, mDrivetrain.isFieldOriented());
+		double filteredRotation = MathUtils.deadband(rotation, 0.1, mDrivetrain.isFieldOriented());
+
+		mDrivetrain.swapPIDSlot(0); //switches to different set of PID values 
+		mDrivetrain.holonomicDrive(filteredForward, -filteredStrafe, filteredRotation); //sets filtered joystick values to holomic drive
 	}
 
-	@Override
+	@Override 
 	public void end(boolean interrupted) {
 		mDrivetrain.stopDriveMotors();
 	}
