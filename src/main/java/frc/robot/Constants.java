@@ -41,7 +41,8 @@ public final class Constants {
     //public static final double WHEEL_SIZE = 3.838;
     public static final double WHEEL_SIZE = 4;  //  wheel size from the doc for HiGrip wheels
 
-    public static final double TICKS_PER_INCH = (2048*GEAR_RATIO)/(WHEEL_SIZE*Math.PI);
+    public static final int FALCON_EPR = 2048; //edges per rotation
+    public static final double TICKS_PER_INCH = (FALCON_EPR*GEAR_RATIO)/(WHEEL_SIZE*Math.PI);
     public static final boolean FORWARD = true;
     public static final double SPINNER_POSITION_PERCENT = .6;
     public static final double SPINNER_SPEED = 0.2; //only being used in SpinToMid right now

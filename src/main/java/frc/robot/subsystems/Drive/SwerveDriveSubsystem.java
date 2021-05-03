@@ -45,7 +45,8 @@ public class SwerveDriveSubsystem extends HolonomicDrivetrain { // + is clockwis
 		 mSwerveModules[2].getAngleMotor().setInverted(true); //real: true
 		 mSwerveModules[3].getAngleMotor().setInverted(true); //real: true
 
-		mSwerveModules[0].resetEncoder();
+		//why only reseting for module 0 ??
+		 mSwerveModules[0].resetEncoder();
 		for(int i = 0; i < 4; i++) {
 			mSwerveModules[i].getDriveMotor().setNeutralMode(NeutralMode.Brake);
 		}
@@ -53,34 +54,31 @@ public class SwerveDriveSubsystem extends HolonomicDrivetrain { // + is clockwis
 		isAuto = false;
 	}
 
-	public AHRS getNavX() {
+	public AHRS getNavX() { //AHRS: attitude heading reference system (orientation)
 		return mNavX;
 	}
 
-	public double getGyroAngle() {
+	public double getGyroAngle() { //relative(to field) orientation in degrees  
 		return (mNavX.getAngle() - getAdjustmentAngle());
 	}
 
-	public double getGyroAngle2() {
+	public double getGyroAngle2() { //might get rid of, change where used
 		return (-getGyroAngle());
 	}
 
-	public double getGyroRate() {
+	public double getGyroRate() { //angular velocity of robot
 		return mNavX.getRate();
 	}
 
-	public double getYaw()
-	{
+	public double getYaw() { //rotation around vertical(z) axis <--only one used
 		return mNavX.getAngle();
 	}
 
-	public double getPitch()
-	{
+	public double getPitch() { //rotation around perpendicular(y) axis
 		return mNavX.getPitch();
 	}
 
-	public double getRoll()
-	{
+	public double getRoll() { //rotation around forward(x) axis
 		return  mNavX.getRoll();
 	}
 
@@ -88,12 +86,14 @@ public class SwerveDriveSubsystem extends HolonomicDrivetrain { // + is clockwis
 		return mSwerveModules[i];
 	}
 
+
 	@Override
-	public void holonomicDrive(double forward, double strafe, double rotation) {
+	public void holonomicDrive(double forward, double strafe, double rotation) { //parameters: joystick values 0-1
 		forward *= getSpeedMultiplier();
-		strafe *= getSpeedMultiplier();
+		strafe *= getSpeedMultiplier(); 
 		
-		//forwrd in fieldOriented is driver mode, forward will be relative to field
+		//forward in fieldOriented is driver mode, forward will be relative to field
+		//math that makes fieldOriented work
 		if (isFieldOriented()) {
 			
 			double angleRad = Math.toRadians(getGyroAngle());
@@ -103,23 +103,27 @@ public class SwerveDriveSubsystem extends HolonomicDrivetrain { // + is clockwis
 			forward = temp;
 		}
 		
-		double a = strafe - rotation * (WHEELBASE / TRACKWIDTH);
-		double b = strafe + rotation * (WHEELBASE / TRACKWIDTH);
-		double c = forward - rotation * (TRACKWIDTH / WHEELBASE);
-		double d = forward + rotation * (TRACKWIDTH / WHEELBASE);
+		//linear movement while rotating(speeds of different sides of robot)
+		//potential for fancy tricks
+		//diagram on git
+		double frontSpeedDif = strafe - rotation * (WHEELBASE / TRACKWIDTH); //strafe while rotating
+		double backSpeedDif = strafe + rotation * (WHEELBASE / TRACKWIDTH); //strafe while rotating
+		double leftSpeedDif = forward - rotation * (TRACKWIDTH / WHEELBASE); //forward while rotating speeds
+		double rightSpeedDif = forward + rotation * (TRACKWIDTH / WHEELBASE); //forward while rotating speeds
 
-		double[] angles = new double[]{
-				Math.atan2(b, c) * 180 / Math.PI,
-				Math.atan2(b, d) * 180 / Math.PI,
-				Math.atan2(a, d) * 180 / Math.PI,
-				Math.atan2(a, c) * 180 / Math.PI
+		double[] angles = new double[]{ //gives orientation of each wheel in degrees from speeds (vectors pt1)
+				Math.atan2(backSpeedDif, leftSpeedDif) * 180 / Math.PI,
+				Math.atan2(backSpeedDif, rightSpeedDif) * 180 / Math.PI,
+				Math.atan2(frontSpeedDif, rightSpeedDif) * 180 / Math.PI,
+				Math.atan2(frontSpeedDif, leftSpeedDif) * 180 / Math.PI
 		};
 
-		double[] speeds = new double[]{
-				Math.sqrt(b * b + c * c),
-				Math.sqrt(b * b + d * d),
-				Math.sqrt(a * a + d * d),
-				Math.sqrt(a * a + c * c)
+		double[] speeds = new double[]{ //diagonal movement combined from linear motion (vectors pt2)
+				//pythagorean thereom: Math.hypot(x, y) = sqrt(x^2 + y^2)
+				Math.hypot(backSpeedDif, leftSpeedDif),
+				Math.hypot(backSpeedDif, rightSpeedDif),
+				Math.hypot(frontSpeedDif, rightSpeedDif),
+				Math.hypot(frontSpeedDif, leftSpeedDif)
 		};
 
 		SmartDashboard.putNumber("Module 0 Ticks", mSwerveModules[0].getPosition());
@@ -127,19 +131,12 @@ public class SwerveDriveSubsystem extends HolonomicDrivetrain { // + is clockwis
 		SmartDashboard.putNumber("Module 2 Ticks", mSwerveModules[2].getPosition());
 		SmartDashboard.putNumber("Module 3 Ticks", mSwerveModules[3].getPosition());
 
-		double max = speeds[0];  //remove?
-
-		for (double speed : speeds) {  //regular for loop is preferred here, do we use max anywhere?  -- JMH
-			if (speed > max) {
-				max = speed;
-			}
-		}
-
+		//giving modules their direction and speed (vector)
 		for (int i = 0; i < 4; i++) {
 			if (Math.abs(forward) > 0.05 ||
 			    Math.abs(strafe) > 0.05 ||
 			    Math.abs(rotation) > 0.05) {
-				mSwerveModules[i].setTargetAngle(angles[i] + 180, isAuto);
+				mSwerveModules[i].setTargetAngle(angles[i] + 180, isAuto); //"+180" this is why we can't have nice things --simplify, fix bug
 			} else {
 				mSwerveModules[i].setTargetAngle(mSwerveModules[i].getTargetAngle(), isAuto);
 			}
@@ -160,12 +157,12 @@ public class SwerveDriveSubsystem extends HolonomicDrivetrain { // + is clockwis
 		}
 	}
 
-	public double getInches()
-	{
+	//distance traveled(odometer)
+	public double getInches() {
 		return mSwerveModules[0].getInches();
 	}
 
-	public void driveForwardDistance(double targetPos, double angle){ // inches & degrees
+	public void driveForwardDistance(double targetPos, double angle) { // inches & degrees
 		double angleError = ((angle - mNavX.getYaw()) / 180)*10;
 
 		angleError = Math.min(angleError, 1);
