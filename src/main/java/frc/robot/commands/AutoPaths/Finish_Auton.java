@@ -13,32 +13,28 @@ import frc.robot.utility.TrajectoryMaker;
 import frc.robot.commands.swervedrive.Autonomous;
 import frc.robot.subsystems.Drive.SwerveDriveSubsystem;
 
-// NOTE:  Consider using this command inline, rather than writing a subclass.  For more
-// information, see:
-// https://docs.wpilib.org/en/latest/docs/software/commandbased/convenience-features.html
+/**
+ * Creates a trajectory that runs 
+ * exit early if galactic search is finished 
+ */
 public class Finish_Auton extends SequentialCommandGroup {
-  /**
-   * Creates a trajectory that runs 
-   * if galactic search is done ends early
-   */
-  public GalacticSearch search;
-  /**
-   * checks for galacticSearchDone 
-   */
-  @Override
-  public boolean isFinished() {
-    return super.isFinished() || search.getDone();
-  }
 
-  public Finish_Auton(SwerveDriveSubsystem swerveDriveSubsystem, double[][] inputPoints, GalacticSearch galacticSearch, boolean firstPath, double startOrientation, double endOrientation) {  // test forward path
+  public GalacticSearch search;
+
+  public Finish_Auton(SwerveDriveSubsystem swerveDriveSubsystem, double[][] inputPoints, GalacticSearch galacticSearch, boolean firstPath, double startOrientation, double endOrientation) { 
    
     super();
-    TrajectoryMaker trajectory = TrajectoryHelper.createTrajectory(inputPoints, 0.827, startOrientation, endOrientation, false);
+    TrajectoryMaker trajectory = TrajectoryHelper.createTrajectory(inputPoints, TrajectoryHelper.GLOBAL_SCALE, startOrientation, endOrientation, false);
     addCommands(
       new Autonomous(swerveDriveSubsystem, trajectory.getTrajectory(), trajectory.getAngle(), firstPath).withTimeout(60)
     );
     this.search = galacticSearch; 
   }
 
+  //checks for galacticSearchDone 
+  @Override
+  public boolean isFinished() {
+    return super.isFinished() || search.getDone();
+  }
   
 }

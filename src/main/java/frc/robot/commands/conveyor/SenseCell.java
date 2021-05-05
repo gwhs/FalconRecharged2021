@@ -10,14 +10,20 @@ package frc.robot.commands.conveyor;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.ConveyorTalon;
 
-public class SenseCell extends CommandBase {
   /**
    * Creates a new SenseCell.
+   * Sets the seen in conveyor to false
+   * Once it sees powercell, set seen to true, runs the conveyor until the ball is not blocking the time of flights sensor
    */
+public class SenseCell extends CommandBase {
   private boolean seen;
 
   private ConveyorTalon conveyorTalon;
 
+  /**
+   * 
+   * @param conveyorTalon
+   */
   public SenseCell(ConveyorTalon conveyorTalon) {
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(conveyorTalon);
@@ -36,7 +42,6 @@ public class SenseCell extends CommandBase {
   @Override
   public void execute() {
     seen = conveyorTalon.getStatus() && !conveyorTalon.isIgnored();
-    System.out.println("Checking if conveyor works: " + seen); //testing for bug in conveyor
     if(seen)
     {
       conveyorTalon.setHasSeen(true);
@@ -48,14 +53,4 @@ public class SenseCell extends CommandBase {
     }
   }
 
-  // Called once the command ends or is interrupted.
-  @Override
-  public void end(boolean interrupted) {
-  }
-
-  // Returns true when the command should end.
-  @Override
-  public boolean isFinished() {
-    return false;
-  }
 }
