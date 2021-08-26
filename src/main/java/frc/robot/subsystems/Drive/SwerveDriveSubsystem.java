@@ -17,7 +17,7 @@ public class SwerveDriveSubsystem extends HolonomicDrivetrain { // + is clockwis
 	 * 0 is Front Right
 	 * 1 is Front Left
 	 * 2 is Back Left
-	 * 3 is Back Right
+	 * 3 is Back Right 
 	 */
 	private final SwerveDriveModule[] mSwerveModules = new SwerveDriveModule[4];
 
@@ -223,6 +223,7 @@ public class SwerveDriveSubsystem extends HolonomicDrivetrain { // + is clockwis
 		SmartDashboard.putNumber("Mod 1 Angle", mSwerveModules[1].getCurrentAngle());
 		SmartDashboard.putNumber("Mod 2 Angle", mSwerveModules[2].getCurrentAngle());
 		SmartDashboard.putNumber("Mod 3 Angle", mSwerveModules[3].getCurrentAngle());
+		SmartDashboard.putNumber("Encoder Ticks in Inches: ", mSwerveModules[3].getInches());
 	}
 }
 

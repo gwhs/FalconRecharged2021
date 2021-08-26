@@ -233,7 +233,8 @@ public class SwerveDriveModule extends SubsystemBase {
     }
 
     public double encoderTicksToInches(final double ticks) {
-        return ticks / Constants.TICKS_PER_INCH;  
+        double ticksToInches = ticks / Constants.TICKS_PER_INCH;
+        return ticksToInches;  
     }
 
     public double getPosition() {
