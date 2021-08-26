@@ -34,8 +34,8 @@ public class ClimberArmSpeed extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    double speed1 = MathUtils.deadband(operatorController.getRawAxis(1));
-    double speed2 = MathUtils.deadband(operatorController.getRawAxis(5));
+    double speed1 = MathUtils.deadband(operatorController.getRawAxis(1), 0.2 );
+    double speed2 = MathUtils.deadband(operatorController.getRawAxis(5), 0.2 );
     // if(operatorController.get)
     mClimberTalon.moveUpperArm(-speed1);
     mClimberTalon.moveLowerArm(speed2);

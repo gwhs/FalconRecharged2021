@@ -40,20 +40,36 @@ public class Autonomous extends CommandBase {
   private SwerveDriveSubsystem drivetrain;
   private Timer time;
   private double initGyro;
+  private static double firstGyroAngle;
+  private boolean firstAutoPath;
   private double angle;
+  private static double endOrientation;
 
   //Speed constant calulated using 19251 as ticks/rev, 0.3048 ft to m conversion, 2pi*(1/6) is rev tp ft conversion
   public static final double SPEEDCONSTANT = (2*Math.PI*(1.0/6)*0.3048)/19251; //used to swtich from ticks to meters
   public double initPos[];
 
+
   public Autonomous(SwerveDriveSubsystem swerveDriveSubsystem, Trajectory trajectory, double angle) {  //what is the angle parameter here?
+    // Use addRequirements() here to declare subsystem dependencies.
+    // drivetrain = swerveDriveSubsystem;
+    // this.trajectory = trajectory;
+    // addRequirements(drivetrain);
+    // time = new Timer();
+    // initPos = new double[4];
+    // this.angle = angle;
+    this(swerveDriveSubsystem, trajectory, angle, true);
+  }
+
+  public Autonomous(SwerveDriveSubsystem swerveDriveSubsystem, Trajectory trajectory, double angle, boolean firstAutoPath) {  //what is the angle parameter here?
     // Use addRequirements() here to declare subsystem dependencies.
     drivetrain = swerveDriveSubsystem;
     this.trajectory = trajectory;
     addRequirements(drivetrain);
     time = new Timer();
     initPos = new double[4];
-    this.angle = angle;
+    this.angle = angle; //set to current gyro or expected angle or angle of modules
+    this.firstAutoPath = firstAutoPath;
   }
 
   // Called when the command is initially scheduled.
@@ -91,18 +107,22 @@ public class Autonomous extends CommandBase {
       new Translation2d(Constants.MOD_TO_CENTER, -Constants.MOD_TO_CENTER), //(-,-)
       new Translation2d(-Constants.MOD_TO_CENTER, -Constants.MOD_TO_CENTER));
     }
-    odometry = new SwerveDriveOdometry(kinematics,new Rotation2d(Math.toRadians(0)));
-    odometry.resetPosition(new Pose2d(0, 0, new Rotation2d(0)), new Rotation2d(Math.toRadians(0)));
+    //odometry = new SwerveDriveOdometry(kinematics,new Rotation2d(Math.toRadians(0)));
+    double angleOfRobotOrientation = drivetrain.getGyroAngle();
+    odometry = new SwerveDriveOdometry(kinematics, new Rotation2d(Math.toRadians(angleOfRobotOrientation)), new Pose2d(0, 0, new Rotation2d(Math.toRadians(angleOfRobotOrientation))));
+    //something about new pose 0,0 , init starting pose?
+    
+    //odometry.resetPosition(new Pose2d(0, 0, new Rotation2d(0)), new Rotation2d(Math.toRadians(0)));
     time.start();
     boolean isAuto = drivetrain.getIsAuto();
     drivetrain.setFieldOriented(false);
     drivetrain.setIsAuto(true);
     drivetrain.swapPIDSlot(1);
     drivetrain.swapDrivePIDSlot(1);
-    drivetrain.getSwerveModule(0).setTargetAngle(angle, isAuto);
-    drivetrain.getSwerveModule(1).setTargetAngle(angle, isAuto);
-    drivetrain.getSwerveModule(2).setTargetAngle(180+angle, isAuto);  //what is up with this module?
-    drivetrain.getSwerveModule(3).setTargetAngle(angle, isAuto);
+    // drivetrain.getSwerveModule(0).setTargetAngle(angle, isAuto);
+    // drivetrain.getSwerveModule(1).setTargetAngle(angle, isAuto);
+    // drivetrain.getSwerveModule(2).setTargetAngle(180+angle, isAuto);  //what is up with this module?
+    // drivetrain.getSwerveModule(3).setTargetAngle(angle, isAuto);
     drivetrain.getSwerveModule(0).getDriveMotor().setInverted(true);
     drivetrain.getSwerveModule(1).getDriveMotor().setInverted(true);
     drivetrain.getSwerveModule(2).getDriveMotor().setInverted(true);
@@ -111,8 +131,19 @@ public class Autonomous extends CommandBase {
     initPos[1] = angle;
     initPos[2] = angle;
     initPos[3] = angle;
-    drivetrain.zeroGyro();
-    initGyro = drivetrain.getGyroAngle();
+    //drivetrain.zeroGyro(); //comment out maybe, if we don't do relative
+    // if(firstAutoPath) {
+    //   initGyro = drivetrain.getGyroAngle();
+    //   firstGyroAngle = initGyro;
+    // }
+    // else {
+    //   initGyro = firstGyroAngle;
+    // }
+    if(firstAutoPath) {
+      firstGyroAngle = drivetrain.getGyroAngle();
+      
+    }
+    initGyro = firstGyroAngle;
     SmartDashboard.putNumber("Init Gyro", initGyro);
 
   }
@@ -123,7 +154,7 @@ public class Autonomous extends CommandBase {
     System.out.println("time: " + time.get());
 
     //10* is to give odometry speed in m/s instead of m/100ms
-    odometry.update(new Rotation2d(Math.toRadians(drivetrain.getGyroAngle() - initGyro)), 
+    odometry.update(new Rotation2d(Math.toRadians(drivetrain.getGyroAngle() - initGyro)), //substracting idk, get rid of ???
       new SwerveModuleState(10*drivetrain.getSwerveModule(0).getDriveMotor().getSelectedSensorVelocity()*SPEEDCONSTANT, new Rotation2d(Math.toRadians(drivetrain.getSwerveModule(0).getCurrentAngle()-initPos[0]))),
       new SwerveModuleState(10*drivetrain.getSwerveModule(1).getDriveMotor().getSelectedSensorVelocity()*SPEEDCONSTANT, new Rotation2d(Math.toRadians(drivetrain.getSwerveModule(1).getCurrentAngle()-initPos[1]))),
       new SwerveModuleState(10*drivetrain.getSwerveModule(2).getDriveMotor().getSelectedSensorVelocity()*SPEEDCONSTANT, new Rotation2d(Math.toRadians(drivetrain.getSwerveModule(2).getCurrentAngle()-initPos[2]))),
@@ -170,7 +201,12 @@ public class Autonomous extends CommandBase {
     drivetrain.setIsAuto(false);
     time.reset();
     System.out.println("AutoEnded");
-    odometry.resetPosition(new Pose2d(0, 0, new Rotation2d(0)), new Rotation2d(Math.toRadians(0)));
+    //odometry.resetPosition(new Pose2d(0, 0, new Rotation2d(0)), new Rotation2d(Math.toRadians(0)));
+    endOrientation = drivetrain.getGyroAngle()-initGyro;
+  }
+
+  public static double getEndOrientation() {
+    return endOrientation;
   }
 
   // Returns true when the command should end.
