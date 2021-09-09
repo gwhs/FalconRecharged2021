@@ -36,7 +36,7 @@ public class SenseCell extends CommandBase {
   @Override
   public void execute() {
     seen = conveyorTalon.getStatus() && !conveyorTalon.isIgnored();
-    System.out.println("Checking if conveyor works: " + seen); //testing for bug in conveyor
+    //System.out.println("Checking if conveyor works: " + seen); //testing for bug in conveyor
     if(seen)
     {
       conveyorTalon.setHasSeen(true);

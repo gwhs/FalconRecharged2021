@@ -67,7 +67,7 @@ public class DaphneTwoContainer {
   private final Intake intake;
   private final Shooter shooterMotor;
   private final Compressor compressor;
-  //private final ClimberTalon climberT;
+  private final ClimberTalon climberT;
   private final LimelightPortal limeL;
 
   /**
@@ -88,8 +88,8 @@ public class DaphneTwoContainer {
     conveyorT = new ConveyorTalon();
     intake = new Intake();
     shooterMotor = new Shooter();
-    compressor = new Compressor();
-    //climberT = new ClimberTalon();
+    compressor = null; //new Compressor();
+    climberT = new ClimberTalon();
     limeL = new LimelightPortal();
 
     // create the input controllers
@@ -100,7 +100,7 @@ public class DaphneTwoContainer {
     swerveDriveSubsystem.setDefaultCommand(new HolonomicDriveCommand(swerveDriveSubsystem, mXboxController));
     //colorPanelSpinner.setDefaultCommand(new SpinnerCommand(colorPanelSpinner, mXboxController2));
     conveyorT.setDefaultCommand(new SenseCell(conveyorT));
-    //climberT.setDefaultCommand(new ClimberArmSpeed(climberT, mXboxController2));
+    climberT.setDefaultCommand(new ClimberArmSpeed(climberT, mXboxController));//599//--------------------
 
     // configure the buttons
     //configureButtonBindingsForAuto();
@@ -120,17 +120,21 @@ public class DaphneTwoContainer {
     JoystickButton stickRight = new JoystickButton(mXboxController, XboxController.Button.kStickRight.value);
 
 
-    buttonY.whileHeld(new ConveyorSpeed( conveyorT, .5)); //while Y is held down conveyor runs
+    //buttonY.whileHeld(new ConveyorSpeed( conveyorT, .5)); //while Y is held down conveyor runs
     leftBumper.whileHeld(new SetShooterSpeed(shooterMotor, 6000));
     back.whileHeld(new ZeroNavX(swerveDriveSubsystem));
-    buttonX.whenPressed((new ConveyorSpeed( conveyorT, DaphneTwoConstants.CONVEYOR_UNLOADS_SPEED)).withTimeout(3)); // change seconds later
+    //buttonX.whenPressed((new ConveyorSpeed( conveyorT, DaphneTwoConstants.CONVEYOR_UNLOADS_SPEED)).withTimeout(3)); // change seconds later
     rightBumper.whenPressed(new AutoShoot(conveyorT, shooterMotor, false, DaphneTwoConstants.GREEN_RPM, DaphneTwoConstants.CONVEYOR_UNLOADS_SPEED));
     start.whenPressed(new InstantCommand(() -> {shooterMotor.setMotorRPM(0);}, shooterMotor)); 
 
-    buttonA.whenPressed(new ToggleConveyorIntake(intake, -1));
+    buttonY.whenPressed(new ToggleConveyorIntake(intake, -1));
     //toggle shooter
     buttonB.whenPressed(new InstantCommand(() -> shooterMotor.toggleShooter(-DaphneTwoConstants.GREEN_RPM), shooterMotor)); //change 1000 rpm later
     //buttonB.whenPressed(new InstantCommand((DaphneTwoConstants.GREEN_RPM) -> toggleShooter() //looking for something that doesn't take parameters  
+    buttonX.whenPressed(new ToggleClimberGearLock(climberT)); 
+    buttonA.whenPressed(new MoveBothClimberArms(climberT, 1000));
+    
+
   }
   /**
    * Use this method to define your button->command mappings. Buttons can be
@@ -171,11 +175,13 @@ public class DaphneTwoContainer {
     buttonY.whileHeld(new ConveyorSpeed( conveyorT, .5)); //while Y is held down conveyor runs
     buttonB.whileHeld(new IntakeSpeed(intake,-.5)); //while b is held down intake runs
     //leftBumper.whileHeld(new ConveyorSpeed( conveyorT, -.7));
-    leftBumper.whileHeld(new SetShooterSpeed(shooterMotor, 6000));
+    //leftBumper.whileHeld(new SetShooterSpeed(shooterMotor, 6000));
     back.whileHeld(new ZeroNavX(swerveDriveSubsystem));
     //buttonX.whileHeld(new ConveyorSpeed( conveyorT, -.5));
-    //buttonX.whenPressed(new ToggleClimberGearLock(climberT));
-    rightBumper.whenPressed(new AutoShoot(conveyorT, shooterMotor, false, DaphneTwoConstants.GREEN_RPM, DaphneTwoConstants.CONVEYOR_UNLOADS_SPEED));
+   // buttonX.whenPressed(new ToggleClimberGearLock(climberT)); 
+    //rightBumper.whenPressed(new AutoShoot(conveyorT, shooterMotor, false, DaphneTwoConstants.GREEN_RPM, DaphneTwoConstants.CONVEYOR_UNLOADS_SPEED));
+    
+
     //start.whileHeld(new ReadLimelight(limeL));
     //start.whenPressed(new RotateWithLimelight(limeL, swerveDriveSubsystem));
     //start.whenPressed(new TurnToZeroLimelight(0, swerveDriveSubsystem, limeL));
