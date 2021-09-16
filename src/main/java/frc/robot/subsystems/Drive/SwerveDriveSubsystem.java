@@ -120,10 +120,11 @@ public class SwerveDriveSubsystem extends HolonomicDrivetrain { // + is clockwis
 				Math.sqrt(a * a + c * c)
 		};
 
-		SmartDashboard.putNumber("Module 0 Ticks", mSwerveModules[0].getPosition());
-		SmartDashboard.putNumber("Module 1 Ticks", mSwerveModules[1].getPosition());
-		SmartDashboard.putNumber("Module 2 Ticks", mSwerveModules[2].getPosition());
-		SmartDashboard.putNumber("Module 3 Ticks", mSwerveModules[3].getPosition());
+		// SmartDashboard.putNumber("Module 0 Ticks", mSwerveModules[0].getPosition());
+		// SmartDashboard.putNumber("Module 1 Ticks", mSwerveModules[1].getPosition());
+		// SmartDashboard.putNumber("Module 2 Ticks", mSwerveModules[2].getPosition());
+		// SmartDashboard.putNumber("Module 3 Ticks", mSwerveModules[3].getPosition());
+		SmartDashboard.putNumber("Module 3 get current angle", mSwerveModules[3].getCurrentAngle());
 
 		double max = speeds[0];  //remove?
 

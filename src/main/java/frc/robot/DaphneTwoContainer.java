@@ -75,10 +75,10 @@ public class DaphneTwoContainer {
    */
   public DaphneTwoContainer() {
     // create all the subsystems needed in this robot
-    SwerveDriveModule m0 = new SwerveDriveModule(0, new TalonSRX(DaphneTwoConstants.ANGLE2_TALON), new TalonFX(DaphneTwoConstants.DRIVE2_TALON), 213); //real:390 practice: 212
-    SwerveDriveModule m1 = new SwerveDriveModule(1, new TalonSRX(DaphneTwoConstants.ANGLE1_TALON), new TalonFX(DaphneTwoConstants.DRIVE1_TALON), 175); //real:293 practice: 59
-    SwerveDriveModule m2 = new SwerveDriveModule(2, new TalonSRX(DaphneTwoConstants.ANGLE3_TALON), new TalonFX(DaphneTwoConstants.DRIVE3_TALON), 293); //real:298 practice: 56
-    SwerveDriveModule m3 = new SwerveDriveModule(3, new TalonSRX(DaphneTwoConstants.ANGLE4_TALON), new TalonFX(DaphneTwoConstants.DRIVE4_TALON), 27); //real: 355 practice: 190
+    SwerveDriveModule m0 = new SwerveDriveModule(0, new TalonSRX(DaphneTwoConstants.ANGLE2_TALON), new TalonFX(DaphneTwoConstants.DRIVE2_TALON), 308); //real:390 practice: 212
+    SwerveDriveModule m1 = new SwerveDriveModule(1, new TalonSRX(DaphneTwoConstants.ANGLE1_TALON), new TalonFX(DaphneTwoConstants.DRIVE1_TALON), 160); //real:293 practice: 59
+    SwerveDriveModule m2 = new SwerveDriveModule(2, new TalonSRX(DaphneTwoConstants.ANGLE3_TALON), new TalonFX(DaphneTwoConstants.DRIVE3_TALON), 276); //real:298 practice: 56
+    SwerveDriveModule m3 = new SwerveDriveModule(3, new TalonSRX(DaphneTwoConstants.ANGLE4_TALON), new TalonFX(DaphneTwoConstants.DRIVE4_TALON), 357); //real: 355 practice: 190
 
     swerveDriveSubsystem = new SwerveDriveSubsystem(m0, m1, m2, m3);
     swerveDriveSubsystem.zeroGyro();
@@ -100,7 +100,7 @@ public class DaphneTwoContainer {
     swerveDriveSubsystem.setDefaultCommand(new HolonomicDriveCommand(swerveDriveSubsystem, mXboxController));
     //colorPanelSpinner.setDefaultCommand(new SpinnerCommand(colorPanelSpinner, mXboxController2));
     conveyorT.setDefaultCommand(new SenseCell(conveyorT));
-    climberT.setDefaultCommand(new ClimberArmSpeed(climberT, mXboxController));//599//--------------------
+    //climberT.setDefaultCommand(new ClimberArmSpeed(climberT, mXboxController));//599//--------------------
 
     // configure the buttons
     //configureButtonBindingsForAuto();
@@ -127,12 +127,12 @@ public class DaphneTwoContainer {
     rightBumper.whenPressed(new AutoShoot(conveyorT, shooterMotor, false, DaphneTwoConstants.GREEN_RPM, DaphneTwoConstants.CONVEYOR_UNLOADS_SPEED));
     start.whenPressed(new InstantCommand(() -> {shooterMotor.setMotorRPM(0);}, shooterMotor)); 
 
-    buttonY.whenPressed(new ToggleConveyorIntake(intake, -1));
+    //buttonY.whenPressed(new ToggleConveyorIntake(intake, -1));
     //toggle shooter
-    buttonB.whenPressed(new InstantCommand(() -> shooterMotor.toggleShooter(-DaphneTwoConstants.GREEN_RPM), shooterMotor)); //change 1000 rpm later
+    //dbuttonB.whenPressed(new InstantCommand(() -> shooterMotor.toggleShooter(-DaphneTwoConstants.GREEN_RPM), shooterMotor)); //change 1000 rpm later
     //buttonB.whenPressed(new InstantCommand((DaphneTwoConstants.GREEN_RPM) -> toggleShooter() //looking for something that doesn't take parameters  
-    buttonX.whenPressed(new ToggleClimberGearLock(climberT)); 
-    buttonA.whenPressed(new MoveBothClimberArms(climberT, 1000));
+    //buttonX.whenPressed(new ToggleClimberGearLock(climberT)); 
+    //buttonA.whenPressed(new MoveClimberArm(climberT, 1000));
     
 
   }
