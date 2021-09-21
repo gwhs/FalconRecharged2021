@@ -46,6 +46,9 @@ public class SwerveDriveSubsystem extends HolonomicDrivetrain { // + is clockwis
 		 mSwerveModules[3].getAngleMotor().setInverted(true); //real: true
 
 		mSwerveModules[0].resetEncoder();
+		mSwerveModules[1].resetEncoder();
+		mSwerveModules[2].resetEncoder();
+		mSwerveModules[3].resetEncoder();
 		for(int i = 0; i < 4; i++) {
 			mSwerveModules[i].getDriveMotor().setNeutralMode(NeutralMode.Brake);
 		}
