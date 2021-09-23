@@ -63,9 +63,11 @@ public static double[][] testStep= {
     };
 
 
-    public static double[][] test2MetersAndBack= {
+    public static double[][] test2MetersAndBack = {
         {0,0},
         {78.7402,0}, // roughly equal to 2 meters
+        {78.7402,78.7402},
+        {0,78.7402},
         {0,0}
     };
 
@@ -294,9 +296,9 @@ public static double[][] testStep= {
         return createTrajectory(test3Meters, GLOBAL_SCALE);
     }
 
-    public static TrajectoryMaker createTest2Meters() // test path going 2 meters forward
+    public static TrajectoryMaker createTest2MetersAndBack() // test path going 2 meters forward
     {
-        return createTrajectory(test2Meters, GLOBAL_SCALE);
+        return createTrajectory(test2MetersAndBack, GLOBAL_SCALE, 0, 0, false);
     }
 
     public static TrajectoryMaker createTestStep() // test path going forward
@@ -479,4 +481,8 @@ public static double[][] testStep= {
     {
         return new TrajectoryMaker(new Pose2d(0, 0, new Rotation2d(0)), new Pose2d(-4.75, 0, new Rotation2d(0)), true);
     }
+
+	public static TrajectoryMaker test2MetersAndBack() {
+		return null;
+	}
 }

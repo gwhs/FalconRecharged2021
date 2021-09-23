@@ -78,7 +78,7 @@ public class DaphneTwoContainer {
     SwerveDriveModule m0 = new SwerveDriveModule(0, new TalonSRX(DaphneTwoConstants.ANGLE2_TALON), new TalonFX(DaphneTwoConstants.DRIVE2_TALON), 128); //real:390 practice: 212
     SwerveDriveModule m1 = new SwerveDriveModule(1, new TalonSRX(DaphneTwoConstants.ANGLE1_TALON), new TalonFX(DaphneTwoConstants.DRIVE1_TALON), 340); //real:293 practice: 59
     SwerveDriveModule m2 = new SwerveDriveModule(2, new TalonSRX(DaphneTwoConstants.ANGLE3_TALON), new TalonFX(DaphneTwoConstants.DRIVE3_TALON), 96); //real:298 practice: 56
-    SwerveDriveModule m3 = new SwerveDriveModule(3, new TalonSRX(DaphneTwoConstants.ANGLE4_TALON), new TalonFX(DaphneTwoConstants.DRIVE4_TALON), 162); //real: 355 practice: 190 // ````````````````````````````````````````````````````````````````````````````````````````````````````````357
+    SwerveDriveModule m3 = new SwerveDriveModule(3, new TalonSRX(DaphneTwoConstants.ANGLE4_TALON), new TalonFX(DaphneTwoConstants.DRIVE4_TALON), 164); //real: 355 practice: 190 // ````````````````````````````````````````````````````````````````````````````````````````````````````````357
 
     swerveDriveSubsystem = new SwerveDriveSubsystem(m0, m1, m2, m3);
     swerveDriveSubsystem.zeroGyro();
@@ -103,8 +103,8 @@ public class DaphneTwoContainer {
     //climberT.setDefaultCommand(new ClimberArmSpeed(climberT, mXboxController));//599//--------------------
 
     // configure the buttons
-    //configureButtonBindingsForAuto();
-    configureButtonsForPowerPort();
+    configureButtonBindingsForAuto();
+    //configureButtonsForPowerPort();
   }
 
   public void configureButtonsForPowerPort() {
@@ -173,7 +173,10 @@ public class DaphneTwoContainer {
     buttonA.whenPressed(new InstantCommand(intake::toggleIntakeSolenoidMode, intake));
     buttonX.whenPressed(new ToggleFieldOrientedCommand(swerveDriveSubsystem));
     buttonY.whileHeld(new ConveyorSpeed( conveyorT, .5)); //while Y is held down conveyor runs
-    buttonB.whileHeld(new IntakeSpeed(intake,-.5)); //while b is held down intake runs
+    //buttonB.whileHeld(new IntakeSpeed(intake,-.5)); //while b is held down intake runs
+
+    TrajectoryMaker path2Meters = TrajectoryHelper.createTest2MetersAndBack();
+    buttonB.whenPressed(new Autonomous(swerveDriveSubsystem, path2Meters.getTrajectory(), path2Meters.getAngle(), true));
     //leftBumper.whileHeld(new ConveyorSpeed( conveyorT, -.7));
     //leftBumper.whileHeld(new SetShooterSpeed(shooterMotor, 6000));
     back.whileHeld(new ZeroNavX(swerveDriveSubsystem));

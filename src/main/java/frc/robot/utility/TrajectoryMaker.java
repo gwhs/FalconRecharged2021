@@ -41,12 +41,12 @@ public TrajectoryMaker(Pose2d start, Pose2d end, boolean isHyp) {
     this.end = end;
     this.isHyp = isHyp;
     angle = 0;
-    config = new TrajectoryConfig(MAX_VELOCITY, MAX_ACCELERATION);  //make into constants
+    config = new TrajectoryConfig(0.5, 0.5);  //make into constants
     config.setStartVelocity(0);
     config.setEndVelocity(0);
     config.setReversed(false);
 
-    config.addConstraint(new CentripetalAccelerationConstraint(MAX_CENTRIPETAL));
+    config.addConstraint(new CentripetalAccelerationConstraint(0.5));
 
     listOfPoints = new ArrayList<Translation2d>();
     trajectory = createTrajectory();
@@ -56,12 +56,12 @@ public TrajectoryMaker(Pose2d start, Pose2d end, ArrayList<Translation2d> points
     this.end = end;
     this.isHyp = false;
     angle = 0;
-    config = new TrajectoryConfig(MAX_VELOCITY,MAX_ACCELERATION); //slower for Bounce
+    config = new TrajectoryConfig(0.5,0.5); //slower for Bounce
     //config = new TrajectoryConfig(10, 3);  // (TrajectoryConfig​(double maxVelocityMetersPerSecond, double maxAccelerationMetersPerSecondSq))
     config.setStartVelocity(0);
     config.setEndVelocity(0);
     config.setReversed(false);
-    config.addConstraint(new CentripetalAccelerationConstraint(MAX_CENTRIPETAL));
+    config.addConstraint(new CentripetalAccelerationConstraint(0.5));
     listOfPoints = points;
     trajectory = createTrajectory();
 }
@@ -72,11 +72,11 @@ public TrajectoryMaker(Pose2d start, Pose2d end, ArrayList<Translation2d> points
     this.isHyp = false;
     angle = 0;
     //config = new TrajectoryConfig(1, 1); //slower for Bounce
-    config = new TrajectoryConfig(MAX_VELOCITY,MAX_ACCELERATION);  // (TrajectoryConfig​(double maxVelocityMetersPerSecond, double maxAccelerationMetersPerSecondSq))
+    config = new TrajectoryConfig(0.5,0.5);  // (TrajectoryConfig​(double maxVelocityMetersPerSecond, double maxAccelerationMetersPerSecondSq))
     config.setStartVelocity(0);
     config.setEndVelocity(0);
     config.setReversed(isReversed);
-    config.addConstraint(new CentripetalAccelerationConstraint(MAX_CENTRIPETAL));
+    config.addConstraint(new CentripetalAccelerationConstraint(0.5));
     listOfPoints = points;
     trajectory = createTrajectory();
 }
