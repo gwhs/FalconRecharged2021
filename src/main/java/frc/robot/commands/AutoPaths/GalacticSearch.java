@@ -73,6 +73,7 @@ public class GalacticSearch extends SequentialCommandGroup {
     conveyorTalon.toggleIgnore(false);
   }
 
+
   public GalacticSearch(SwerveDriveSubsystem swerveDriveSubsystem, Intake intake, ConveyorTalon conveyor) {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
@@ -85,7 +86,7 @@ public class GalacticSearch extends SequentialCommandGroup {
     super();
     conveyorTalon = conveyor;
     this.intake = intake;
-    addCommands(
+    addCommands( 
     new InstantCommand(intake::lowerIntake, intake),
     new InstantCommand(() -> intake.setSpeed(intakeSpeed),intake),
     new Finish_Auton(swerveDriveSubsystem, Start_to_B3, this, true, 0, 0).raceWith(new SenseCell(conveyor)), 
@@ -98,7 +99,7 @@ public class GalacticSearch extends SequentialCommandGroup {
     conditional(swerveDriveSubsystem, intake, conveyor, D6_to_Finish_A, D6_to_Finish_B),
     new InstantCommand(swerveDriveSubsystem::stopDriveMotors, swerveDriveSubsystem),
     new InstantCommand(() -> intake.setSpeed(0),intake)
-    );
+    ); 
   } 
 
   /*
@@ -171,12 +172,12 @@ public class GalacticSearch extends SequentialCommandGroup {
     private static final double[] D6_END_A = {330, 120};
     private static final double[] D6_END_B = {330, 90};
 
-    private static final double[][] Start_to_B3= {
+    private static final double[][] Start_to_B3 = {
       B1Test,
       B1,
     };
 
-    private static final double[][] Start_to_B32= {
+    private static final double[][] Start_to_B32 = {
       B1,
       B3,
     };
