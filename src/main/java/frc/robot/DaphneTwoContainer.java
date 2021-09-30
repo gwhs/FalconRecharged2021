@@ -26,6 +26,7 @@ import frc.robot.commands.AutoPaths.AutoPath1;
 import frc.robot.commands.AutoPaths.AutoPath2;
 import frc.robot.commands.AutoPaths.GalacticSearch;
 import frc.robot.commands.AutoPaths.GalacticSearchTest;
+import frc.robot.commands.AutoPaths.OneCycleAuto;
 import frc.robot.commands.AutoPaths.SensorTest;
 import frc.robot.commands.climber.*;
 //import frc.robot.commands.controlpanel.SpinnerCommand;
@@ -120,10 +121,10 @@ public class DaphneTwoContainer {
     JoystickButton stickRight = new JoystickButton(mXboxController, XboxController.Button.kStickRight.value);
 
 
-    //buttonY.whileHeld(new ConveyorSpeed( conveyorT, .5)); //while Y is held down conveyor runs
+    buttonY.whileHeld(new ConveyorSpeed( conveyorT, .5)); //while Y is held down conveyor runs
     leftBumper.whileHeld(new SetShooterSpeed(shooterMotor, 6000));
     back.whileHeld(new ZeroNavX(swerveDriveSubsystem));
-    //buttonX.whenPressed((new ConveyorSpeed( conveyorT, DaphneTwoConstants.CONVEYOR_UNLOADS_SPEED)).withTimeout(3)); // change seconds later
+    buttonX.whileHeld(new ConveyorSpeed( conveyorT, DaphneTwoConstants.CONVEYOR_UNLOADS_SPEED)); // change seconds later
     rightBumper.whenPressed(new AutoShoot(conveyorT, shooterMotor, false, DaphneTwoConstants.GREEN_RPM, DaphneTwoConstants.CONVEYOR_UNLOADS_SPEED));
     start.whenPressed(new InstantCommand(() -> {shooterMotor.setMotorRPM(0);}, shooterMotor)); 
 
@@ -175,8 +176,9 @@ public class DaphneTwoContainer {
     buttonY.whileHeld(new ConveyorSpeed( conveyorT, .5)); //while Y is held down conveyor runs
     //buttonB.whileHeld(new IntakeSpeed(intake,-.5)); //while b is held down intake runs
 
-    TrajectoryMaker path2Meters = TrajectoryHelper.createTest2MetersAndBack();
-    buttonB.whenPressed(new Autonomous(swerveDriveSubsystem, path2Meters.getTrajectory(), path2Meters.getAngle(), true));
+    Command unoCycle = new OneCycleAuto(swerveDriveSubsystem, shooterMotor);
+    buttonB.whenPressed(unoCycle);
+    //buttonB.whenPressed(new Autonomous(swerveDriveSubsystem, path2Meters.getTrajectory(), path2Meters.getAngle(), true));
     //leftBumper.whileHeld(new ConveyorSpeed( conveyorT, -.7));
     //leftBumper.whileHeld(new SetShooterSpeed(shooterMotor, 6000));
     back.whileHeld(new ZeroNavX(swerveDriveSubsystem));

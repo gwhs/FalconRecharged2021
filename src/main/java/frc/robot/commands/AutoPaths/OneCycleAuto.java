@@ -23,14 +23,14 @@ public class OneCycleAuto extends SequentialCommandGroup {
 
     public OneCycleAuto(SwerveDriveSubsystem swerveDriveSubsystem, Shooter shooter) {
         
-        this.shooter = shooter;
         super();
+        this.shooter = shooter;
         double[][] driveTenFeet = {
             {0, 60},
             {120, 60}
         };
         addCommands(
-            new Finish_Auton(swerveDriveSubsystem, driveTenFeet, true, 0, 0),
+            new Finish_Auton(swerveDriveSubsystem, driveTenFeet, true, 0, 0)
 
 
         );
