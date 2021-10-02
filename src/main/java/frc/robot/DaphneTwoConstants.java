@@ -31,7 +31,7 @@ public final class DaphneTwoConstants {
     public static final double LL_MOUNT_ANGLE = 50; //degrees
     public static final double VISION_TARGET_HEIGHT = 90;  //inches
 
-    public static final int GREEN_RPM = 5250; //speed to shoot from right in front
+    public static final int GREEN_RPM = 5000; //speed to shoot from right in front
     public static final int YELLOW_RPM = 4000; //speed to shoot from yellow zone
     public static final double CONVEYOR_UNLOADS_SPEED = -0.75;
 

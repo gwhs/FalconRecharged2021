@@ -57,7 +57,7 @@ public class DaphneTwoContainer {
   // The robot's subsystems and commands are defined here...
 
   private final XboxController mXboxController;
-  //private final XboxController mXboxController2;  //operator controller
+  private final XboxController mXboxController2;  //operator controller
 
   private final SwerveDriveSubsystem swerveDriveSubsystem;
   //private final ColorPanelSpinner colorPanelSpinner;
@@ -94,7 +94,7 @@ public class DaphneTwoContainer {
 
     // create the input controllers
     mXboxController = new XboxController(0);
-    //mXboxController2 = new XboxController(1);
+    mXboxController2 = new XboxController(1);
 
     // setup any default commands
     swerveDriveSubsystem.setDefaultCommand(new HolonomicDriveCommand(swerveDriveSubsystem, mXboxController));
@@ -130,7 +130,8 @@ public class DaphneTwoContainer {
     buttonA.whenPressed(new ToggleConveyorIntake(intake, -1.0));
     //buttonY.whenPressed(new ToggleConveyorIntake(intake, -1));
     //toggle shooter
-    buttonB.whenPressed(new InstantCommand(() -> shooterMotor.toggleShooter(-DaphneTwoConstants.GREEN_RPM), shooterMotor)); //change 1000 rpm later
+    //buttonB.whenPressed(new InstantCommand(() -> shooterMotor.toggleShooter(-DaphneTwoConstants.GREEN_RPM), shooterMotor)); //change 1000 rpm later
+    buttonB.whenPressed(new AutoShoot(conveyorT, shooterMotor, true, DaphneTwoConstants.GREEN_RPM, DaphneTwoConstants.CONVEYOR_UNLOADS_SPEED));
    // buttonB.whenPressed(new InstantCommand((DaphneTwoConstants.GREEN_RPM) -> toggleShooter() //looking for something that doesn't take parameters  
     //buttonX.whenPressed(new ToggleClimberGearLock(climberT)); 
     //buttonA.whenPressed(new MoveClimberArm(climberT, 1000));

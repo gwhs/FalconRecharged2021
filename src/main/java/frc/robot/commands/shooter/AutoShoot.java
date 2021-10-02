@@ -35,7 +35,7 @@ public class AutoShoot extends SequentialCommandGroup {
    * 
    */
   public final static double CONVEYOR_BACKUP_SPEED = 0.4; // positive moves away from shooter
-  public final static double CONVEYOR_UNLOADS_SPEED = -0.6;
+  public final static double CONVEYOR_UNLOADS_SPEED = -0.5;
   public final static double WAIT_TIME = 2.0;
 
   public AutoShoot(ConveyorTalon conveyorTalon, Shooter shooter, boolean backConveyor) {
@@ -57,10 +57,10 @@ public class AutoShoot extends SequentialCommandGroup {
     // super(new FooCommand(), new BarCommand());
     super(//new ToggleIgnore(conveyorTalon, true),
           new InstantCommand(()-> conveyorTalon.toggleIgnore(true)),
-          backConveyor ? new ConveyorSpeed(conveyorTalon,CONVEYOR_BACKUP_SPEED).withTimeout(.4) : new WaitCommand(0),
+          backConveyor ? new ConveyorSpeed(conveyorTalon,CONVEYOR_BACKUP_SPEED).withTimeout(.6) : new WaitCommand(0),
           new ParallelCommandGroup(new SetShooterSpeed(shooter, RPM),
-                                   new SequentialCommandGroup(new WaitCommand(WAIT_TIME), 
-                                             new ConveyorSpeed(conveyorTalon, conveyorSpeed).withTimeout(3))).withTimeout(7),
+                                   new SequentialCommandGroup(new ConveyorSpeed(conveyorTalon, 0.1).withTimeout(2), 
+                                             new ConveyorSpeed(conveyorTalon, conveyorSpeed).withTimeout(3))).withTimeout(5.5),
           new SetShooterSpeed(shooter, 0).withTimeout(1),
           new InstantCommand(()-> conveyorTalon.toggleIgnore(false)));
   }
