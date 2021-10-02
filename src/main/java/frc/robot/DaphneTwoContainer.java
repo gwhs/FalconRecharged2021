@@ -176,8 +176,8 @@ public class DaphneTwoContainer {
     buttonY.whileHeld(new ConveyorSpeed( conveyorT, .5)); //while Y is held down conveyor runs
     //buttonB.whileHeld(new IntakeSpeed(intake,-.5)); //while b is held down intake runs
 
-    Command unoCycle = new OneCycleAuto(swerveDriveSubsystem, shooterMotor);
-    buttonB.whenPressed(unoCycle);
+    // Command unoCycle = new OneCycleAuto(swerveDriveSubsystem, shooterMotor);
+    // buttonB.whenPressed(unoCycle);
     //buttonB.whenPressed(new Autonomous(swerveDriveSubsystem, path2Meters.getTrajectory(), path2Meters.getAngle(), true));
     //leftBumper.whileHeld(new ConveyorSpeed( conveyorT, -.7));
     //leftBumper.whileHeld(new SetShooterSpeed(shooterMotor, 6000));
@@ -260,7 +260,7 @@ public class DaphneTwoContainer {
     //start.whenPressed(galacticSearch);//autoCommand.withTimeout(60)
 
 
-/*
+  /*
     start.whenPressed(new ConditionalCommand(
       new AutoPath1(swerveDriveSubsystem), 
       new AutoPath2(swerveDriveSubsystem), 
