@@ -10,19 +10,23 @@ package frc.robot.commands.climber;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.ClimberTalon;
+import frc.robot.subsystems.ClimberTalonLower;
+import frc.robot.subsystems.ClimberTalonUpper;
 import frc.robot.utility.MathUtils;
 
 public class ClimberArmSpeed extends CommandBase {
   /**
    * Creates a new ClimberArmSpeed.
    */
-  private ClimberTalon mClimberTalon;
+  private ClimberTalonUpper mClimberTalonUpper;
+  private ClimberTalonLower mClimberTalonLower;
   private XboxController operatorController;
 
-  public ClimberArmSpeed(ClimberTalon climberTalon, XboxController operatorController) {
+  public ClimberArmSpeed(ClimberTalonUpper climberTalonUpper, ClimberTalonLower climberTalonLower, XboxController operatorController) {
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(climberTalon);
-    this.mClimberTalon = climberTalon;
+    addRequirements(climberTalonUpper, climberTalonLower);
+    this.mClimberTalonUpper = climberTalonUpper;
+    this.mClimberTalonLower = climberTalonLower;
     this.operatorController = operatorController;
   }
 
@@ -37,8 +41,8 @@ public class ClimberArmSpeed extends CommandBase {
     //double speed1 = MathUtils.deadband(operatorController.getRawAxis(1), 0.2 );
     //double speed2 = MathUtils.deadband(operatorController.getRawAxis(5), 0.2 );
     // if(operatorController.get)
-    mClimberTalon.moveUpperArm(-0.2);
-    mClimberTalon.moveLowerArm(0.2);
+    mClimberTalonUpper.moveUpperArm(0.2);
+    mClimberTalonLower.moveLowerArm(0.2);
     System.out.println("climber arm speed");
   }
 

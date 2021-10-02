@@ -35,6 +35,8 @@ import frc.robot.commands.shooter.AutoShoot;
 import frc.robot.commands.shooter.SetShooterSpeed;
 import frc.robot.commands.swervedrive.*;
 import frc.robot.subsystems.ClimberTalon;
+import frc.robot.subsystems.ClimberTalonLower;
+import frc.robot.subsystems.ClimberTalonUpper;
 import frc.robot.subsystems.Color.ColorPanelSpinner;
 import frc.robot.subsystems.Color.ColorSensor;
 import frc.robot.subsystems.ConveyorTalon;
@@ -67,7 +69,8 @@ public class DaphneTwoContainer {
   private final Intake intake;
   private final Shooter shooterMotor;
   private final Compressor compressor;
-  private final ClimberTalon climberT;
+  private final ClimberTalonUpper climberTUpper;
+  private final ClimberTalonLower climberTLower;
   private final LimelightPortal limeL;
 
   /**
@@ -89,7 +92,8 @@ public class DaphneTwoContainer {
     intake = new Intake();
     shooterMotor = new Shooter();
     compressor = null; //new Compressor();
-    climberT = new ClimberTalon();
+    climberTUpper = new ClimberTalonUpper();
+    climberTLower = new ClimberTalonLower();
     limeL = new LimelightPortal();
 
     // create the input controllers
@@ -139,8 +143,10 @@ public class DaphneTwoContainer {
     
 
     JoystickButton buttonA2 = new JoystickButton(mXboxController2, XboxController.Button.kA.value);
+    JoystickButton buttonB2 = new JoystickButton(mXboxController2, XboxController.Button.kB.value);
 
-    buttonA2.whileHeld(new MoveBothClimberArms(climberT, 4000));
+    buttonA2.whileHeld(new ClimberArmSpeed(climberTUpper, climberTLower, mXboxController2));
+
 
   }
   /**
