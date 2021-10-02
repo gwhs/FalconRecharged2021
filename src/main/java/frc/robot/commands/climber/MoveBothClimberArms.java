@@ -32,7 +32,7 @@ public class MoveBothClimberArms extends CommandBase {
     addRequirements(climberTalon);
     this.climberTalon = climberTalon;
     masterArm = climberTalon.getUpperArm();
-    slaveArm = climberTalon.getUpperArm();
+    slaveArm = climberTalon.getLowerArm();
     distance = ticks;
   }
 

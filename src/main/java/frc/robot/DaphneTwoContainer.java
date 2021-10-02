@@ -119,6 +119,7 @@ public class DaphneTwoContainer {
     JoystickButton stickLeft = new JoystickButton(mXboxController, XboxController.Button.kStickLeft.value);
     JoystickButton stickRight = new JoystickButton(mXboxController, XboxController.Button.kStickRight.value);
 
+    
 
     buttonY.whileHeld(new ConveyorSpeed( conveyorT, .5)); //while Y is held down conveyor runs
     leftBumper.whileHeld(new SetShooterSpeed(shooterMotor, 6000));
@@ -136,6 +137,10 @@ public class DaphneTwoContainer {
     //buttonX.whenPressed(new ToggleClimberGearLock(climberT)); 
     //buttonA.whenPressed(new MoveClimberArm(climberT, 1000));
     
+
+    JoystickButton buttonA2 = new JoystickButton(mXboxController2, XboxController.Button.kA.value);
+
+    buttonA2.whileHeld(new MoveBothClimberArms(climberT, 4000));
 
   }
   /**
