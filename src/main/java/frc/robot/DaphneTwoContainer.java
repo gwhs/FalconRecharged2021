@@ -26,7 +26,6 @@ import frc.robot.commands.AutoPaths.AutoPath1;
 import frc.robot.commands.AutoPaths.AutoPath2;
 import frc.robot.commands.AutoPaths.GalacticSearch;
 import frc.robot.commands.AutoPaths.GalacticSearchTest;
-import frc.robot.commands.AutoPaths.OneCycleAuto;
 import frc.robot.commands.AutoPaths.SensorTest;
 import frc.robot.commands.climber.*;
 //import frc.robot.commands.controlpanel.SpinnerCommand;
@@ -104,8 +103,8 @@ public class DaphneTwoContainer {
     //climberT.setDefaultCommand(new ClimberArmSpeed(climberT, mXboxController));//599//--------------------
 
     // configure the buttons
-    configureButtonBindingsForAuto();
-    //configureButtonsForPowerPort();
+    //configureButtonBindingsForAuto();
+    configureButtonsForPowerPort();
   }
 
   public void configureButtonsForPowerPort() {
@@ -125,13 +124,14 @@ public class DaphneTwoContainer {
     leftBumper.whileHeld(new SetShooterSpeed(shooterMotor, 6000));
     back.whileHeld(new ZeroNavX(swerveDriveSubsystem));
     buttonX.whileHeld(new ConveyorSpeed( conveyorT, DaphneTwoConstants.CONVEYOR_UNLOADS_SPEED)); // change seconds later
-    rightBumper.whenPressed(new AutoShoot(conveyorT, shooterMotor, false, DaphneTwoConstants.GREEN_RPM, DaphneTwoConstants.CONVEYOR_UNLOADS_SPEED));
+    rightBumper.whenPressed(new ToggleFieldOrientedCommand(swerveDriveSubsystem));
     start.whenPressed(new InstantCommand(() -> {shooterMotor.setMotorRPM(0);}, shooterMotor)); 
 
+    buttonA.whenPressed(new ToggleConveyorIntake(intake, -1.0));
     //buttonY.whenPressed(new ToggleConveyorIntake(intake, -1));
     //toggle shooter
-    //dbuttonB.whenPressed(new InstantCommand(() -> shooterMotor.toggleShooter(-DaphneTwoConstants.GREEN_RPM), shooterMotor)); //change 1000 rpm later
-    //buttonB.whenPressed(new InstantCommand((DaphneTwoConstants.GREEN_RPM) -> toggleShooter() //looking for something that doesn't take parameters  
+    buttonB.whenPressed(new InstantCommand(() -> shooterMotor.toggleShooter(-DaphneTwoConstants.GREEN_RPM), shooterMotor)); //change 1000 rpm later
+   // buttonB.whenPressed(new InstantCommand((DaphneTwoConstants.GREEN_RPM) -> toggleShooter() //looking for something that doesn't take parameters  
     //buttonX.whenPressed(new ToggleClimberGearLock(climberT)); 
     //buttonA.whenPressed(new MoveClimberArm(climberT, 1000));
     
@@ -176,8 +176,8 @@ public class DaphneTwoContainer {
     buttonY.whileHeld(new ConveyorSpeed( conveyorT, .5)); //while Y is held down conveyor runs
     //buttonB.whileHeld(new IntakeSpeed(intake,-.5)); //while b is held down intake runs
 
-    Command unoCycle = new OneCycleAuto(swerveDriveSubsystem, shooterMotor);
-    buttonB.whenPressed(unoCycle);
+    // Command unoCycle = new OneCycleAuto(swerveDriveSubsystem, shooterMotor);
+    // buttonB.whenPressed(unoCycle);
     //buttonB.whenPressed(new Autonomous(swerveDriveSubsystem, path2Meters.getTrajectory(), path2Meters.getAngle(), true));
     //leftBumper.whileHeld(new ConveyorSpeed( conveyorT, -.7));
     //leftBumper.whileHeld(new SetShooterSpeed(shooterMotor, 6000));
