@@ -8,6 +8,7 @@
 package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.can.BaseMotorController;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
 
 import edu.wpi.first.wpilibj.DigitalInput;
@@ -57,5 +58,9 @@ public class ClimberTalonLower extends SubsystemBase {
   public TalonFX getLowerArm(){
     return lowerArm;
   }
+
+public BaseMotorController getUpperArm() {
+	return null;
+}
  
 }

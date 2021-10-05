@@ -145,7 +145,8 @@ public class DaphneTwoContainer {
     JoystickButton buttonA2 = new JoystickButton(mXboxController2, XboxController.Button.kA.value);
     JoystickButton buttonB2 = new JoystickButton(mXboxController2, XboxController.Button.kB.value);
 
-    buttonA2.whileHeld(new ClimberArmSpeed(climberTUpper, climberTLower, mXboxController2));
+    buttonA2.whenPressed(new MoveLowerArmByTicks(climberTLower, 21487));
+    buttonB2.whenPressed(new MoveUpperArmByTicks(climberTUpper, 21487));
 
 
   }
