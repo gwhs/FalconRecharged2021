@@ -141,12 +141,18 @@ public class DaphneTwoContainer {
     //buttonX.whenPressed(new ToggleClimberGearLock(climberT)); 
     //buttonA.whenPressed(new MoveClimberArm(climberT, 1000));
     
+    double startingTicksUpperArm = climberTUpper.getUpperArm().getSelectedSensorPosition();
+    double startingTicksLowerArm = climberTLower.getLowerArm().getSelectedSensorPosition();
+    double maxTicks = DaphneTwoConstants.CLIMBERTALONS_ONE_INCH_IN_TICKS * 6;
 
     JoystickButton buttonA2 = new JoystickButton(mXboxController2, XboxController.Button.kA.value);
     JoystickButton buttonB2 = new JoystickButton(mXboxController2, XboxController.Button.kB.value);
+    JoystickButton buttonX2 = new JoystickButton(mXboxController2, XboxController.Button.kX.value);
+    
 
-    buttonA2.whenPressed(new MoveLowerArmByTicks(climberTLower, 21487));
-    buttonB2.whenPressed(new MoveUpperArmByTicks(climberTUpper, 21487));
+    buttonA2.whenPressed(new MoveLowerArmByTicks(climberTLower, 1, startingTicksUpperArm));
+    buttonB2.whenPressed(new MoveUpperArmByTicks(climberTUpper, 1, startingTicksLowerArm));
+    buttonX2.whenPressed(new ClimbDeploy(climberTUpper, climberTLower, startingTicksUpperArm, startingTicksLowerArm));
 
 
   }

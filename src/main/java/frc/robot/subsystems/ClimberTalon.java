@@ -34,26 +34,18 @@ public class ClimberTalon extends SubsystemBase {
     leftLimit = new DigitalInput(1);
     rightLimit = new DigitalInput(2);
     climberGearLock.set(Value.kReverse);  
-    lowerArm.config_kP(0, .08, 0);
-    lowerArm.config_kI(0, 0.00, 0);
-    lowerArm.config_kD(0, 0, 0);
-    lowerArm.config_kF(0, 0, 0);
-    upperArm.config_kP(0, .08, 0);
-    upperArm.config_kI(0, 0.000, 0);
-    upperArm.config_kD(0, 0, 0);
-    upperArm.config_kF(0, 0, 0);
 
-    lowerArm.configForwardSoftLimitThreshold(-8469); //8469
-    lowerArm.configReverseSoftLimitThreshold(-245639); //245639
+    // lowerArm.configForwardSoftLimitThreshold(-8469); //8469
+    // lowerArm.configReverseSoftLimitThreshold(-245639); //245639
 
-    upperArm.configForwardSoftLimitThreshold(243438);
-    upperArm.configReverseSoftLimitThreshold(10263);
+    // upperArm.configForwardSoftLimitThreshold(243438);
+    // upperArm.configReverseSoftLimitThreshold(10263);
 
-    lowerArm.configForwardSoftLimitEnable(true);
-    lowerArm.configReverseSoftLimitEnable(true);
+    // lowerArm.configForwardSoftLimitEnable(true);
+    // lowerArm.configReverseSoftLimitEnable(true);
 
-    upperArm.configForwardSoftLimitEnable(true);
-    upperArm.configReverseSoftLimitEnable(true);
+    // upperArm.configForwardSoftLimitEnable(true);
+    // upperArm.configReverseSoftLimitEnable(true);
 
     lowerArm.setSelectedSensorPosition(0);
     upperArm.setSelectedSensorPosition(0);

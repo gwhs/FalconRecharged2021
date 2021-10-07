@@ -17,10 +17,11 @@ import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
+import frc.robot.DaphneTwoConstants;
 
 public class ClimberTalonLower extends SubsystemBase {
   /**
-   * Creates a new ClimberTalon.
+   * Creates a new ClimberTalon. 48 to 1 Gear box ratio maybe
    */
   private TalonFX lowerArm;
   private DigitalInput rightLimit;
@@ -61,6 +62,10 @@ public class ClimberTalonLower extends SubsystemBase {
 
 public BaseMotorController getUpperArm() {
 	return null;
+}
+
+public double inchesToTicks(double inches) {
+  return inches * DaphneTwoConstants.CLIMBERTALONS_ONE_INCH_IN_TICKS;
 }
  
 }

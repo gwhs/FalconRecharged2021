@@ -16,10 +16,11 @@ import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
+import frc.robot.DaphneTwoConstants;
 
 public class ClimberTalonUpper extends SubsystemBase {
   /**
-   * Creates a new ClimberTalon.
+   * Creates a new ClimberTalon. 48 to 1 Gear box ratio maybe
    */
   private TalonFX upperArm;
   private DoubleSolenoid climberGearLock;
@@ -34,11 +35,11 @@ public class ClimberTalonUpper extends SubsystemBase {
     upperArm.config_kD(0, 0, 0);
     upperArm.config_kF(0, 0, 0);
 
-    upperArm.configForwardSoftLimitThreshold(243438);
-    upperArm.configReverseSoftLimitThreshold(10263);
+    // upperArm.configForwardSoftLimitThreshold(243438);
+    // upperArm.configReverseSoftLimitThreshold(10263);
 
-    upperArm.configForwardSoftLimitEnable(true);
-    upperArm.configReverseSoftLimitEnable(true);
+    // upperArm.configForwardSoftLimitEnable(true);
+    // upperArm.configReverseSoftLimitEnable(true);
 
     upperArm.setSelectedSensorPosition(0);
   }
@@ -58,6 +59,10 @@ public class ClimberTalonUpper extends SubsystemBase {
 
   public TalonFX getUpperArm(){
     return upperArm;
+  }
+
+  public double inchesToTicks(double inches) {
+    return inches * DaphneTwoConstants.CLIMBERTALONS_ONE_INCH_IN_TICKS;
   }
 
  

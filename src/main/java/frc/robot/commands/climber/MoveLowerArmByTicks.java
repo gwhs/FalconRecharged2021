@@ -11,6 +11,7 @@ import com.ctre.phoenix.motorcontrol.TalonFXControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.DaphneTwoConstants;
 import frc.robot.subsystems.ClimberTalon;
 import frc.robot.subsystems.ClimberTalonLower;
 
@@ -21,19 +22,20 @@ public class MoveLowerArmByTicks extends CommandBase {
   private double initPos;
   private double targetPosition;
   private ClimberTalonLower climberTalonLower;
-  private double ticks;
-  public MoveLowerArmByTicks(ClimberTalonLower climberTalonLower, double ticks) { //ticks 
+  private double inches;
+  private double startingTicksLower;
+  public MoveLowerArmByTicks(ClimberTalonLower climberTalonLower, double inches, double startingTicksLower) { //ticks 
     // Use addRequirements() here to declare subsystem dependencies.
-    this.climberTalonLower = climberTalonLower;
-    this.ticks = ticks;
+    this.startingTicksLower = startingTicksLower;
+    this.inches = DaphneTwoConstants.CLIMBERTALONS_ONE_INCH_IN_TICKS * inches; //~16000 ticks = 1 inch
     addRequirements(climberTalonLower);
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    initPos = climberTalonLower.getLowerArm().getSelectedSensorPosition();
-    targetPosition = initPos + ticks; // 100000 ticks
+    //initPos = climberTalonLower.getLowerArm().getSelectedSensorPosition();
+    targetPosition = startingTicksLower + inches; // 100000 ticks
     climberTalonLower.getLowerArm().set(TalonFXControlMode.Position, targetPosition);
     //arm.getPIDController().setReference(targetPosition, ControlType.kPosition);
   }
@@ -41,9 +43,9 @@ public class MoveLowerArmByTicks extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    System.out.println("Actual Pos:" + this.climberTalonLower.getLowerArm().getSelectedSensorPosition());
-    System.out.println("Expected Pos:" + targetPosition);
-    System.out.println("Diff " + (targetPosition - this.climberTalonLower.getLowerArm().getSelectedSensorPosition()));
+    System.out.println("Actual Pos of Lower:" + this.climberTalonLower.getLowerArm().getSelectedSensorPosition());
+    System.out.println("Expected Pos of Lower:" + targetPosition);
+    System.out.println("Diff of Lower " + (targetPosition - this.climberTalonLower.getLowerArm().getSelectedSensorPosition()));
   }
 
 
