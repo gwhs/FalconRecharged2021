@@ -37,7 +37,7 @@ public class MoveUpperArmByInches extends CommandBase {
   public void initialize() {
    // initPos = climberTalonUpper.getUpperArm().getSelectedSensorPosition();
     targetPosition = startingTicksUpper + inches * DaphneTwoConstants.CLIMBERTALONS_ONE_INCH_IN_TICKS; //~16000 ticks = 1 inch -- wrong
-    targetPosition = Math.max(targetPosition, DaphneTwoConstants.CLIMBERTALON_UPPERLIMIT);
+    targetPosition = Math.min(targetPosition, DaphneTwoConstants.CLIMBERTALON_UPPERLIMIT);
     climberTalonUpper.getUpperArm().set(TalonFXControlMode.Position, targetPosition);
     //arm.getPIDController().setReference(targetPosition, ControlType.kPosition);
   }

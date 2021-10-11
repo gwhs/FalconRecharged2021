@@ -150,8 +150,8 @@ public class DaphneTwoContainer {
     JoystickButton buttonX2 = new JoystickButton(mXboxController2, XboxController.Button.kX.value);
     
 
-    buttonA2.whenPressed(new MoveLowerArmByInches(climberTLower, 1, startingTicksUpperArm));
-    buttonB2.whenPressed(new MoveUpperArmByInches(climberTUpper, 1, startingTicksLowerArm));
+    buttonA2.whenPressed(new MoveLowerArmByInches(climberTLower, 3, startingTicksUpperArm));
+    buttonB2.whenPressed(new MoveUpperArmByInches(climberTUpper, 3, startingTicksLowerArm));
     buttonX2.whenPressed(new ClimbDeploy(climberTUpper, climberTLower, startingTicksUpperArm, startingTicksLowerArm));
 
 
