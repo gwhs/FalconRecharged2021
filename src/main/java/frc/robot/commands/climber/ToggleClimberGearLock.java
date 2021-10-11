@@ -8,7 +8,7 @@
 package frc.robot.commands.climber;
 
 import edu.wpi.first.wpilibj2.command.InstantCommand;
-import frc.robot.subsystems.ClimberTalon;
+import frc.robot.subsystems.Climber.ClimberTalon;
 
 public class ToggleClimberGearLock extends InstantCommand {
   /**

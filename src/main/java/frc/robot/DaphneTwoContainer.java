@@ -14,6 +14,7 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.geometry.Pose2d;
 import edu.wpi.first.wpilibj.geometry.Rotation2d;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.ConditionalCommand;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
@@ -26,6 +27,7 @@ import frc.robot.commands.AutoPaths.AutoPath1;
 import frc.robot.commands.AutoPaths.AutoPath2;
 import frc.robot.commands.AutoPaths.GalacticSearch;
 import frc.robot.commands.AutoPaths.GalacticSearchTest;
+import frc.robot.commands.AutoPaths.OneCycleAuto;
 import frc.robot.commands.AutoPaths.SensorTest;
 import frc.robot.commands.climber.*;
 //import frc.robot.commands.controlpanel.SpinnerCommand;
@@ -34,9 +36,9 @@ import frc.robot.commands.intake.*;
 import frc.robot.commands.shooter.AutoShoot;
 import frc.robot.commands.shooter.SetShooterSpeed;
 import frc.robot.commands.swervedrive.*;
-import frc.robot.subsystems.ClimberTalon;
-import frc.robot.subsystems.ClimberTalonLower;
-import frc.robot.subsystems.ClimberTalonUpper;
+import frc.robot.subsystems.Climber.ClimberTalon;
+import frc.robot.subsystems.Climber.ClimberTalonLower;
+import frc.robot.subsystems.Climber.ClimberTalonUpper;
 import frc.robot.subsystems.Color.ColorPanelSpinner;
 import frc.robot.subsystems.Color.ColorSensor;
 import frc.robot.subsystems.ConveyorTalon;
@@ -69,6 +71,7 @@ public class DaphneTwoContainer {
   private final Intake intake;
   private final Shooter shooterMotor;
   private final Compressor compressor;
+  private final ClimberTalon climberT;
   private final ClimberTalonUpper climberTUpper;
   private final ClimberTalonLower climberTLower;
   private final LimelightPortal limeL;
@@ -92,6 +95,7 @@ public class DaphneTwoContainer {
     intake = new Intake();
     shooterMotor = new Shooter();
     compressor = null; //new Compressor();
+    climberT = new ClimberTalon();
     climberTUpper = new ClimberTalonUpper();
     climberTLower = new ClimberTalonLower();
     limeL = new LimelightPortal();
@@ -126,6 +130,9 @@ public class DaphneTwoContainer {
     
 
     buttonY.whileHeld(new ConveyorSpeed( conveyorT, .5)); //while Y is held down conveyor runs
+    //buttonY.whenPressed(new ToggleClimberGearLock(climberT));
+
+
     leftBumper.whileHeld(new SetShooterSpeed(shooterMotor, 6000));
     back.whileHeld(new ZeroNavX(swerveDriveSubsystem));
     buttonX.whileHeld(new ConveyorSpeed( conveyorT, DaphneTwoConstants.CONVEYOR_UNLOADS_SPEED)); // change seconds later
@@ -136,23 +143,30 @@ public class DaphneTwoContainer {
     //buttonY.whenPressed(new ToggleConveyorIntake(intake, -1));
     //toggle shooter
     //buttonB.whenPressed(new InstantCommand(() -> shooterMotor.toggleShooter(-DaphneTwoConstants.GREEN_RPM), shooterMotor)); //change 1000 rpm later
-    buttonB.whenPressed(new AutoShoot(conveyorT, shooterMotor, true, DaphneTwoConstants.GREEN_RPM, DaphneTwoConstants.CONVEYOR_UNLOADS_SPEED));
+    int inputRPM = (int) SmartDashboard.getNumber("Input Shooter RPM", 0);
+    System.out.println();
+    System.out.println("input rpm: " + inputRPM);
+    System.out.println();
+    buttonB.whenPressed(new AutoShoot(conveyorT, shooterMotor, true, inputRPM, DaphneTwoConstants.CONVEYOR_UNLOADS_SPEED));
    // buttonB.whenPressed(new InstantCommand((DaphneTwoConstants.GREEN_RPM) -> toggleShooter() //looking for something that doesn't take parameters  
     //buttonX.whenPressed(new ToggleClimberGearLock(climberT)); 
     //buttonA.whenPressed(new MoveClimberArm(climberT, 1000));
     
     double startingTicksUpperArm = climberTUpper.getUpperArm().getSelectedSensorPosition();
     double startingTicksLowerArm = climberTLower.getLowerArm().getSelectedSensorPosition();
-    double maxTicks = DaphneTwoConstants.CLIMBERTALONS_ONE_INCH_IN_TICKS * 6;
 
     JoystickButton buttonA2 = new JoystickButton(mXboxController2, XboxController.Button.kA.value);
     JoystickButton buttonB2 = new JoystickButton(mXboxController2, XboxController.Button.kB.value);
     JoystickButton buttonX2 = new JoystickButton(mXboxController2, XboxController.Button.kX.value);
-    
+    JoystickButton buttonY2 = new JoystickButton(mXboxController2, XboxController.Button.kY.value);
 
-    buttonA2.whenPressed(new MoveLowerArmByInches(climberTLower, 3, startingTicksUpperArm));
-    buttonB2.whenPressed(new MoveUpperArmByInches(climberTUpper, 3, startingTicksLowerArm));
-    buttonX2.whenPressed(new ClimbDeploy(climberTUpper, climberTLower, startingTicksUpperArm, startingTicksLowerArm));
+    buttonA2.whenPressed(new MoveLowerArmByInches(climberTLower, 1, startingTicksUpperArm));
+    //buttonB2.whenPressed(new MoveUpperArmByInches(climberTUpper, 1, startingTicksLowerArm));
+    //buttonB2.whenPressed(new SetShooterSpeed(shooterMotor, 1000).withTimeout(3));
+    buttonB2.whenPressed(new OneCycleAuto(swerveDriveSubsystem, conveyorT, intake, shooterMotor, inputRPM));
+   
+    buttonX2.whenPressed(new AutoClimbDeploy(climberTUpper, climberTLower, startingTicksUpperArm, startingTicksLowerArm));
+    buttonY2.whenPressed(new SemiAutoPullUp(climberTUpper, climberTLower, startingTicksUpperArm, startingTicksLowerArm));
 
 
   }

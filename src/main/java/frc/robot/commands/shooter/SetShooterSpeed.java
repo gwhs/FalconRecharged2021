@@ -44,7 +44,7 @@ public class SetShooterSpeed extends CommandBase {
    */
   public SetShooterSpeed(Shooter shooter, double rpm) {
     SmartDashboard.putNumber("Current Shooter RPM", 0);
-    SmartDashboard.putNumber("Input Shooter RPM", SmartDashboard.getNumber("Input Shooter RPM", 3600));
+    //SmartDashboard.putNumber("Input Shooter RPM", SmartDashboard.getNumber("Input Shooter RPM", 3600)); //
     SmartDashboard.putNumber("Input pidF", SmartDashboard.getNumber("Input pidF", 0.04928));
     SmartDashboard.putNumber("Input pidP", SmartDashboard.getNumber("Input pidP", 0.1));
     SmartDashboard.putNumber("Input pidI", SmartDashboard.getNumber("Input pidI", 0));

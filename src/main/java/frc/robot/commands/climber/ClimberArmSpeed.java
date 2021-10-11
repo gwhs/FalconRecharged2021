@@ -9,9 +9,9 @@ package frc.robot.commands.climber;
 
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.ClimberTalon;
-import frc.robot.subsystems.ClimberTalonLower;
-import frc.robot.subsystems.ClimberTalonUpper;
+import frc.robot.subsystems.Climber.ClimberTalon;
+import frc.robot.subsystems.Climber.ClimberTalonLower;
+import frc.robot.subsystems.Climber.ClimberTalonUpper;
 import frc.robot.utility.MathUtils;
 
 public class ClimberArmSpeed extends CommandBase {

@@ -26,7 +26,7 @@ import frc.robot.commands.intake.IntakeSpeed;
 import frc.robot.commands.intake.ToggleIntake;
 import frc.robot.commands.swervedrive.HolonomicDriveCommand;
 import frc.robot.commands.swervedrive.ZeroNavX;
-import frc.robot.subsystems.ClimberTalon;
+import frc.robot.subsystems.Climber.ClimberTalon;
 import frc.robot.subsystems.Color.ColorPanelSpinner;
 import frc.robot.subsystems.Color.ColorSensor;
 import frc.robot.subsystems.ConveyorTalon;
@@ -125,9 +125,9 @@ public class DaphneOneContainer {
     buttonBack.whenPressed(new ZeroNavX(swerveDriveSubsystem));
 
 
-    buttonB_2.whenPressed(new SemiAutoClimb(climber));
-    buttonX_2.whenPressed(new SemiAutoPullUp(climber));
-    buttonY_2.whenPressed(new ToggleClimberGearLock(climber));
+    //buttonB_2.whenPressed(new SemiAutoClimb(climber));
+   // buttonX_2.whenPressed(new SemiAutoPullUp(climber));
+   // buttonY_2.whenPressed(new ToggleClimberGearLock(climber));
     buttonLB_2.whenPressed(new SpinToColor(colorSensor, colorPanelSpinner));
     buttonBack_2.whenPressed(new SpinToMidColor(colorSensor, colorPanelSpinner));
     // buttonStart_2.

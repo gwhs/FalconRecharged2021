@@ -12,8 +12,8 @@ import com.ctre.phoenix.motorcontrol.can.TalonFX;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.DaphneTwoConstants;
-import frc.robot.subsystems.ClimberTalon;
-import frc.robot.subsystems.ClimberTalonLower;
+import frc.robot.subsystems.Climber.ClimberTalon;
+import frc.robot.subsystems.Climber.ClimberTalonLower;
 
 public class MoveLowerArmByInches extends CommandBase {
   /**
@@ -37,7 +37,7 @@ public class MoveLowerArmByInches extends CommandBase {
   public void initialize() {
     //initPos = climberTalonLower.getLowerArm().getSelectedSensorPosition();
     targetPosition = startingTicksLower + inches * DaphneTwoConstants.CLIMBERTALONS_ONE_INCH_IN_TICKS; 
-    targetPosition = Math.min(targetPosition, DaphneTwoConstants.CLIMBERTALON_UPPERLIMIT); // in ticks
+    targetPosition = Math.min(targetPosition, DaphneTwoConstants.CLIMBERTALON_LOWER_LIMITUP); // in ticks
     climberTalonLower.getLowerArm().set(TalonFXControlMode.Position, targetPosition);
     //arm.getPIDController().setReference(targetPosition, ControlType.kPosition);
   }

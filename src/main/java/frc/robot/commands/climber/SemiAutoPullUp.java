@@ -7,20 +7,26 @@
 
 package frc.robot.commands.climber;
 
+import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
-import frc.robot.subsystems.ClimberTalon;
+import frc.robot.subsystems.Climber.ClimberTalon;
+import frc.robot.DaphneTwoConstants;
+import frc.robot.subsystems.Climber.ClimberTalon;
+import frc.robot.subsystems.Climber.ClimberTalonLower;
+import frc.robot.subsystems.Climber.ClimberTalonUpper;
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
 // https://docs.wpilib.org/en/latest/docs/software/commandbased/convenience-features.html
-public class SemiAutoPullUp extends SequentialCommandGroup {
+public class SemiAutoPullUp extends ParallelCommandGroup {
   /**
    * Creates a new SemiAutoPullUp.
    */
-  public SemiAutoPullUp(ClimberTalon climberTalon) {
+  public SemiAutoPullUp(ClimberTalonUpper climberTalonUpper, ClimberTalonLower climberTalonLower, double startingTicksUpper, double startingTicksLower) {
     // Add your commands in the super() call, e.g.
     // super(new FooCommand(), new BarCommand());
-    super(new MoveBothClimberArms(climberTalon, -243000).withTimeout(4),
-          new ToggleClimberGearLock(climberTalon));
+    super(new MoveLowerArmByInches(climberTalonLower, 10.75, startingTicksLower),
+          new MoveUpperArmByInches(climberTalonUpper, 10, startingTicksUpper));
+          
   }
 }

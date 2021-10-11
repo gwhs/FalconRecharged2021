@@ -14,7 +14,7 @@ import com.ctre.phoenix.motorcontrol.can.TalonFX;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
-import frc.robot.subsystems.ClimberTalon;
+import frc.robot.subsystems.Climber.ClimberTalon;
 
 public class MoveBothClimberArms extends CommandBase {
   /**
