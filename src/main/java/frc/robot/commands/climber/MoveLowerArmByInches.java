@@ -15,7 +15,7 @@ import frc.robot.DaphneTwoConstants;
 import frc.robot.subsystems.ClimberTalon;
 import frc.robot.subsystems.ClimberTalonLower;
 
-public class MoveLowerArmByTicks extends CommandBase {
+public class MoveLowerArmByInches extends CommandBase {
   /**
    * Creates a new MoveClimberArm.
    */
@@ -24,10 +24,10 @@ public class MoveLowerArmByTicks extends CommandBase {
   private ClimberTalonLower climberTalonLower;
   private double inches;
   private double startingTicksLower;
-  public MoveLowerArmByTicks(ClimberTalonLower climberTalonLower, double inches, double startingTicksLower) { //ticks 
+  public MoveLowerArmByInches(ClimberTalonLower climberTalonLower, double inches, double startingTicksLower) { //ticks 
     // Use addRequirements() here to declare subsystem dependencies.
     this.startingTicksLower = startingTicksLower;
-    this.inches = DaphneTwoConstants.CLIMBERTALONS_ONE_INCH_IN_TICKS * inches; //~16000 ticks = 1 inch
+    this.inches = inches; //~16000 ticks = 1 inch
     addRequirements(climberTalonLower);
     this.climberTalonLower = climberTalonLower;
   }
@@ -36,7 +36,8 @@ public class MoveLowerArmByTicks extends CommandBase {
   @Override
   public void initialize() {
     //initPos = climberTalonLower.getLowerArm().getSelectedSensorPosition();
-    targetPosition = startingTicksLower + inches; // 100000 ticks
+    targetPosition = startingTicksLower + inches * DaphneTwoConstants.CLIMBERTALONS_ONE_INCH_IN_TICKS; 
+    targetPosition = Math.max(targetPosition, DaphneTwoConstants.CLIMBERTALON_UPPERLIMIT); // in ticks
     climberTalonLower.getLowerArm().set(TalonFXControlMode.Position, targetPosition);
     //arm.getPIDController().setReference(targetPosition, ControlType.kPosition);
   }

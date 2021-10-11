@@ -26,8 +26,8 @@ public class ClimbDeploy extends SequentialCommandGroup {
     // Add your commands in the super() call, e.g.
     // super(new FooCommand(), new BarCommand());
 
-    super(new MoveUpperArmByTicks(climberTalonUpper, DaphneTwoConstants.CLIMBERTALONS_ONE_INCH_IN_TICKS * 16, startingTicksUpper).withTimeout(2),
-          new MoveLowerArmByTicks(climberTalonLower, DaphneTwoConstants.CLIMBERTALONS_ONE_INCH_IN_TICKS * 16, startingTicksLower)
+    super(new MoveUpperArmByInches(climberTalonUpper, DaphneTwoConstants.CLIMBERTALONS_ONE_INCH_IN_TICKS * 16, startingTicksUpper).withTimeout(2),
+          new MoveLowerArmByInches(climberTalonLower, DaphneTwoConstants.CLIMBERTALONS_ONE_INCH_IN_TICKS * 16, startingTicksLower)
     );
 
   }

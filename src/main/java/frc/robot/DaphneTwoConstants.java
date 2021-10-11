@@ -35,5 +35,6 @@ public final class DaphneTwoConstants {
     public static final int YELLOW_RPM = 4000; //speed to shoot from yellow zone
     public static final double CONVEYOR_UNLOADS_SPEED = -0.75;
     public static final double CLIMBERTALONS_ONE_INCH_IN_TICKS = 13241;
+    public static final double CLIMBERTALON_UPPERLIMIT = CLIMBERTALONS_ONE_INCH_IN_TICKS * 2; //2 inches
 
 }
