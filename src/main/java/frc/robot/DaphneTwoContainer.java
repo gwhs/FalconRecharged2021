@@ -71,7 +71,7 @@ public class DaphneTwoContainer {
   private final Intake intake;
   private final Shooter shooterMotor;
   private final Compressor compressor;
-  private final ClimberTalon climberT;
+  //private final ClimberTalon climberT;
   private final ClimberTalonUpper climberTUpper;
   private final ClimberTalonLower climberTLower;
   private final LimelightPortal limeL;
@@ -95,7 +95,7 @@ public class DaphneTwoContainer {
     intake = new Intake();
     shooterMotor = new Shooter();
     compressor = null; //new Compressor();
-    climberT = new ClimberTalon();
+    //climberT = new ClimberTalon();
     climberTUpper = new ClimberTalonUpper();
     climberTLower = new ClimberTalonLower();
     limeL = new LimelightPortal();
@@ -147,7 +147,8 @@ public class DaphneTwoContainer {
     System.out.println();
     System.out.println("input rpm: " + inputRPM);
     System.out.println();
-    buttonB.whenPressed(new AutoShoot(conveyorT, shooterMotor, true, inputRPM, DaphneTwoConstants.CONVEYOR_UNLOADS_SPEED));
+    buttonB.whenPressed(new AutoShoot(conveyorT, shooterMotor, true, 5000, DaphneTwoConstants.CONVEYOR_UNLOADS_SPEED));
+    //buttonB.whenPressed(new ToggleIntake(intake));
    // buttonB.whenPressed(new InstantCommand((DaphneTwoConstants.GREEN_RPM) -> toggleShooter() //looking for something that doesn't take parameters  
     //buttonX.whenPressed(new ToggleClimberGearLock(climberT)); 
     //buttonA.whenPressed(new MoveClimberArm(climberT, 1000));
@@ -163,7 +164,7 @@ public class DaphneTwoContainer {
     buttonA2.whenPressed(new MoveLowerArmByInches(climberTLower, 1, startingTicksUpperArm));
     //buttonB2.whenPressed(new MoveUpperArmByInches(climberTUpper, 1, startingTicksLowerArm));
     //buttonB2.whenPressed(new SetShooterSpeed(shooterMotor, 1000).withTimeout(3));
-    buttonB2.whenPressed(new OneCycleAuto(swerveDriveSubsystem, conveyorT, intake, shooterMotor, inputRPM));
+    buttonB2.whenPressed(new OneCycleAuto(swerveDriveSubsystem, conveyorT, intake, shooterMotor, 5000, 0));
    
     buttonX2.whenPressed(new AutoClimbDeploy(climberTUpper, climberTLower, startingTicksUpperArm, startingTicksLowerArm));
     buttonY2.whenPressed(new SemiAutoPullUp(climberTUpper, climberTLower, startingTicksUpperArm, startingTicksLowerArm));

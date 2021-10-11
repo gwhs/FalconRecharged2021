@@ -8,6 +8,7 @@
 package frc.robot.commands.AutoPaths;
 
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
+import edu.wpi.first.wpilibj2.command.WaitCommand;
 import frc.robot.DaphneTwoConstants;
 import frc.robot.TrajectoryHelper;
 import frc.robot.commands.intake.IntakeSpeed;
@@ -28,7 +29,7 @@ public class OneCycleAuto extends SequentialCommandGroup {
   /**
    * Creates a new OneCycleAuto.
    */
-  public OneCycleAuto(SwerveDriveSubsystem swerveDriveSubsystem, ConveyorTalon conveyorTalon, Intake intake, Shooter shooter, int inputRPM) {
+  public OneCycleAuto(SwerveDriveSubsystem swerveDriveSubsystem, ConveyorTalon conveyorTalon, Intake intake, Shooter shooter, int inputRPM, double delayInSeconds) {
     // Start at Initiation Line
     // This is all theoretical code with no actual field measurements. 
     // MAKE SURE TO MEASURE AND SWAP VALUES BEFORE TESTING - Kyle
@@ -41,10 +42,13 @@ public class OneCycleAuto extends SequentialCommandGroup {
      */
 
 
-    //TrajectoryMaker traj = TrajectoryHelper.createToPortPath();
+    TrajectoryMaker traj = TrajectoryHelper.createLineToTargetZone();
+    //TrajectoryMaker trajBack = TrajectoryHelper.createTargetZoneToLine();
     addCommands(
-      new GoToDistance(86, swerveDriveSubsystem).withTimeout(5),
-      new AutoShoot(conveyorTalon, shooter, true, inputRPM, DaphneTwoConstants.CONVEYOR_UNLOADS_SPEED)
+      new WaitCommand(delayInSeconds),
+      new Autonomous(swerveDriveSubsystem, traj.getTrajectory(), traj.getAngle(), true),
+      new AutoShoot(conveyorTalon, shooter, false, inputRPM, DaphneTwoConstants.CONVEYOR_UNLOADS_SPEED)
+      //new Autonomous(swerveDriveSubsystem, trajBack.getTrajectory(), traj.getAngle(), true)
     );
   }
 }

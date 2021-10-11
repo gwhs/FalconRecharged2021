@@ -26,7 +26,7 @@ public class AutoClimbDeploy extends SequentialCommandGroup {
     // Add your commands in the super() call, e.g.
     // super(new FooCommand(), new BarCommand());
 
-    super(new MoveUpperArmByInches(climberTalonUpper, 12, startingTicksUpper).withTimeout(2),
+    super(new MoveUpperArmByInches(climberTalonUpper, 15, startingTicksUpper).withTimeout(2),
           new ParallelCommandGroup(new MoveLowerArmByInches(climberTalonLower, 18.75, startingTicksLower),
                                    new MoveUpperArmByInches(climberTalonUpper, 18, startingTicksUpper))
     );
