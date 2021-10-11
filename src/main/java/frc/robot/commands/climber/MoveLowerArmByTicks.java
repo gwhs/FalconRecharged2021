@@ -29,6 +29,7 @@ public class MoveLowerArmByTicks extends CommandBase {
     this.startingTicksLower = startingTicksLower;
     this.inches = DaphneTwoConstants.CLIMBERTALONS_ONE_INCH_IN_TICKS * inches; //~16000 ticks = 1 inch
     addRequirements(climberTalonLower);
+    this.climberTalonLower = climberTalonLower;
   }
 
   // Called when the command is initially scheduled.
