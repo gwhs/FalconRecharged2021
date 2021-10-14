@@ -99,6 +99,6 @@ public class SetShooterSpeed extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return false;
+    return false; //Math.abs(shooter.getMotorRPM() + this.speed) <= 500;
   }
 }

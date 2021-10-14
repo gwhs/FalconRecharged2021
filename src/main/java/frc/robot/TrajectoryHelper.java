@@ -9,14 +9,26 @@ import java.util.ArrayList;
 
 @SuppressWarnings("unused")
 public class TrajectoryHelper {
-
+    //for one cycle auto
     public static double[][] lineToTargetZone = {
         {0, 0},
         {90, 0}
     };
 
     public static double[][] targetZoneToLine = {
-        {90, 0}
+        {90, 0},
+        {0, 0}
+    };
+    
+    // for one cycle auto starting two feet to the left
+    public static double[][] lineLeftToTargetZone = {
+        {0, 0},
+        {90, 24}
+    };
+
+    public static double[][] targetToLineLeft = {
+        {90, 24},
+        {0, 24}
     };
 
     public static double[][] test4Meters= {
@@ -291,9 +303,17 @@ public static double[][] testStep= {
         return createTrajectory(lineToTargetZone, GLOBAL_SCALE, 0, 0, false);
     }
 
-    // public static TrajectoryMaker createTargetZoneToLine() {
-    //     return createTrajectory(targetZoneToLine, GLOBAL_SCALE, 0, 0, true);
-    // }
+    public static TrajectoryMaker createTargetZoneToLine() {
+        return createTrajectory(targetZoneToLine, GLOBAL_SCALE, 0, 0, true);
+    }
+
+    public static TrajectoryMaker createLineLeftToTargetZone() {
+        return createTrajectory(lineLeftToTargetZone, GLOBAL_SCALE, 0, 0, false); 
+    }
+
+    public static TrajectoryMaker createTargetZoneToLineLeft() {
+        return createTrajectory(targetToLineLeft, GLOBAL_SCALE, 0, 0, true);
+    }
 
     public static TrajectoryMaker createDriveForward() // test path going only 4 meters forward
     {

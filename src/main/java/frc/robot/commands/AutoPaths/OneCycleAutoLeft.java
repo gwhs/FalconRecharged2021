@@ -25,12 +25,12 @@ import frc.robot.utility.TrajectoryMaker;
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
 // https://docs.wpilib.org/en/latest/docs/software/commandbased/convenience-features.html
-public class OneCycleAuto extends SequentialCommandGroup {
+public class OneCycleAutoLeft extends SequentialCommandGroup {
   /**
    * Creates a new OneCycleAuto.
    */
-  public OneCycleAuto(SwerveDriveSubsystem swerveDriveSubsystem, ConveyorTalon conveyorTalon, Intake intake, Shooter shooter, int inputRPM, double delayInSeconds) {
-    // Start at Initiation Line
+  public OneCycleAutoLeft(SwerveDriveSubsystem swerveDriveSubsystem, ConveyorTalon conveyorTalon, Intake intake, Shooter shooter, int inputRPM, double delayInSeconds) {
+    // Start at Initiation Line 2 feet to the left
     // This is all theoretical code with no actual field measurements. 
     // MAKE SURE TO MEASURE AND SWAP VALUES BEFORE TESTING - Kyle
     /**
@@ -42,13 +42,13 @@ public class OneCycleAuto extends SequentialCommandGroup {
      */
 
 
-    TrajectoryMaker traj = TrajectoryHelper.createLineToTargetZone();
-    TrajectoryMaker trajBack = TrajectoryHelper.createTargetZoneToLine();
+    TrajectoryMaker trajLeft = TrajectoryHelper.createLineLeftToTargetZone();
+    TrajectoryMaker trajBackLeft = TrajectoryHelper.createTargetZoneToLineLeft();
     addCommands(
       new WaitCommand(delayInSeconds),
-      new Autonomous(swerveDriveSubsystem, traj.getTrajectory(), traj.getAngle(), true),
+      new Autonomous(swerveDriveSubsystem, trajLeft.getTrajectory(), trajLeft.getAngle(), true),
       new AutoShoot(conveyorTalon, shooter, false, inputRPM, DaphneTwoConstants.CONVEYOR_UNLOADS_SPEED),
-      new Autonomous(swerveDriveSubsystem, trajBack.getTrajectory(), trajBack.getAngle(), false)
+      new Autonomous(swerveDriveSubsystem, trajBackLeft.getTrajectory(), trajBackLeft.getAngle(), false)
     );
   }
 }
