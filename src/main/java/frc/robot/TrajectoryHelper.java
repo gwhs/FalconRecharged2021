@@ -15,11 +15,23 @@ public class TrajectoryHelper {
         {90, 0}
     };
 
+
+
     public static double[][] targetZoneToLine = {
         {90, 0},
         {0, 0}
     };
+
+    public static double[][] targetZoneToTrench = {
+        {90, 0},
+        {-86.62, 66.91}  
+    };
     
+    public static double[][] trenchRunPickUp = {
+        {-86.62, 66.91},
+        {-196.62, 66.91}
+    };
+
     // for one cycle auto starting two feet to the left
     public static double[][] lineLeftToTargetZone = {
         {0, 0},
@@ -301,6 +313,14 @@ public static double[][] testStep= {
 
     public static TrajectoryMaker createLineToTargetZone() {
         return createTrajectory(lineToTargetZone, GLOBAL_SCALE, 0, 0, false);
+    }
+
+    public static TrajectoryMaker createTargetZoneToTrench() {
+        return createTrajectory(targetZoneToTrench, GLOBAL_SCALE, 0, 0, true);
+    }
+
+    public static TrajectoryMaker createTrenchRunPickUp() {
+        return createTrajectory(trenchRunPickUp, GLOBAL_SCALE, 0, 0, true);
     }
 
     public static TrajectoryMaker createTargetZoneToLine() {

@@ -28,6 +28,7 @@ import frc.robot.commands.AutoPaths.AutoPath2;
 import frc.robot.commands.AutoPaths.GalacticSearch;
 import frc.robot.commands.AutoPaths.GalacticSearchTest;
 import frc.robot.commands.AutoPaths.OneCycleAuto;
+import frc.robot.commands.AutoPaths.OneCycleAutoLeft;
 import frc.robot.commands.AutoPaths.SensorTest;
 import frc.robot.commands.climber.*;
 //import frc.robot.commands.controlpanel.SpinnerCommand;
@@ -164,7 +165,7 @@ public class DaphneTwoContainer {
     buttonA2.whenPressed(new MoveLowerArmByInches(climberTLower, 1, startingTicksUpperArm));
     //buttonB2.whenPressed(new MoveUpperArmByInches(climberTUpper, 1, startingTicksLowerArm));
     //buttonB2.whenPressed(new SetShooterSpeed(shooterMotor, 1000).withTimeout(3));
-    buttonB2.whenPressed(new OneCycleAuto(swerveDriveSubsystem, conveyorT, intake, shooterMotor, 5000, 0));
+    buttonB2.whenPressed(new OneCycleAutoLeft(swerveDriveSubsystem, conveyorT, intake, shooterMotor, 5000, 0));
    
     buttonX2.whenPressed(new AutoClimbDeploy(climberTUpper, climberTLower, startingTicksUpperArm, startingTicksLowerArm));
     buttonY2.whenPressed(new SemiAutoPullUp(climberTUpper, climberTLower, startingTicksUpperArm, startingTicksLowerArm));

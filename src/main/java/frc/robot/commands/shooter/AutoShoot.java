@@ -57,8 +57,8 @@ public class AutoShoot extends SequentialCommandGroup {
     // super(new FooCommand(), new BarCommand());
     super(//new ToggleIgnore(conveyorTalon, true),
           new InstantCommand(() -> conveyorTalon.toggleIgnore(true)),
-          backConveyor ? new ParallelCommandGroup(new SetShooterSpeed(shooter, -500).withTimeout(0.25),
-                                                  new ConveyorSpeed(conveyorTalon,CONVEYOR_BACKUP_SPEED).withTimeout(.6)) : new WaitCommand(0),
+          backConveyor ? new ParallelCommandGroup(new SetShooterSpeed(shooter, -1000).withTimeout(0.5),
+                                                  new ConveyorSpeed(conveyorTalon,CONVEYOR_BACKUP_SPEED).withTimeout(.7)) : new WaitCommand(0),
           new ParallelCommandGroup(new SetShooterSpeed(shooter, RPM),
                                   new SequentialCommandGroup(new WaitCommand(1.5),
                                                              new ConveyorSpeed(conveyorTalon, conveyorSpeed))).withTimeout(5),
