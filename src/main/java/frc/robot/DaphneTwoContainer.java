@@ -148,7 +148,7 @@ public class DaphneTwoContainer {
     System.out.println();
     System.out.println("input rpm: " + inputRPM);
     System.out.println();
-    buttonB.whenPressed(new AutoShoot(conveyorT, shooterMotor, true, 5000, DaphneTwoConstants.CONVEYOR_UNLOADS_SPEED));
+    buttonB.whenPressed(new AutoShoot(conveyorT, shooterMotor, true, 5500, DaphneTwoConstants.CONVEYOR_UNLOADS_SPEED));
     //buttonB.whenPressed(new ToggleIntake(intake));
    // buttonB.whenPressed(new InstantCommand((DaphneTwoConstants.GREEN_RPM) -> toggleShooter() //looking for something that doesn't take parameters  
     //buttonX.whenPressed(new ToggleClimberGearLock(climberT)); 

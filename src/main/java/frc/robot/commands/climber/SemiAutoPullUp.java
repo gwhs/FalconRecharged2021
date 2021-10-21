@@ -25,8 +25,8 @@ public class SemiAutoPullUp extends ParallelCommandGroup {
   public SemiAutoPullUp(ClimberTalonUpper climberTalonUpper, ClimberTalonLower climberTalonLower, double startingTicksUpper, double startingTicksLower) {
     // Add your commands in the super() call, e.g.
     // super(new FooCommand(), new BarCommand());
-    super(new MoveLowerArmByInches(climberTalonLower, 10.75, startingTicksLower),
-          new MoveUpperArmByInches(climberTalonUpper, 10, startingTicksUpper));
+    super(new MoveLowerArmByInches(climberTalonLower, 6.75, startingTicksLower),
+          new MoveUpperArmByInches(climberTalonUpper, 6, startingTicksUpper));
           
   }
 }
