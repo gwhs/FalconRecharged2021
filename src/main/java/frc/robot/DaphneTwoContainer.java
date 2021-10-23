@@ -166,8 +166,6 @@ public class DaphneTwoContainer {
 
     RightTrigger2.whenPressed(new MoveUpperArmByInchesRelative(climberTUpper, -1));
     LeftTrigger2.whenPressed(new MoveLowerArmByInchesRelative(climberTLower, -1));
-    buttonA2.whenPressed(new MoveUpperArmByInchesRelative(climberTUpper, -1));
-    buttonB2.whenPressed(new MoveLowerArmByInchesRelative(climberTLower, -1));
 
     rightBumper2.whenPressed(new MoveUpperArmByInchesRelative(climberTUpper, 1));
     leftBumper2.whenPressed(new MoveLowerArmByInchesRelative(climberTLower, 1));
