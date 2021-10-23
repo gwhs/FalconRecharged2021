@@ -174,7 +174,7 @@ public class DaphneTwoContainer {
     leftBumper2.whenPressed(new MoveUpperArmByInchesRelative(climberTUpper, 1));
     //buttonB2.whenPressed(new MoveUpperArmByInches(climberTUpper, 1, startingTicksLowerArm));
     //buttonB2.whenPressed(new SetShooterSpeed(shooterMotor, 1000).withTimeout(3));
-    buttonB2.whenPressed(new OneCycleAutoLeft(swerveDriveSubsystem, conveyorT, intake, shooterMotor, 5000, 0));
+    buttonB2.whenPressed(new OneCycleAuto(swerveDriveSubsystem, conveyorT, intake, shooterMotor, 5000, 0));
    
     buttonX2.whenPressed(new AutoClimbDeploy(climberTUpper, climberTLower, startingTicksUpperArm, startingTicksLowerArm));
     buttonY2.whenPressed(new SemiAutoPullUp(climberTUpper, climberTLower, startingTicksUpperArm, startingTicksLowerArm));

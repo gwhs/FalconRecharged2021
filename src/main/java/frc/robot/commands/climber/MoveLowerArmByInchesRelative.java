@@ -36,12 +36,9 @@ public class MoveLowerArmByInchesRelative extends CommandBase {
   public void initialize() {
     //initPos = climberTalonLower.getLowerArm().getSelectedSensorPosition();
     targetPosition = climberTalonLower.getLowerArm().getSelectedSensorPosition() + inches * DaphneTwoConstants.CLIMBERTALONS_ONE_INCH_IN_TICKS; //~16000 ticks = 1 inch -- wrong
-    if(targetPosition > DaphneTwoConstants.CLIMBERTALON_LOWER_LIMITUP) {
-      targetPosition = DaphneTwoConstants.CLIMBERTALON_LOWER_LIMITUP;
-    }
-    else if(targetPosition < 1) {
-      targetPosition = 1;
-    }
+
+      targetPosition = Math.min(targetPosition, DaphneTwoConstants.CLIMBERTALON_LOWER_LIMITUP);
+      targetPosition = Math.max(targetPosition, 1);
     climberTalonLower.getLowerArm().set(TalonFXControlMode.Position, targetPosition);
     //arm.getPIDController().setReference(targetPosition, ControlType.kPosition);
   }
