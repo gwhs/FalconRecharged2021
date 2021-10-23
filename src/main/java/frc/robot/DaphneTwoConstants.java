@@ -37,5 +37,6 @@ public final class DaphneTwoConstants {
     public static final double CLIMBERTALONS_ONE_INCH_IN_TICKS = 13241;
     public static final double CLIMBERTALON_UPPER_LIMITUP = CLIMBERTALONS_ONE_INCH_IN_TICKS * 18; //inches
     public static final double CLIMBERTALON_LOWER_LIMITUP = CLIMBERTALONS_ONE_INCH_IN_TICKS * 18.75;
+    public static final double CLIMBERTALON_TICKS_ACCURACY = 1000;
 
 }

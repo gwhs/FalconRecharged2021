@@ -36,7 +36,7 @@ public class MoveUpperArmByInchesRelative extends CommandBase {
    // initPos = climberTalonUpper.getUpperArm().getSelectedSensorPosition();
     targetPosition = climberTalonUpper.getUpperArm().getSelectedSensorPosition() + inches * DaphneTwoConstants.CLIMBERTALONS_ONE_INCH_IN_TICKS; 
       targetPosition = Math.min(targetPosition, DaphneTwoConstants.CLIMBERTALON_UPPER_LIMITUP);
-      targetPosition = Math.max(targetPosition, 1);
+      targetPosition = Math.max(targetPosition, DaphneTwoConstants.CLIMBERTALONS_ONE_INCH_IN_TICKS * 1);
     
     climberTalonUpper.getUpperArm().set(TalonFXControlMode.Position, targetPosition);
     //arm.getPIDController().setReference(targetPosition, ControlType.kPosition);
@@ -61,7 +61,7 @@ public class MoveUpperArmByInchesRelative extends CommandBase {
   @Override
   public boolean isFinished() {
     
-    return Math.abs(targetPosition - climberTalonUpper.getUpperArm().getSelectedSensorPosition()) < 500;
+    return Math.abs(targetPosition - climberTalonUpper.getUpperArm().getSelectedSensorPosition()) < DaphneTwoConstants.CLIMBERTALON_TICKS_ACCURACY;
 
   }
 }

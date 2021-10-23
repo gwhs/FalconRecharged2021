@@ -39,8 +39,8 @@ public class ClimberTalonLower extends SubsystemBase {
     // lowerArm.configForwardSoftLimitThreshold(-8469); //8469
     // lowerArm.configReverseSoftLimitThreshold(-245639); //245639
 
-    lowerArm.configForwardSoftLimitEnable(false);
-    lowerArm.configReverseSoftLimitEnable(false);
+    //lowerArm.configForwardSoftLimitEnable(false);
+    //lowerArm.configReverseSoftLimitEnable(false);
 
     lowerArm.setSelectedSensorPosition(0);
   }

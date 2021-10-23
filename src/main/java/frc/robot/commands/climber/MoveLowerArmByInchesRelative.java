@@ -38,7 +38,7 @@ public class MoveLowerArmByInchesRelative extends CommandBase {
     targetPosition = climberTalonLower.getLowerArm().getSelectedSensorPosition() + inches * DaphneTwoConstants.CLIMBERTALONS_ONE_INCH_IN_TICKS; //~16000 ticks = 1 inch -- wrong
 
       targetPosition = Math.min(targetPosition, DaphneTwoConstants.CLIMBERTALON_LOWER_LIMITUP);
-      targetPosition = Math.max(targetPosition, 1);
+      targetPosition = Math.max(targetPosition, DaphneTwoConstants.CLIMBERTALONS_ONE_INCH_IN_TICKS * 1);
     climberTalonLower.getLowerArm().set(TalonFXControlMode.Position, targetPosition);
     //arm.getPIDController().setReference(targetPosition, ControlType.kPosition);
   }
@@ -62,7 +62,7 @@ public class MoveLowerArmByInchesRelative extends CommandBase {
   @Override
   public boolean isFinished() {
     
-    return Math.abs(targetPosition - climberTalonLower.getLowerArm().getSelectedSensorPosition()) < 500;
+    return Math.abs(targetPosition - climberTalonLower.getLowerArm().getSelectedSensorPosition()) < DaphneTwoConstants.CLIMBERTALON_TICKS_ACCURACY;
 
   }
 }
