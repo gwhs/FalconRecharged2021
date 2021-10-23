@@ -15,7 +15,7 @@ import frc.robot.DaphneTwoConstants;
 import frc.robot.subsystems.Climber.ClimberTalonLower;
 import frc.robot.subsystems.Climber.ClimberTalonUpper;
 
-public class MoveUpperArmByInches extends CommandBase {
+public class MoveUpperArmByInchesRelative extends CommandBase {
   /**
    * Creates a new MoveClimberArm.
    */
@@ -23,12 +23,10 @@ public class MoveUpperArmByInches extends CommandBase {
   private double targetPosition;
   private ClimberTalonUpper climberTalonUpper;
   private double inches;
-  private double startingTicksUpper;
-  public MoveUpperArmByInches(ClimberTalonUpper climberTalonUpper, double inches, double startingTicksUpper) { //ticks 
+  public MoveUpperArmByInchesRelative(ClimberTalonUpper climberTalonUpper, double inches) { //ticks 
     // Use addRequirements() here to declare subsystem dependencies.
     this.climberTalonUpper = climberTalonUpper;
     this.inches = inches;
-    this.startingTicksUpper = startingTicksUpper;
     addRequirements(climberTalonUpper);
   }
 
@@ -36,12 +34,12 @@ public class MoveUpperArmByInches extends CommandBase {
   @Override
   public void initialize() {
    // initPos = climberTalonUpper.getUpperArm().getSelectedSensorPosition();
-    targetPosition = startingTicksUpper + inches * DaphneTwoConstants.CLIMBERTALONS_ONE_INCH_IN_TICKS; //~16000 ticks = 1 inch -- wrong
-    if(targetPosition > startingTicksUpper) {
-      targetPosition = Math.min(targetPosition, DaphneTwoConstants.CLIMBERTALON_UPPER_LIMITUP);
+    targetPosition = climberTalonUpper.getUpperArm().getSelectedSensorPosition() + inches * DaphneTwoConstants.CLIMBERTALONS_ONE_INCH_IN_TICKS; 
+    if(targetPosition > DaphneTwoConstants.CLIMBERTALON_UPPER_LIMITUP) {
+      targetPosition = DaphneTwoConstants.CLIMBERTALON_UPPER_LIMITUP;
     }
-    else {
-      targetPosition = Math.max(targetPosition, 0);
+    else if(targetPosition < 1) {
+      targetPosition = 1;
     }
     climberTalonUpper.getUpperArm().set(TalonFXControlMode.Position, targetPosition);
     //arm.getPIDController().setReference(targetPosition, ControlType.kPosition);

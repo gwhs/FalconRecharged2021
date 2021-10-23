@@ -12,47 +12,46 @@ import com.ctre.phoenix.motorcontrol.can.TalonFX;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.DaphneTwoConstants;
+import frc.robot.subsystems.Climber.ClimberTalon;
 import frc.robot.subsystems.Climber.ClimberTalonLower;
-import frc.robot.subsystems.Climber.ClimberTalonUpper;
 
-public class MoveUpperArmByInches extends CommandBase {
+public class MoveLowerArmByInchesRelative extends CommandBase {
   /**
    * Creates a new MoveClimberArm.
    */
   private double initPos;
   private double targetPosition;
-  private ClimberTalonUpper climberTalonUpper;
+  private ClimberTalonLower climberTalonLower;
   private double inches;
-  private double startingTicksUpper;
-  public MoveUpperArmByInches(ClimberTalonUpper climberTalonUpper, double inches, double startingTicksUpper) { //ticks 
+  private double startingTicksLower;
+  public MoveLowerArmByInchesRelative(ClimberTalonLower climberTalonLower, double inches) { //ticks 
     // Use addRequirements() here to declare subsystem dependencies.
-    this.climberTalonUpper = climberTalonUpper;
-    this.inches = inches;
-    this.startingTicksUpper = startingTicksUpper;
-    addRequirements(climberTalonUpper);
+    this.inches = inches; //~16000 ticks = 1 inch
+    addRequirements(climberTalonLower);
+    this.climberTalonLower = climberTalonLower;
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-   // initPos = climberTalonUpper.getUpperArm().getSelectedSensorPosition();
-    targetPosition = startingTicksUpper + inches * DaphneTwoConstants.CLIMBERTALONS_ONE_INCH_IN_TICKS; //~16000 ticks = 1 inch -- wrong
-    if(targetPosition > startingTicksUpper) {
-      targetPosition = Math.min(targetPosition, DaphneTwoConstants.CLIMBERTALON_UPPER_LIMITUP);
+    //initPos = climberTalonLower.getLowerArm().getSelectedSensorPosition();
+    targetPosition = climberTalonLower.getLowerArm().getSelectedSensorPosition() + inches * DaphneTwoConstants.CLIMBERTALONS_ONE_INCH_IN_TICKS; //~16000 ticks = 1 inch -- wrong
+    if(targetPosition > DaphneTwoConstants.CLIMBERTALON_LOWER_LIMITUP) {
+      targetPosition = DaphneTwoConstants.CLIMBERTALON_LOWER_LIMITUP;
     }
-    else {
-      targetPosition = Math.max(targetPosition, 0);
+    else if(targetPosition < 1) {
+      targetPosition = 1;
     }
-    climberTalonUpper.getUpperArm().set(TalonFXControlMode.Position, targetPosition);
+    climberTalonLower.getLowerArm().set(TalonFXControlMode.Position, targetPosition);
     //arm.getPIDController().setReference(targetPosition, ControlType.kPosition);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    System.out.println("Actual Pos of Upper:" + this.climberTalonUpper.getUpperArm().getSelectedSensorPosition());
-    System.out.println("Expected Pos of Upper:" + targetPosition);
-    System.out.println("Diff of Upper " + (targetPosition - this.climberTalonUpper.getUpperArm().getSelectedSensorPosition()));
+    System.out.println("Actual Pos of Lower:" + this.climberTalonLower.getLowerArm().getSelectedSensorPosition());
+    System.out.println("Expected Pos of Lower:" + targetPosition);
+    System.out.println("Diff of Lower " + (targetPosition - this.climberTalonLower.getLowerArm().getSelectedSensorPosition()));
   }
 
 
@@ -66,7 +65,7 @@ public class MoveUpperArmByInches extends CommandBase {
   @Override
   public boolean isFinished() {
     
-    return Math.abs(targetPosition - climberTalonUpper.getUpperArm().getSelectedSensorPosition()) < 500;
+    return Math.abs(targetPosition - climberTalonLower.getLowerArm().getSelectedSensorPosition()) < 500;
 
   }
 }

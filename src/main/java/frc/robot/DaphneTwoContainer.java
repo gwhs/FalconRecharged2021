@@ -50,6 +50,7 @@ import frc.robot.subsystems.LimelightPortal;
 import frc.robot.subsystems.Shooter;
 import frc.robot.subsystems.Drive.SwerveDriveSubsystem;
 import frc.robot.utility.TrajectoryMaker;
+import frc.robot.utility.TriggerAxisButton;
 
 /**
  * This class is where the bulk of the robot should be declared. Since
@@ -161,8 +162,16 @@ public class DaphneTwoContainer {
     JoystickButton buttonB2 = new JoystickButton(mXboxController2, XboxController.Button.kB.value);
     JoystickButton buttonX2 = new JoystickButton(mXboxController2, XboxController.Button.kX.value);
     JoystickButton buttonY2 = new JoystickButton(mXboxController2, XboxController.Button.kY.value);
+    JoystickButton leftBumper2 = new JoystickButton(mXboxController2, XboxController.Button.kBumperLeft.value);
+    JoystickButton rightBumper2 = new JoystickButton(mXboxController2, XboxController.Button.kBumperRight.value);
+    TriggerAxisButton LeftTrigger2 = new TriggerAxisButton(mXboxController2, XboxController.Axis.kLeftTrigger.value);
+    TriggerAxisButton RightTrigger2 = new TriggerAxisButton(mXboxController2, XboxController.Axis.kRightTrigger.value);
 
-    buttonA2.whenPressed(new MoveLowerArmByInches(climberTLower, 1, startingTicksUpperArm));
+    RightTrigger2.whenPressed(new MoveUpperArmByInchesRelative(climberTUpper, -1));
+    LeftTrigger2.whenPressed(new MoveLowerArmByInchesRelative(climberTLower, -1));
+
+    rightBumper2.whenPressed(new MoveLowerArmByInchesRelative(climberTLower, 1));
+    leftBumper2.whenPressed(new MoveUpperArmByInchesRelative(climberTUpper, 1));
     //buttonB2.whenPressed(new MoveUpperArmByInches(climberTUpper, 1, startingTicksLowerArm));
     //buttonB2.whenPressed(new SetShooterSpeed(shooterMotor, 1000).withTimeout(3));
     buttonB2.whenPressed(new OneCycleAutoLeft(swerveDriveSubsystem, conveyorT, intake, shooterMotor, 5000, 0));
