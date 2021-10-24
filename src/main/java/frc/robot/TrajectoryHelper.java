@@ -38,7 +38,7 @@ public class TrajectoryHelper {
         {90, 24}
     };
 
-    public static double[][] targetToLineLeft = {
+    public static double[][] targetToLine = {
         {90, 24},
         {0, 24}
     };
@@ -324,7 +324,7 @@ public static double[][] testStep= {
     }
 
     public static TrajectoryMaker createTargetZoneToLine() {
-        return createTrajectory(targetZoneToLine, GLOBAL_SCALE, 0, 0, true);
+        return createTrajectory(targetZoneToLine, GLOBAL_SCALE, 0, Math.PI, true);
     }
 
     public static TrajectoryMaker createLineLeftToTargetZone() {
@@ -332,7 +332,7 @@ public static double[][] testStep= {
     }
 
     public static TrajectoryMaker createTargetZoneToLineLeft() {
-        return createTrajectory(targetToLineLeft, GLOBAL_SCALE, 0, 0, true);
+        return createTrajectory(targetToLine, GLOBAL_SCALE, 0, Math.PI, true);
     }
 
     public static TrajectoryMaker createDriveForward() // test path going only 4 meters forward
