@@ -18,7 +18,7 @@ import frc.robot.subsystems.Climber.ClimberTalonUpper;
 // https://docs.wpilib.org/en/latest/docs/software/commandbased/convenience-features.html
 public class AutoClimbDeploy extends SequentialCommandGroup {
   /**
-   * Creates a new SemiAutoClimb.
+   * Deploys Climber Arms
    */
   
 

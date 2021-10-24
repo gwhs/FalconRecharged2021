@@ -174,10 +174,10 @@ public class DaphneTwoContainer {
     //buttonB2.whenPressed(new SetShooterSpeed(shooterMotor, 1000).withTimeout(3));
     //buttonB2.whenPressed(new OneCycleAuto(swerveDriveSubsystem, conveyorT, intake, shooterMotor, 5000, 0));
    
-    buttonX2.whenPressed(new AutoClimbDeploy(climberTUpper, climberTLower, startingTicksUpperArm, startingTicksLowerArm));
-    buttonY2.whenPressed(new SemiAutoPullUp(climberTUpper, climberTLower, startingTicksUpperArm, startingTicksLowerArm));
-
-
+    buttonY2.whenPressed(new AutoClimbDeploy(climberTUpper, climberTLower, startingTicksUpperArm, startingTicksLowerArm));
+    buttonX2.whenPressed(new SemiAutoPullUp(climberTUpper, climberTLower, startingTicksUpperArm, startingTicksLowerArm));
+    buttonA2.whenPressed(new ClimbSkewLeft(climberTUpper, climberTLower, startingTicksUpperArm, startingTicksLowerArm));
+    buttonB2.whenPressed(new ClimbSkewRight(climberTUpper, climberTLower, startingTicksUpperArm, startingTicksLowerArm));
   }
   /**
    * Use this method to define your button->command mappings. Buttons can be

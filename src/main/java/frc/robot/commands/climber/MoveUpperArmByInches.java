@@ -17,7 +17,7 @@ import frc.robot.subsystems.Climber.ClimberTalonUpper;
 
 public class MoveUpperArmByInches extends CommandBase {
   /**
-   * Creates a new MoveClimberArm.
+   * Moves upper climber arm to absolute position
    */
   private double initPos;
   private double targetPosition;

@@ -17,7 +17,7 @@ import frc.robot.subsystems.Climber.ClimberTalonLower;
 
 public class MoveLowerArmByInches extends CommandBase {
   /**
-   * Creates a new MoveClimberArm.
+   * Moves lower arm to absolute position
    */
   private double initPos;
   private double targetPosition;
