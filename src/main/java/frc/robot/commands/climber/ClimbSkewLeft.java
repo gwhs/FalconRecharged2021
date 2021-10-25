@@ -10,8 +10,9 @@ public class ClimbSkewLeft extends SequentialCommandGroup {
 
         super(new SemiAutoPullUp(climberTalonUpper, climberTalonLower, startingTicksUpper, startingTicksLower),
               new MoveLowerArmByInches(climberTalonLower, 18.75, startingTicksLower),
-              new MoveLowerArmByInches(climberTalonLower, 4.625, startingTicksLower),
-              new ParallelCommandGroup(new MoveLowerArmByInches(climberTalonLower, 2, startingTicksLower),
+              new MoveUpperArmByInches(climberTalonUpper, 18, startingTicksUpper),
+              new MoveLowerArmByInches(climberTalonLower, 14.125, startingTicksLower),
+              new ParallelCommandGroup(new MoveLowerArmByInches(climberTalonLower, 6.625, startingTicksLower),
                                        new MoveUpperArmByInches(climberTalonUpper, 2, startingTicksUpper)));
 
     }
