@@ -8,8 +8,7 @@ import frc.robot.subsystems.Climber.ClimberTalonUpper;
 public class ClimbSkewRight extends SequentialCommandGroup {
     public ClimbSkewRight(ClimberTalonUpper climberTalonUpper, ClimberTalonLower climberTalonLower, double startingTicksUpper, double startingTicksLower) {
 
-        super(new SemiAutoPullUp(climberTalonUpper, climberTalonLower, startingTicksUpper, startingTicksLower),
-              new MoveUpperArmByInches(climberTalonUpper, 18, startingTicksLower),
+        super(new MoveUpperArmByInches(climberTalonUpper, 18, startingTicksLower),
               new MoveLowerArmByInches(climberTalonLower, 18.75, startingTicksLower),
               new MoveUpperArmByInches(climberTalonUpper, 13.375, startingTicksLower),
               new ParallelCommandGroup(new MoveLowerArmByInches(climberTalonLower, 2, startingTicksLower),

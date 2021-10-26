@@ -44,17 +44,12 @@ public class TwoCycleAuto extends SequentialCommandGroup {
 
 
     TrajectoryMaker traj = TrajectoryHelper.createLineToTargetZone();
-    TrajectoryMaker traj2 = TrajectoryHelper.createTargetZoneToTrench();
-    TrajectoryMaker traj3 = TrajectoryHelper.createTrenchRunPickUp();
+    TrajectoryMaker traj2 = TrajectoryHelper.createTargetZoneToLineLeft();
     addCommands(
       new WaitCommand(delayInSeconds),
       new Autonomous(swerveDriveSubsystem, traj.getTrajectory(), traj.getAngle(), true),
       new AutoShoot(conveyorTalon, shooter, false, inputRPM, DaphneTwoConstants.CONVEYOR_UNLOADS_SPEED),
-      new Autonomous(swerveDriveSubsystem, traj2.getTrajectory(), traj2.getAngle(), false),
-      new ParallelCommandGroup(
-        new Autonomous(swerveDriveSubsystem, traj3.getTrajectory(), traj3.getAngle(), false)
-        
-      )
+      new Autonomous(swerveDriveSubsystem, traj2.getTrajectory(), traj2.getAngle(), false)
     );
   }
 }

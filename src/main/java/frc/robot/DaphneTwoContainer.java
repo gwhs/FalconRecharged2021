@@ -328,7 +328,7 @@ public class DaphneTwoContainer {
     //How can we change this to select the auto routine from the dashboard?
     //return new AutoPath1(swerveDriveSubsystem);
     
-    return new OneCycleAuto(swerveDriveSubsystem, conveyorT, intake, shooterMotor, 5000, 0);
+    return new OneCycleAutoLeft(swerveDriveSubsystem, conveyorT, intake, shooterMotor, 5000, 0);
    //TrajectoryMaker path0 = TrajectoryHelper.createSlalom();
    //TrajectoryMaker path = TrajectoryHelper.createBarrel();
    

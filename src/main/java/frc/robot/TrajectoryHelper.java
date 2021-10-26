@@ -19,18 +19,19 @@ public class TrajectoryHelper {
 
     public static double[][] targetZoneToLine = {
         {90, 0},
-        {0, 0}
+        {-2, 0},
+        {0, 2},
     };
 
-    public static double[][] targetZoneToTrench = {
-        {90, 0},
-        {-86.62, 66.91}  
-    };
+    // public static double[][] targetZoneToTrench = {
+    //     {90, 0},
+    //     {-86.62, 66.91}  
+    // };
     
-    public static double[][] trenchRunPickUp = {
-        {-86.62, 66.91},
-        {-196.62, 66.91}
-    };
+    // public static double[][] trenchRunPickUp = {
+    //     {-86.62, 66.91},
+    //     {-196.62, 66.91}
+    // };
 
     // for one cycle auto starting two feet to the left
     public static double[][] lineLeftToTargetZone = {
@@ -40,7 +41,8 @@ public class TrajectoryHelper {
 
     public static double[][] targetToLine = {
         {90, 24},
-        {0, 24}
+        {-2, 24},
+        {0, 26}
     };
 
     public static double[][] test4Meters= {
@@ -315,16 +317,16 @@ public static double[][] testStep= {
         return createTrajectory(lineToTargetZone, GLOBAL_SCALE, 0, 0, false);
     }
 
-    public static TrajectoryMaker createTargetZoneToTrench() {
-        return createTrajectory(targetZoneToTrench, GLOBAL_SCALE, 0, 0, true);
-    }
+    // public static TrajectoryMaker createTargetZoneToTrench() {
+    //     return createTrajectory(targetZoneToTrench, GLOBAL_SCALE, 0, 0, true);
+    // }
 
-    public static TrajectoryMaker createTrenchRunPickUp() {
-        return createTrajectory(trenchRunPickUp, GLOBAL_SCALE, 0, 0, true);
-    }
+    // public static TrajectoryMaker createTrenchRunPickUp() {
+    //     return createTrajectory(trenchRunPickUp, GLOBAL_SCALE, 0, 0, true);
+    // }
 
     public static TrajectoryMaker createTargetZoneToLine() {
-        return createTrajectory(targetZoneToLine, GLOBAL_SCALE, 0, Math.PI, true);
+        return createTrajectory(targetZoneToLine, GLOBAL_SCALE, 0, Math.PI - 0.5, true);
     }
 
     public static TrajectoryMaker createLineLeftToTargetZone() {
@@ -332,7 +334,7 @@ public static double[][] testStep= {
     }
 
     public static TrajectoryMaker createTargetZoneToLineLeft() {
-        return createTrajectory(targetToLine, GLOBAL_SCALE, 0, Math.PI, true);
+        return createTrajectory(targetToLine, GLOBAL_SCALE, 0, Math.PI - 0.5, true);
     }
 
     public static TrajectoryMaker createDriveForward() // test path going only 4 meters forward
