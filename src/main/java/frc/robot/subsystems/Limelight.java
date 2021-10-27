@@ -30,7 +30,7 @@ public class Limelight extends SubsystemBase  {
   
   private SendableChooser<Integer> intakeMode;
 
-  public NetworkTable intakeLL = NetworkTableInstance.getDefault().getTable("limelight-intake"); // 10.55.7.12
+  public NetworkTable intakeLL = NetworkTableInstance.getDefault().getTable("10.55.7.21"); // 10.55.7.21
   public NetworkTable shooterLL = NetworkTableInstance.getDefault().getTable("limelight-shooter"); // 10.55.7.11
   public NetworkTableEntry inX = intakeLL.getEntry("tx");
   public NetworkTableEntry inY = intakeLL.getEntry("ty");

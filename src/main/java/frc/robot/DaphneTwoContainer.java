@@ -176,8 +176,8 @@ public class DaphneTwoContainer {
    
     buttonY2.whenPressed(new AutoClimbDeploy(climberTUpper, climberTLower, startingTicksUpperArm, startingTicksLowerArm));
     buttonX2.whenPressed(new SemiAutoPullUp(climberTUpper, climberTLower, startingTicksUpperArm, startingTicksLowerArm));
-    buttonA2.whenPressed(new ClimbSkewLeft(climberTUpper, climberTLower, startingTicksUpperArm, startingTicksLowerArm));
-    buttonB2.whenPressed(new ClimbSkewRight(climberTUpper, climberTLower, startingTicksUpperArm, startingTicksLowerArm));
+    buttonA2.whenPressed(new ClimbSkewLeft(climberTUpper, climberTLower, startingTicksUpperArm, startingTicksLowerArm)); //upper arm should be towards center
+    buttonB2.whenPressed(new ClimbSkewRight(climberTUpper, climberTLower, startingTicksUpperArm, startingTicksLowerArm)); // lower arm should be towards center
   }
   /**
    * Use this method to define your button->command mappings. Buttons can be
