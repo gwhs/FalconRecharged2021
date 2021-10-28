@@ -143,9 +143,6 @@ public class DaphneTwoContainer {
     //toggle shooter
     //buttonB.whenPressed(new InstantCommand(() -> shooterMotor.toggleShooter(-DaphneTwoConstants.GREEN_RPM), shooterMotor)); //change 1000 rpm later
     int inputRPM = (int) SmartDashboard.getNumber("Input Shooter RPM", 0);
-    System.out.println();
-    System.out.println("input rpm: " + inputRPM);
-    System.out.println();
     buttonB.whenPressed(new AutoShoot(conveyorT, shooterMotor, true, 5500, DaphneTwoConstants.CONVEYOR_UNLOADS_SPEED));
     //buttonB.whenPressed(new ToggleIntake(intake));
    // buttonB.whenPressed(new InstantCommand((DaphneTwoConstants.GREEN_RPM) -> toggleShooter() //looking for something that doesn't take parameters  
@@ -176,8 +173,8 @@ public class DaphneTwoContainer {
    
     buttonY2.whenPressed(new AutoClimbDeploy(climberTUpper, climberTLower, startingTicksUpperArm, startingTicksLowerArm));
     buttonX2.whenPressed(new SemiAutoPullUp(climberTUpper, climberTLower, startingTicksUpperArm, startingTicksLowerArm));
-    buttonA2.whenPressed(new ClimbSkewLeft(climberTUpper, climberTLower, startingTicksUpperArm, startingTicksLowerArm)); //upper arm should be towards center
-    buttonB2.whenPressed(new ClimbSkewRight(climberTUpper, climberTLower, startingTicksUpperArm, startingTicksLowerArm)); // lower arm should be towards center
+    buttonB2.whenPressed(new ClimbSkewRight(climberTUpper, climberTLower, startingTicksUpperArm, startingTicksLowerArm)); //upper arm should be towards center
+    buttonA2.whenPressed(new ClimbSkewLeft(climberTUpper, climberTLower, startingTicksUpperArm, startingTicksLowerArm)); // lower arm should be towards center
   }
   /**
    * Use this method to define your button->command mappings. Buttons can be
