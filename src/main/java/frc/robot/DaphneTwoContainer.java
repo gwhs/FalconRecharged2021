@@ -143,7 +143,7 @@ public class DaphneTwoContainer {
     //toggle shooter
     //buttonB.whenPressed(new InstantCommand(() -> shooterMotor.toggleShooter(-DaphneTwoConstants.GREEN_RPM), shooterMotor)); //change 1000 rpm later
     int inputRPM = (int) SmartDashboard.getNumber("Input Shooter RPM", 0);
-    buttonB.whenPressed(new AutoShoot(conveyorT, shooterMotor, true, 5500, DaphneTwoConstants.CONVEYOR_UNLOADS_SPEED));
+    buttonB.whenPressed(new AutoShoot(conveyorT, shooterMotor, true, DaphneTwoConstants.GREEN_RPM, DaphneTwoConstants.CONVEYOR_UNLOADS_SPEED));
     //buttonB.whenPressed(new ToggleIntake(intake));
    // buttonB.whenPressed(new InstantCommand((DaphneTwoConstants.GREEN_RPM) -> toggleShooter() //looking for something that doesn't take parameters  
     //buttonX.whenPressed(new ToggleClimberGearLock(climberT)); 
@@ -328,13 +328,12 @@ public class DaphneTwoContainer {
     
     int path = 0; // for one cycle auto: 0, anything else is starting Left
     int delay = 0;
-    int rpm = 5000;
 
     if(path == 0) {
-      return new OneCycleAuto(swerveDriveSubsystem, conveyorT, intake, shooterMotor, rpm, delay);
+      return new OneCycleAuto(swerveDriveSubsystem, conveyorT, intake, shooterMotor, DaphneTwoConstants.GREEN_RPM, delay);
     }
     else {
-      return new OneCycleAutoLeft(swerveDriveSubsystem, conveyorT, intake, shooterMotor, rpm, delay);
+      return new OneCycleAutoLeft(swerveDriveSubsystem, conveyorT, intake, shooterMotor, DaphneTwoConstants.GREEN_RPM, delay);
     }
 
     
