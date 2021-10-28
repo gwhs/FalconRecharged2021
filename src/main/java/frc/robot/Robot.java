@@ -7,7 +7,12 @@
 
 package frc.robot;
 
+import java.util.Map;
+
+import edu.wpi.cscore.HttpCamera;
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
+import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -34,12 +39,17 @@ public class Robot extends TimedRobot {
 
   private static final String ROBOT_TYPE = DAPHNE2; // change this line to either "DAPHNE1" or "DAPHNE2" to switch between configurations.
 
+  private HttpCamera limelightFeed;
   /**
    * This function is run when the robot is first started up and should be used for any
    * initialization code.
    */
   @Override
   public void robotInit() {
+
+    ShuffleboardTab driverShuffleboardTab = Shuffleboard.getTab("Limelight");
+    Shuffleboard.selectTab("Limelight");
+    driverShuffleboardTab.add("LL", limelightFeed).withPosition(0,0).withSize(15, 8).withProperties(Map.of("Show Crosshair", true, "Show Controls", false));
     // Instantiate our DaphneTwoContainer.  This will perform all our button bindings, and put our
     // autonomous chooser on the dashboard.
     switch(ROBOT_TYPE) {
