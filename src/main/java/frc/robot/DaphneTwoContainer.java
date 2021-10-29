@@ -29,6 +29,7 @@ import frc.robot.commands.AutoPaths.GalacticSearch;
 import frc.robot.commands.AutoPaths.GalacticSearchTest;
 import frc.robot.commands.AutoPaths.OneCycleAuto;
 import frc.robot.commands.AutoPaths.OneCycleAutoLeft;
+import frc.robot.commands.AutoPaths.OneCycleAutoStop;
 import frc.robot.commands.AutoPaths.SensorTest;
 import frc.robot.commands.climber.*;
 //import frc.robot.commands.controlpanel.SpinnerCommand;
@@ -327,10 +328,13 @@ public class DaphneTwoContainer {
     //return new AutoPath1(swerveDriveSubsystem);
     
     int path = 0; // for one cycle auto: 0, anything else is starting Left
-    int delay = 5;
+    int delay = 0;
 
     if(path == 0) {
       return new OneCycleAuto(swerveDriveSubsystem, conveyorT, intake, shooterMotor, DaphneTwoConstants.GREEN_RPM, delay);
+    }
+    else if(path == 1) {
+      return new OneCycleAutoStop(swerveDriveSubsystem, conveyorT, intake, shooterMotor, DaphneTwoConstants.GREEN_RPM, delay);
     }
     else {
       return new OneCycleAutoLeft(swerveDriveSubsystem, conveyorT, intake, shooterMotor, DaphneTwoConstants.GREEN_RPM, delay);
