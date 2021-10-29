@@ -327,7 +327,7 @@ public class DaphneTwoContainer {
     //return new AutoPath1(swerveDriveSubsystem);
     
     int path = 0; // for one cycle auto: 0, anything else is starting Left
-    int delay = 0;
+    int delay = 5;
 
     if(path == 0) {
       return new OneCycleAuto(swerveDriveSubsystem, conveyorT, intake, shooterMotor, DaphneTwoConstants.GREEN_RPM, delay);

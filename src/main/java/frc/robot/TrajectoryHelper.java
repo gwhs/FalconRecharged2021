@@ -36,7 +36,7 @@ public class TrajectoryHelper {
     // for one cycle auto starting two feet to the left
     public static double[][] lineLeftToTargetZone = {
         {0, 0},
-        {90, 24}
+        {90, 40}
     };
 
     public static double[][] targetToLine = {
