@@ -146,7 +146,7 @@ public class DaphneTwoContainer {
     //toggle shooter
     //buttonB.whenPressed(new InstantCommand(() -> shooterMotor.toggleShooter(-DaphneTwoConstants.GREEN_RPM), shooterMotor)); //change 1000 rpm later
     int inputRPM = (int) SmartDashboard.getNumber("Input Shooter RPM", 0);
-    buttonB.whenPressed(new AutoShoot(conveyorT, shooterMotor, true, DaphneTwoConstants.GREEN_RPM, DaphneTwoConstants.CONVEYOR_UNLOADS_SPEED));
+    buttonB.whenPressed(new AutoShoot(conveyorT, shooterMotor, true, 5750, DaphneTwoConstants.CONVEYOR_UNLOADS_SPEED));
     //buttonB.whenPressed(new ToggleIntake(intake));
    // buttonB.whenPressed(new InstantCommand((DaphneTwoConstants.GREEN_RPM) -> toggleShooter() //looking for something that doesn't take parameters  
     //buttonX.whenPressed(new ToggleClimberGearLock(climberT)); 
