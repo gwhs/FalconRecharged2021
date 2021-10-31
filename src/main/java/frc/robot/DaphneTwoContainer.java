@@ -29,6 +29,7 @@ import frc.robot.commands.AutoPaths.GalacticSearch;
 import frc.robot.commands.AutoPaths.GalacticSearchTest;
 import frc.robot.commands.AutoPaths.OneCycleAuto;
 import frc.robot.commands.AutoPaths.OneCycleAutoLeft;
+import frc.robot.commands.AutoPaths.OneCycleAutoLeftStop;
 import frc.robot.commands.AutoPaths.OneCycleAutoStop;
 import frc.robot.commands.AutoPaths.SensorTest;
 import frc.robot.commands.climber.*;
@@ -135,7 +136,8 @@ public class DaphneTwoContainer {
 
     leftBumper.whileHeld(new SetShooterSpeed(shooterMotor, 6000));
     back.whileHeld(new ZeroNavX(swerveDriveSubsystem));
-    buttonX.whileHeld(new ConveyorSpeed( conveyorT, DaphneTwoConstants.CONVEYOR_UNLOADS_SPEED)); // change seconds later
+    //buttonX.whileHeld(new ConveyorSpeed( conveyorT, DaphneTwoConstants.CONVEYOR_UNLOADS_SPEED)); // change seconds later
+    buttonX.whenPressed(new IntakeSpeed(intake, 1.0).withTimeout(2));
     rightBumper.whenPressed(new ToggleFieldOrientedCommand(swerveDriveSubsystem));
     start.whenPressed(new InstantCommand(() -> {shooterMotor.setMotorRPM(0);}, shooterMotor)); 
 
@@ -327,7 +329,7 @@ public class DaphneTwoContainer {
     //How can we change this to select the auto routine from the dashboard?
     //return new AutoPath1(swerveDriveSubsystem);
     
-    int path = 0; // for one cycle auto: 0, anything else is starting Left
+    int path = 1; // for one cycle auto: 0, anything else is starting Left
     int delay = 0;
 
     if(path == 0) {
@@ -336,8 +338,11 @@ public class DaphneTwoContainer {
     else if(path == 1) {
       return new OneCycleAutoStop(swerveDriveSubsystem, conveyorT, intake, shooterMotor, DaphneTwoConstants.GREEN_RPM, delay);
     }
-    else {
+    else if(path == 2){
       return new OneCycleAutoLeft(swerveDriveSubsystem, conveyorT, intake, shooterMotor, DaphneTwoConstants.GREEN_RPM, delay);
+    }
+    else {
+      return new OneCycleAutoLeftStop(swerveDriveSubsystem, conveyorT, intake, shooterMotor, DaphneTwoConstants.GREEN_RPM, delay);
     }
 
     
